@@ -748,222 +748,253 @@ function AboutPage() {
           IMPACT CARDS
       ====================================================== */}
 
+      {/* =====================================================
+    HERO IMPACT STATS
+====================================================== */}
+
+<div
+  className="
+    mt-5
+
+    grid
+    grid-cols-1
+    gap-3
+
+    min-[520px]:grid-cols-3
+
+    lg:absolute
+    lg:-right-5
+    lg:bottom-8
+    lg:mt-0
+    lg:w-[280px]
+    lg:grid-cols-1
+    lg:gap-2.5
+
+    xl:-right-8
+  "
+>
+  {/* 100K+ */}
+
+  <div
+    className="
+      rounded-[1.2rem]
+
+      border
+      border-border
+
+      bg-white/95
+
+      p-4
+
+      shadow-lg
+      backdrop-blur
+    "
+  >
+    <div
+      className="
+        flex
+        items-center
+        gap-4
+      "
+    >
       <div
         className="
-          mt-4
+          flex
+          size-11
+          shrink-0
 
-          grid
-          grid-cols-3
-          gap-2
+          items-center
+          justify-center
 
-          sm:mt-5
+          rounded-xl
 
-          lg:absolute
-          lg:-right-5
-          lg:bottom-8
-          lg:w-[275px]
-          lg:grid-cols-1
-          lg:gap-2.5
+          bg-accent
+
+          text-primary
         "
       >
-        {/* 100K */}
-
-        <div
-          className="
-            rounded-xl
-
-            border
-            border-border
-
-            bg-white/95
-
-            p-3
-
-            shadow-lg
-            backdrop-blur
-          "
-        >
-          <div
-            className="
-              flex
-              items-center
-              gap-2.5
-            "
-          >
-            <div
-              className="
-                flex
-                size-9
-                shrink-0
-
-                items-center
-                justify-center
-
-                rounded-lg
-
-                bg-accent
-                text-primary
-              "
-            >
-              <UsersRound className="size-4" />
-            </div>
-
-            <div>
-              <p
-                className="
-                  text-base
-                  font-extrabold
-
-                  sm:text-lg
-                "
-              >
-                100K+
-              </p>
-
-              <p
-                className="
-                  text-[9px]
-                  text-muted-foreground
-                "
-              >
-                Students trained
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* 11 Years */}
-
-        <div
-          className="
-            rounded-xl
-
-            border
-            border-border
-
-            bg-white/95
-
-            p-3
-
-            shadow-lg
-            backdrop-blur
-          "
-        >
-          <div
-            className="
-              flex
-              items-center
-              gap-2.5
-            "
-          >
-            <div
-              className="
-                flex
-                size-9
-                shrink-0
-
-                items-center
-                justify-center
-
-                rounded-lg
-
-                bg-accent
-                text-primary
-              "
-            >
-              <Award className="size-4" />
-            </div>
-
-            <div>
-              <p
-                className="
-                  text-base
-                  font-extrabold
-
-                  sm:text-lg
-                "
-              >
-                11 Years
-              </p>
-
-              <p
-                className="
-                  text-[9px]
-                  text-muted-foreground
-                "
-              >
-                Training excellence
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* 70+ */}
-
-        <div
-          className="
-            rounded-xl
-
-            border
-            border-border
-
-            bg-white/95
-
-            p-3
-
-            shadow-lg
-            backdrop-blur
-          "
-        >
-          <div
-            className="
-              flex
-              items-center
-              gap-2.5
-            "
-          >
-            <div
-              className="
-                flex
-                size-9
-                shrink-0
-
-                items-center
-                justify-center
-
-                rounded-lg
-
-                bg-accent
-                text-primary
-              "
-            >
-              <GraduationCap className="size-4" />
-            </div>
-
-            <div>
-              <p
-                className="
-                  text-base
-                  font-extrabold
-
-                  sm:text-lg
-                "
-              >
-                70+
-              </p>
-
-              <p
-                className="
-                  text-[9px]
-                  text-muted-foreground
-                "
-              >
-                Institutions trust us
-              </p>
-            </div>
-          </div>
-        </div>
+        <UsersRound className="size-5" />
       </div>
+
+      <div className="min-w-0">
+        <p
+          className="
+            text-xl
+            font-extrabold
+            leading-none
+
+            text-foreground
+
+            sm:text-2xl
+          "
+        >
+          100K+
+        </p>
+
+        <p
+          className="
+            mt-2
+
+            text-sm
+            leading-5
+
+            text-muted-foreground
+          "
+        >
+          Students trained
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* 11 YEARS */}
+
+  <div
+    className="
+      rounded-[1.2rem]
+
+      border
+      border-border
+
+      bg-white/95
+
+      p-4
+
+      shadow-lg
+      backdrop-blur
+    "
+  >
+    <div
+      className="
+        flex
+        items-center
+        gap-4
+      "
+    >
+      <div
+        className="
+          flex
+          size-11
+          shrink-0
+
+          items-center
+          justify-center
+
+          rounded-xl
+
+          bg-accent
+
+          text-primary
+        "
+      >
+        <Award className="size-5" />
+      </div>
+
+      <div className="min-w-0">
+        <p
+          className="
+            text-xl
+            font-extrabold
+            leading-none
+
+            text-foreground
+
+            sm:text-2xl
+          "
+        >
+          11 Years
+        </p>
+
+        <p
+          className="
+            mt-2
+
+            text-sm
+            leading-5
+
+            text-muted-foreground
+          "
+        >
+          Training excellence
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* 70+ */}
+
+  <div
+    className="
+      rounded-[1.2rem]
+
+      border
+      border-border
+
+      bg-white/95
+
+      p-4
+
+      shadow-lg
+      backdrop-blur
+    "
+  >
+    <div
+      className="
+        flex
+        items-center
+        gap-4
+      "
+    >
+      <div
+        className="
+          flex
+          size-11
+          shrink-0
+
+          items-center
+          justify-center
+
+          rounded-xl
+
+          bg-accent
+
+          text-primary
+        "
+      >
+        <GraduationCap className="size-5" />
+      </div>
+
+      <div className="min-w-0">
+        <p
+          className="
+            text-xl
+            font-extrabold
+            leading-none
+
+            text-foreground
+
+            sm:text-2xl
+          "
+        >
+          70+
+        </p>
+
+        <p
+          className="
+            mt-2
+
+            text-sm
+            leading-5
+
+            text-muted-foreground
+          "
+        >
+          Institutions trust us
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </section>

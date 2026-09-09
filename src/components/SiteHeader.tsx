@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+
 import {
   Building2,
   ChevronRight,
@@ -82,11 +83,9 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open
+      ? "hidden"
+      : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -95,9 +94,9 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* =========================
-          FLOATING NAVBAR ONLY
-      ========================== */}
+      {/* =====================================================
+          FLOATING NAVBAR
+      ====================================================== */}
 
       <header
         className={`
@@ -106,9 +105,8 @@ export function SiteHeader() {
           top-0
           z-50
 
-          bg-transparent
-
           pointer-events-none
+          bg-transparent
 
           transition-all
           duration-300
@@ -124,8 +122,8 @@ export function SiteHeader() {
             w-full
             max-w-[1440px]
 
-            px-4
-            sm:px-6
+            px-3
+            sm:px-5
             lg:px-8
             xl:px-10
           "
@@ -138,7 +136,7 @@ export function SiteHeader() {
               items-center
               justify-between
 
-              rounded-[1.7rem]
+              rounded-[1.6rem]
 
               border
               border-border/70
@@ -165,32 +163,37 @@ export function SiteHeader() {
               }
             `}
           >
-            {/* Logo */}
+            {/* LOGO */}
 
             <Link
               to="/"
               onClick={() => setOpen(false)}
-              className="flex shrink-0 items-center"
+              className="
+                flex
+                shrink-0
+                items-center
+              "
             >
               <img
                 src={logoUrl}
                 alt="Elev8 Learning"
                 className="
-                  h-9
+                  h-10
                   w-auto
 
-                  sm:h-10
+                  sm:h-11
 
-                  lg:h-11
+                  lg:h-12
                 "
               />
             </Link>
 
-            {/* Desktop navigation */}
+            {/* DESKTOP NAV */}
 
             <nav
               className="
                 hidden
+
                 xl:flex
                 xl:items-center
                 xl:gap-1
@@ -209,6 +212,7 @@ export function SiteHeader() {
                   }}
                   className="
                     rounded-full
+
                     px-3
                     py-2
 
@@ -218,7 +222,6 @@ export function SiteHeader() {
                     text-foreground/75
 
                     transition-all
-                    duration-200
 
                     hover:bg-accent
                     hover:text-primary
@@ -256,17 +259,18 @@ export function SiteHeader() {
                   shadow-[0_8px_22px_rgba(190,0,60,0.20)]
 
                   transition-all
-                  duration-300
 
                   hover:-translate-y-0.5
-                  hover:shadow-[0_12px_28px_rgba(190,0,60,0.28)]
+
+                  2xl:px-6
+                  2xl:text-sm
                 "
               >
                 Talk to Elev8
               </Link>
             </nav>
 
-            {/* Mobile menu */}
+            {/* MOBILE BUTTON */}
 
             <button
               type="button"
@@ -275,7 +279,7 @@ export function SiteHeader() {
               onClick={() => setOpen(true)}
               className="
                 flex
-                size-10
+                size-11
 
                 items-center
                 justify-center
@@ -305,9 +309,9 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {/* =========================
+      {/* =====================================================
           OVERLAY
-      ========================== */}
+      ====================================================== */}
 
       <div
         onClick={() => setOpen(false)}
@@ -333,9 +337,9 @@ export function SiteHeader() {
         `}
       />
 
-      {/* =========================
+      {/* =====================================================
           MOBILE SIDEBAR
-      ========================== */}
+      ====================================================== */}
 
       <aside
         className={`
@@ -347,8 +351,8 @@ export function SiteHeader() {
           flex
           h-[100dvh]
 
-          w-[82%]
-          max-w-[350px]
+          w-[88%]
+          max-w-[390px]
 
           flex-col
 
@@ -359,7 +363,7 @@ export function SiteHeader() {
 
           bg-[#fbf8f3]
 
-          shadow-[20px_0_60px_rgba(0,0,0,0.18)]
+          shadow-[20px_0_60px_rgba(0,0,0,0.20)]
 
           transition-transform
           duration-300
@@ -374,19 +378,20 @@ export function SiteHeader() {
           }
         `}
       >
-        {/* Sidebar Header */}
+        {/* SIDEBAR HEADER */}
 
         <div
           className="
             flex
             shrink-0
+
             items-center
             justify-between
 
             border-b
             border-border
 
-            px-4
+            px-5
             py-4
           "
         >
@@ -398,7 +403,10 @@ export function SiteHeader() {
             <img
               src={logoUrl}
               alt="Elev8 Learning"
-              className="h-8 w-auto"
+              className="
+                h-11
+                w-auto
+              "
             />
           </Link>
 
@@ -408,7 +416,7 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
             className="
               flex
-              size-9
+              size-11
 
               items-center
               justify-center
@@ -423,13 +431,18 @@ export function SiteHeader() {
               text-foreground
 
               shadow-sm
+
+              transition-all
+
+              hover:border-primary
+              hover:text-primary
             "
           >
-            <X className="size-4.5" />
+            <X className="size-5" />
           </button>
         </div>
 
-        {/* Small Intro */}
+        {/* SIDEBAR INTRO */}
 
         <div
           className="
@@ -438,16 +451,17 @@ export function SiteHeader() {
             border-b
             border-border
 
-            px-4
-            py-3
+            px-5
+            py-4
           "
         >
           <p
             className="
-              text-[9px]
+              text-[11px]
               font-extrabold
               uppercase
-              tracking-[0.17em]
+              tracking-[0.18em]
+
               text-primary
             "
           >
@@ -456,35 +470,37 @@ export function SiteHeader() {
 
           <p
             className="
-              mt-1.5
+              mt-2
 
-              text-xs
-              leading-5
+              max-w-[290px]
+
+              text-sm
+              leading-6
 
               text-muted-foreground
             "
           >
-            Helping people build skills, confidence and capability.
+            Helping people build skills, confidence and
+            capability.
           </p>
         </div>
 
-        {/* Navigation - NO SCROLL */}
+        {/* =================================================
+            NAVIGATION
+            No vertical centering = removes large empty gap
+        ================================================== */}
 
         <nav
           className="
-            flex
             flex-1
-            flex-col
-
-            justify-center
 
             overflow-hidden
 
-            px-3
-            py-2
+            px-4
+            py-4
           "
         >
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             {navItems.map((item) => {
               const Icon = item.icon;
 
@@ -498,45 +514,50 @@ export function SiteHeader() {
                   }}
                   activeProps={{
                     className:
-                      "bg-accent text-primary font-extrabold",
+                      "bg-[#fde4e4] text-primary font-extrabold",
                   }}
                   className="
                     group
 
                     flex
+                    min-h-[58px]
+
                     items-center
 
-                    rounded-xl
+                    rounded-[1.1rem]
 
                     px-3
                     py-2.5
 
-                    text-[13px]
+                    text-[15px]
                     font-semibold
 
                     text-foreground/80
 
                     transition-all
+                    duration-200
 
                     hover:bg-accent
                     hover:text-primary
                   "
                 >
-                  {/* Icon */}
+                  {/* ICON */}
 
                   <span
                     className="
                       mr-3
 
                       flex
-                      size-9
-
+                      size-10
                       shrink-0
 
                       items-center
                       justify-center
 
-                      rounded-xl
+                      rounded-full
+
+                      border
+                      border-border
 
                       bg-white
 
@@ -546,30 +567,32 @@ export function SiteHeader() {
 
                       transition-all
 
+                      group-hover:border-primary
                       group-hover:bg-primary
                       group-hover:text-white
                     "
                   >
-                    <Icon className="size-4" />
+                    <Icon className="size-[18px]" />
                   </span>
 
-                  {/* Label */}
+                  {/* LABEL */}
 
                   <span className="flex-1">
                     {item.label}
                   </span>
 
-                  {/* Arrow */}
+                  {/* ARROW */}
 
                   <ChevronRight
                     className="
-                      size-4
-                      opacity-40
+                      size-[18px]
+
+                      text-foreground/30
 
                       transition-all
 
                       group-hover:translate-x-1
-                      group-hover:opacity-100
+                      group-hover:text-primary
                     "
                   />
                 </Link>
@@ -578,7 +601,9 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        {/* Bottom CTA */}
+        {/* =================================================
+            BOTTOM CTA
+        ================================================== */}
 
         <div
           className="
@@ -587,7 +612,9 @@ export function SiteHeader() {
             border-t
             border-border
 
-            p-3
+            bg-[#fbf8f3]
+
+            p-4
           "
         >
           <Link
@@ -601,16 +628,23 @@ export function SiteHeader() {
               justify-center
               gap-2
 
-              rounded-xl
+              rounded-full
 
               bg-primary
 
-              px-4
-              py-3
+              px-5
+              py-3.5
 
-              text-sm
+              text-[15px]
               font-extrabold
+
               text-white
+
+              shadow-[0_10px_25px_rgba(190,0,60,0.20)]
+
+              transition-all
+
+              hover:opacity-90
             "
           >
             Talk to Elev8
