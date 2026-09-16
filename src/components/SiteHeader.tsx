@@ -16,36 +16,12 @@ import {
 import { logoUrl } from "@/lib/site";
 
 const navItems = [
-  {
-    to: "/",
-    label: "Home",
-    icon: Home,
-  },
-  {
-    to: "/corporates",
-    label: "For Organizations",
-    icon: Building2,
-  },
-  {
-    to: "/colleges",
-    label: "For Institutions",
-    icon: GraduationCap,
-  },
-  {
-    to: "/individuals",
-    label: "For Individuals",
-    icon: UserRound,
-  },
-  {
-    to: "/about",
-    label: "About",
-    icon: Info,
-  },
-  {
-    to: "/contact",
-    label: "Contact",
-    icon: Mail,
-  },
+  { to: "/", label: "Home", icon: Home },
+  { to: "/corporates", label: "For Organizations", icon: Building2 },
+  { to: "/colleges", label: "For Institutions", icon: GraduationCap },
+  { to: "/individuals", label: "For Individuals", icon: UserRound },
+   
+  { to: "/contact", label: "Contact", icon: Mail },
 ] as const;
 
 export function SiteHeader() {
@@ -53,40 +29,22 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 18);
     handleScroll();
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1280) {
-        setOpen(false);
-      }
+      if (window.innerWidth >= 1280) setOpen(false);
     };
-
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open
-      ? "hidden"
-      : "";
-
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -95,140 +53,126 @@ export function SiteHeader() {
   return (
     <>
       {/* =====================================================
-          FLOATING NAVBAR
+          HEADER
+
+          Important: the header stays in normal document flow.
+          That means the hero starts immediately after it with no
+          artificial spacer. On scroll, the inner nav becomes a
+          floating rounded bar while the header remains sticky.
       ====================================================== */}
 
       <header
         className={`
-          fixed
+          sticky
           inset-x-0
           top-0
           z-50
-
-          pointer-events-none
-          bg-transparent
-
+          w-full
           transition-all
           duration-300
-
-          ${scrolled ? "pt-2" : "pt-3 md:pt-4"}
+          ${scrolled ? "bg-transparent py-2" : "bg-[#fbf8f3] py-0"}
         `}
       >
         <div
-          className="
-            pointer-events-auto
-
+          className={`
             mx-auto
+            flex
             w-full
-            max-w-[1440px]
+            items-center
+            justify-between
+            transition-all
+            duration-300
 
-            px-3
-            sm:px-5
-            lg:px-8
-            xl:px-10
-          "
+            ${
+              scrolled
+                ? `
+                    max-w-[1360px]
+                    rounded-[1.4rem]
+                    border
+                    border-border/70
+                    bg-[#fbf8f3]/95
+                    px-4
+                    shadow-[0_12px_34px_rgba(15,23,42,0.10)]
+                    backdrop-blur-xl
+                    sm:px-5
+                    lg:px-6
+                  `
+                : `
+                    max-w-[1440px]
+                    border-b
+                    border-transparent
+                    bg-transparent
+                    px-5
+                    sm:px-7
+                    lg:px-10
+                    xl:px-12
+                  `
+            }
+          `}
         >
           <div
             className={`
               flex
-              h-[64px]
-
+              w-full
               items-center
               justify-between
-
-              rounded-[1.6rem]
-
-              border
-              border-border/70
-
-              bg-[#fbf8f3]/95
-
-              px-4
-
-              backdrop-blur-xl
-
-              transition-all
+              transition-[height]
               duration-300
-
-              sm:h-[68px]
-              sm:px-5
-
-              lg:h-[70px]
-              lg:px-6
 
               ${
                 scrolled
-                  ? "shadow-[0_10px_32px_rgba(0,0,0,0.09)]"
-                  : "shadow-[0_3px_14px_rgba(0,0,0,0.055)]"
+                  ? "h-[58px] sm:h-[60px] lg:h-[62px]"
+                  : "h-[68px] sm:h-[70px] lg:h-[72px]"
               }
             `}
           >
             {/* LOGO */}
-
             <Link
               to="/"
               onClick={() => setOpen(false)}
-              className="
-                flex
-                shrink-0
-                items-center
-              "
+              className="flex shrink-0 items-center"
             >
               <img
                 src={logoUrl}
                 alt="Elev8 Learning"
-                className="
-                  h-10
+                className={`
                   w-auto
-
-                  sm:h-11
-
-                  lg:h-12
-                "
+                  transition-[height]
+                  duration-300
+                  ${
+                    scrolled
+                      ? "h-9 sm:h-10 lg:h-11"
+                      : "h-10 sm:h-[42px] lg:h-[46px]"
+                  }
+                `}
               />
             </Link>
 
             {/* DESKTOP NAV */}
-
-            <nav
-              className="
-                hidden
-
-                xl:flex
-                xl:items-center
-                xl:gap-1
-              "
-            >
+            <nav className="hidden items-center gap-1 xl:flex">
               {navItems.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  activeOptions={{
-                    exact: item.to === "/",
-                  }}
+                  activeOptions={{ exact: item.to === "/" }}
                   activeProps={{
-                    className:
-                      "bg-accent text-primary font-bold",
+                    className: scrolled
+                      ? "bg-accent text-primary font-bold"
+                      : "text-primary font-bold",
                   }}
-                  className="
+                  className={`
                     rounded-full
-
                     px-3
                     py-2
-
                     text-[13px]
                     font-semibold
-
                     text-foreground/75
-
                     transition-all
-
-                    hover:bg-accent
                     hover:text-primary
-
                     2xl:px-4
                     2xl:text-sm
-                  "
+                    ${scrolled ? "hover:bg-accent" : "hover:bg-transparent"}
+                  `}
                 >
                   {item.label}
                 </Link>
@@ -238,30 +182,20 @@ export function SiteHeader() {
                 to="/contact"
                 className="
                   ml-2
-
                   inline-flex
                   items-center
                   justify-center
-
                   whitespace-nowrap
-
                   rounded-full
-
                   bg-primary
-
                   px-5
                   py-2.5
-
                   text-[13px]
                   font-extrabold
                   text-white
-
                   shadow-[0_8px_22px_rgba(190,0,60,0.20)]
-
                   transition-all
-
                   hover:-translate-y-0.5
-
                   2xl:px-6
                   2xl:text-sm
                 "
@@ -271,7 +205,6 @@ export function SiteHeader() {
             </nav>
 
             {/* MOBILE BUTTON */}
-
             <button
               type="button"
               aria-label="Open navigation"
@@ -279,27 +212,18 @@ export function SiteHeader() {
               onClick={() => setOpen(true)}
               className="
                 flex
-                size-11
-
+                size-10
                 items-center
                 justify-center
-
                 rounded-full
-
                 border
                 border-border
-
                 bg-white
-
                 text-foreground
-
                 shadow-sm
-
                 transition-all
-
                 hover:border-primary
                 hover:text-primary
-
                 xl:hidden
               "
             >
