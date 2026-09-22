@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { useEffect, useRef, useState } from "react";
+
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Briefcase,
   CheckCircle2,
   MessageSquare,
@@ -12,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { photos, remoteImages } from "@/lib/site";
+import landingHero from "@/assets/landingHero.png";
 
 import {
   useReveal,
@@ -136,8 +141,106 @@ function IndividualsPage() {
   const cardRef =
     useRevealChildren<HTMLDivElement>();
 
+  const [activeSkill, setActiveSkill] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveSkill((current) =>
+        (current + 1) % areas.length,
+      );
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const previousSkill = () => {
+    setActiveSkill((current) =>
+      (current - 1 + areas.length) % areas.length,
+    );
+  };
+
+  const nextSkill = () => {
+    setActiveSkill((current) =>
+      (current + 1) % areas.length,
+    );
+  };
+
+  const visibleSkills = [-2, -1, 0, 1, 2].map((offset) => {
+    const index =
+      (activeSkill + offset + areas.length) %
+      areas.length;
+
+    return {
+      data: areas[index],
+      index,
+      offset,
+    };
+  });
+
   const processRef =
     useRevealChildren<HTMLDivElement>();
+
+  const processSequenceRef =
+    useRef<HTMLDivElement>(null);
+
+  const [activeProcessStep, setActiveProcessStep] =
+    useState(-1);
+
+  useEffect(() => {
+    const section = processSequenceRef.current;
+
+    if (!section) return;
+
+    let intervalId: number | null = null;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const stopSequence = () => {
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          stopSequence();
+          setActiveProcessStep(-1);
+          return;
+        }
+
+        if (reduceMotion) {
+          setActiveProcessStep(0);
+          return;
+        }
+
+        stopSequence();
+        setActiveProcessStep(0);
+
+        intervalId = window.setInterval(() => {
+          setActiveProcessStep((current) =>
+            current >= process.length - 1
+              ? 0
+              : current + 1,
+          );
+        }, 1000);
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      stopSequence();
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -208,25 +311,25 @@ function IndividualsPage() {
 
             items-center
 
-            gap-10
+            gap-7
 
             px-4
-            py-10
+            py-4
 
             sm:px-6
-            sm:py-12
+            sm:py-5
 
             md:px-8
-            md:py-14
+            md:py-6
 
-            lg:min-h-[calc(100svh-96px)]
-            lg:grid-cols-[0.94fr_1.06fr]
-            lg:gap-10
+            lg:min-h-0
+            lg:grid-cols-[0.98fr_1.02fr]
+            lg:gap-8
             lg:px-10
-            lg:py-5
+            lg:py-4
 
-            xl:grid-cols-[0.92fr_1.08fr]
-            xl:gap-12
+            xl:grid-cols-[0.96fr_1.04fr]
+            xl:gap-10
 
             2xl:max-w-[1500px]
           "
@@ -241,32 +344,114 @@ function IndividualsPage() {
               z-20
 
               max-w-[650px]
+
+              lg:translate-x-10
+              xl:translate-x-14
+              2xl:translate-x-16
             "
           >
-            <p className="section-kicker">
-              For Individuals
-            </p>
+            <div
+              className="
+                mx-auto
+                inline-flex
+                items-center
+                gap-2.5
+
+                rounded-full
+
+                border
+                border-primary/20
+
+                bg-white/90
+
+                py-1.5
+                pl-1.5
+                pr-4
+
+                shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+                backdrop-blur-sm
+              "
+            >
+              <span
+                className="
+                  flex
+                  size-8
+                  shrink-0
+                  items-center
+                  justify-center
+
+                  rounded-full
+                  bg-primary
+
+                  shadow-[0_5px_14px_rgba(196,0,79,0.22)]
+                "
+              >
+                <UserRound
+                  className="size-4 text-white"
+                  strokeWidth={2.5}
+                />
+              </span>
+
+              <span
+                className="
+                  text-[11px]
+                  font-extrabold
+                  uppercase
+                  tracking-[0.15em]
+
+                  text-primary
+
+                  sm:text-xs
+                "
+              >
+                For Individuals
+              </span>
+
+              <span
+                className="
+                  hidden
+                  h-4
+                  w-px
+                  bg-primary/15
+
+                  sm:block
+                "
+              />
+
+              <span
+                className="
+                  hidden
+                  text-[11px]
+                  font-bold
+                  text-foreground/45
+
+                  sm:inline
+                "
+              >
+                Learn • Grow • Progress
+              </span>
+            </div>
 
             <h1
               className="
-                mt-4
+                mt-3
 
-                text-[2.35rem]
+                text-[2.15rem]
                 font-extrabold
                 leading-[0.98]
                 tracking-[-0.045em]
 
                 text-foreground
 
-                sm:text-[2.9rem]
+                sm:text-[2.65rem]
 
-                md:text-[3.3rem]
+                md:text-[3rem]
 
-                lg:text-[3.45rem]
+                lg:text-[3.15rem]
 
-                xl:text-[3.8rem]
+                xl:text-[3.45rem]
 
-                2xl:text-[4rem]
+                2xl:text-[3.65rem]
               "
             >
               Practical skills for{" "}
@@ -277,7 +462,7 @@ function IndividualsPage() {
 
             <p
               className="
-                mt-5
+                mt-4
                 max-w-[620px]
 
                 text-sm
@@ -301,7 +486,7 @@ function IndividualsPage() {
 
             <div
               className="
-                mt-5
+                mt-4
                 max-w-[600px]
 
                 rounded-2xl
@@ -313,8 +498,8 @@ function IndividualsPage() {
 
                 bg-card
 
-                px-5
-                py-4
+                px-4
+                py-3.5
 
                 shadow-sm
               "
@@ -336,7 +521,7 @@ function IndividualsPage() {
 
             <div
               className="
-                mt-6
+                mt-5
 
                 flex
                 flex-col
@@ -418,154 +603,109 @@ function IndividualsPage() {
 
               mx-auto
               w-full
+              min-w-0
+              max-w-[560px]
 
-              max-w-[680px]
+              sm:max-w-[610px]
 
-              lg:max-w-none
+              lg:mx-auto
+              lg:max-w-[620px]
+
+              xl:max-w-[660px]
             "
           >
             <div
               className="
-                grid
-                grid-cols-2
-                gap-3
-
-                sm:grid-cols-12
-                sm:gap-4
+                group
+                relative
               "
             >
-              {/* Main image */}
-
-              <div
+              <img
+                src={landingHero}
+                alt="Elev8 learning and career development"
                 className="
-                  col-span-2
+                  mx-auto
+                  block
+                  h-auto
+                  max-h-[440px]
+                  w-full
 
-                  overflow-hidden
+                  object-contain
 
-                  rounded-[1.6rem]
+                  sm:max-h-[500px]
 
-                  shadow-2xl
+                  lg:max-h-[540px]
 
-                  sm:col-span-8
-                  sm:rounded-[2rem]
+                  xl:max-h-[570px]
+
+                  transition-transform
+                  duration-700
+                  ease-out
+
+                  group-hover:scale-[1.015]
+
+                  motion-reduce:transform-none
+                  motion-reduce:transition-none
+                "
+              />
+            </div>
+
+            {/* small supporting badge */}
+            <div
+              className="
+                absolute
+                bottom-3
+                left-1/2
+
+                hidden
+                -translate-x-1/2
+                items-center
+                gap-2.5
+
+                whitespace-nowrap
+
+                rounded-full
+
+                border
+                border-white/60
+
+                bg-white/90
+
+                px-4
+                py-2.5
+
+                shadow-[0_10px_28px_rgba(15,23,42,0.10)]
+                backdrop-blur-md
+
+                md:flex
+
+                lg:bottom-4
+              "
+            >
+              <span
+                className="
+                  flex
+                  size-7
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  bg-primary
                 "
               >
-                <img
-                  src={remoteImages.publicSpeaking}
-                  alt="Professional communication and public speaking"
-                  className="
-                    aspect-[4/3]
+                <CheckCircle2 className="size-4 text-white" />
+              </span>
 
-                    w-full
-
-                    object-cover
-
-                    sm:aspect-[4/5]
-
-                    lg:h-[500px]
-                    lg:aspect-auto
-
-                    xl:h-[520px]
-                  "
-                />
-              </div>
-
-              {/* side column */}
-
-              <div
+              <span
                 className="
-                  col-span-2
-
-                  grid
-                  grid-cols-2
-                  gap-3
-
-                  sm:col-span-4
-                  sm:mt-12
-                  sm:block
-                  sm:space-y-4
-
-                  lg:mt-12
+                  text-xs
+                  font-extrabold
+                  text-foreground
                 "
               >
-                <img
-                  src={remoteImages.career}
-                  alt="Career development"
-                  className="
-                    aspect-square
-
-                    w-full
-
-                    rounded-[1.3rem]
-
-                    object-cover
-
-                    shadow-xl
-
-                    sm:rounded-[1.5rem]
-
-                    lg:h-[175px]
-                    lg:aspect-auto
-                  "
-                />
-
-                <div
-                  className="
-                    flex
-                    min-h-full
-                    flex-col
-                    justify-end
-
-                    rounded-[1.3rem]
-
-                    bg-ink
-
-                    p-4
-
-                    text-white
-
-                    shadow-xl
-
-                    sm:min-h-[210px]
-                    sm:rounded-[1.5rem]
-                    sm:p-5
-
-                    lg:min-h-[260px]
-                  "
-                >
-                  <p
-                    className="
-                      text-[9px]
-                      font-extrabold
-                      uppercase
-                      tracking-[.16em]
-
-                      text-white/60
-
-                      sm:text-xs
-                    "
-                  >
-                    Best for
-                  </p>
-
-                  <p
-                    className="
-                      mt-2
-
-                      text-xs
-                      font-bold
-                      leading-5
-
-                      sm:mt-3
-                      sm:text-sm
-                      sm:leading-6
-                    "
-                  >
-                    Students • Fresh graduates • Working
-                    professionals • Career transitions
-                  </p>
-                </div>
-              </div>
+                Practical skills for real career moments
+              </span>
             </div>
           </div>
         </div>
@@ -588,20 +728,131 @@ function IndividualsPage() {
       >
         <div
           className="
+            pl-6
+            pr-5
+
+            sm:pl-10
+            sm:pr-7
+
+            md:pl-16
+            md:pr-10
+
+            lg:pl-[8.5rem]
+            lg:pr-[5.5rem]
+
+            xl:pl-[10rem]
+            xl:pr-[7rem]
+
+            2xl:pl-[11rem]
+            2xl:pr-[8rem]
+
+            max-w-[1536px]
+            mx-auto
+
+            
+
+            
+
+            
+
             container-page
 
-            py-12
+            py-7
 
-            sm:py-16
+            sm:py-9
 
-            md:py-24
+            md:py-11
           "
         >
-          <p className="section-kicker">
-            What you can build
-          </p>
+          <div className="text-center">
+            <div
+                        className="
+                justify-center
+                mx-auto
+                          inline-flex
+                          items-center
+                          gap-2.5
+          
+                          rounded-full
+          
+                          border
+                          border-primary/15
+          
+                          bg-white/85
+          
+                          py-1.5
+                          pl-1.5
+                          pr-4
+          
+                          shadow-[0_7px_20px_rgba(15,23,42,0.05)]
+                          backdrop-blur-sm
+                        "
+                      >
+                        <span
+                          className="
+                            flex
+                            size-8
+                            shrink-0
+                            items-center
+                            justify-center
+          
+                            rounded-full
+                            bg-primary/10
+                          "
+                        >
+                          <Sparkles
+                            className="size-4 text-primary"
+                            strokeWidth={2.4}
+                          />
+                        </span>
+          
+                        <span
+                          className="
+                text-[11px]
+                font-extrabold
+                uppercase
+                tracking-[0.14em]
 
-          <h2 className="section-title">
+                text-primary
+
+                sm:text-xs
+              "
+                        >
+                          What you can build
+                        </span>
+          
+                        <span
+                          className="
+                            hidden
+                            text-[10px]
+                            font-bold
+                            text-foreground/40
+          
+                            sm:inline
+                          "
+                        >
+                          Skills for real moments
+                        </span>
+                      </div>
+          </div>
+
+          <h2 className="
+                mx-auto
+                mt-4
+                max-w-3xl
+
+                text-center
+                text-2xl
+                font-extrabold
+                leading-tight
+                tracking-[-0.035em]
+
+                text-foreground
+
+                sm:text-3xl
+
+                md:text-4xl
+              ">
             Six practical areas for{" "}
             <span className="text-primary">
               career confidence.
@@ -610,6 +861,8 @@ function IndividualsPage() {
 
           <p
             className="
+                text-center
+                mx-auto
               mt-4
               max-w-3xl
 
@@ -626,118 +879,315 @@ function IndividualsPage() {
             conversations and career decisions.
           </p>
 
-          <div
-            ref={cardRef}
-            className="
-              mt-8
+          <div className="skills-showcase relative mt-5 sm:mt-6">
+            <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden pb-4 pt-3">
+              <div className="relative mx-auto w-full max-w-[1780px] px-[24px] sm:px-[44px] md:px-[64px] lg:px-[86px] xl:px-[104px] 2xl:px-[118px]">
+                <div className="skills-stage relative mx-auto h-[480px] sm:h-[500px] lg:h-[515px]">
+                  {areas.map(([Icon, title, body, image], index) => {
+                    const total = areas.length;
+                    let offset = index - activeSkill;
 
-              grid
+                    if (offset > total / 2) offset -= total;
+                    if (offset < -total / 2) offset += total;
 
-              gap-5
+                    const visible = Math.abs(offset) <= 2;
+                    const active = offset === 0;
 
-              md:grid-cols-2
+                    return (
+                      <article
+                        key={title}
+                        onClick={() => setActiveSkill(index)}
+                        aria-hidden={!visible}
+                        className={`reference-skill-card group absolute left-1/2 top-1/2 overflow-hidden rounded-[24px] border bg-white ${
+                          active ? "is-active" : ""
+                        }`}
+                        style={
+                          {
+                            "--card-offset": offset,
+                            "--card-distance": Math.abs(offset),
+                            "--card-visible": visible ? 1 : 0,
+                          } as React.CSSProperties
+                        }
+                      >
+                        <div className="reference-skill-image relative overflow-hidden">
+                          <img
+                            src={image}
+                            alt={title}
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
 
-              xl:grid-cols-3
-            "
-          >
-            {areas.map(
-              ([Icon, title, body, image]) => (
-                <article
+                        <div className="reference-skill-body relative flex flex-1 flex-col items-center px-5 pb-5 pt-9 text-center sm:px-6">
+                          <span className="reference-skill-icon absolute left-1/2 top-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/15 bg-[#fff7fa] text-primary">
+                            <Icon className="size-6 sm:size-7" strokeWidth={2.35} />
+                          </span>
+
+                          <h3 className="reference-skill-title font-extrabold tracking-[-0.035em] text-foreground">
+                            {title}
+                          </h3>
+
+                          <p className="reference-skill-copy mt-3 text-muted-foreground">
+                            {body}
+                          </p>
+
+                          <div className="mt-auto flex items-center justify-center pt-4 text-[13px] font-bold text-primary sm:text-sm">
+                            <span>Practical learning</span>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="-mt-1 flex items-center justify-center gap-2">
+              {areas.map(([, title], index) => (
+                <button
                   key={title}
-                  className="
-                    reveal-child
-                    service-card
-                    group
-
-                    overflow-hidden
-                  "
-                >
-                  <div
-                    className="
-                      h-44
-
-                      overflow-hidden
-
-                      sm:h-48
-
-                      lg:h-52
-                    "
-                  >
-                    <img
-                      src={image}
-                      alt={title}
-                      className="
-                        h-full
-                        w-full
-
-                        object-cover
-
-                        transition-transform
-                        duration-500
-
-                        group-hover:scale-105
-                      "
-                    />
-                  </div>
-
-                  <div
-                    className="
-                      p-5
-
-                      sm:p-6
-                    "
-                  >
-                    <div
-                      className="
-                        flex
-                        size-10
-
-                        items-center
-                        justify-center
-
-                        rounded-xl
-
-                        bg-accent
-
-                        text-primary
-
-                        sm:size-11
-                        sm:rounded-2xl
-                      "
-                    >
-                      <Icon className="size-5" />
-                    </div>
-
-                    <h3
-                      className="
-                        mt-4
-
-                        text-lg
-                        font-extrabold
-
-                        sm:text-xl
-                      "
-                    >
-                      {title}
-                    </h3>
-
-                    <p
-                      className="
-                        mt-3
-
-                        text-sm
-                        leading-6
-
-                        text-muted-foreground
-                      "
-                    >
-                      {body}
-                    </p>
-                  </div>
-                </article>
-              ),
-            )}
+                  type="button"
+                  onClick={() => setActiveSkill(index)}
+                  aria-label={`Show ${title}`}
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    activeSkill === index
+                      ? "w-6 bg-primary"
+                      : "w-2 bg-foreground/15 hover:bg-primary/35"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
+
+          <style>{`
+            .skills-stage {
+              --card-w: 286px;
+              --card-h: 424px;
+              --card-step: 318px;
+            }
+
+            .reference-skill-card {
+              width: var(--card-w);
+              height: var(--card-h);
+              display: flex;
+              flex-direction: column;
+              opacity: var(--card-visible);
+              pointer-events: auto;
+              transform:
+                translate(-50%, -50%)
+                translateX(calc(var(--card-offset) * var(--card-step)))
+                scale(calc(1 - (var(--card-distance) * 0.035)));
+              z-index: calc(20 - var(--card-distance));
+              border-color: rgba(15, 23, 42, 0.10);
+              box-shadow: none;
+              transition:
+                transform 820ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 420ms ease,
+                border-color 420ms ease,
+                background-color 420ms ease;
+              will-change: transform;
+              backface-visibility: hidden;
+            }
+
+            .reference-skill-card.is-active {
+              border-color: hsl(var(--primary));
+              background:
+                linear-gradient(180deg, #ffffff 0%, #ffffff 46%, rgba(196, 0, 79, 0.035) 100%);
+              transform:
+                translate(-50%, -50%)
+                translateX(calc(var(--card-offset) * var(--card-step)))
+                scale(1.075);
+              z-index: 25;
+            }
+
+            .reference-skill-image {
+              height: 194px;
+              flex: 0 0 194px;
+              border-radius: 23px 23px 0 0;
+              background: #f7f4ef;
+            }
+
+            .reference-skill-body {
+              min-height: 230px;
+            }
+
+            .reference-skill-icon {
+              width: 58px;
+              height: 58px;
+              box-shadow: none;
+            }
+
+            .reference-skill-title {
+              font-size: 19px;
+              line-height: 1.2;
+            }
+
+            .reference-skill-copy {
+              font-size: 14px;
+              line-height: 1.65;
+            }
+
+            .reference-skill-card.is-active .reference-skill-title {
+              font-size: 21px;
+            }
+
+            .reference-skill-card.is-active .reference-skill-copy {
+              font-size: 14.5px;
+            }
+
+            @media (min-width: 640px) {
+              .skills-stage {
+                --card-w: 300px;
+                --card-h: 438px;
+                --card-step: 326px;
+              }
+
+              .reference-skill-image {
+                height: 202px;
+                flex-basis: 202px;
+              }
+            }
+
+            @media (min-width: 1024px) {
+              .skills-stage {
+                --card-w: 292px;
+                --card-h: 438px;
+                --card-step: 320px;
+              }
+            }
+
+            @media (min-width: 1280px) {
+              .skills-stage {
+                --card-w: 292px;
+                --card-h: 448px;
+                --card-step: 310px;
+              }
+
+              .reference-skill-image {
+                height: 205px;
+                flex-basis: 205px;
+              }
+            }
+
+            @media (min-width: 1536px) {
+              .skills-stage {
+                --card-w: 300px;
+                --card-h: 458px;
+                --card-step: 320px;
+              }
+
+              .reference-skill-image {
+                height: 214px;
+                flex-basis: 214px;
+              }
+            }
+
+            @media (max-width: 1023px) {
+              .skills-stage {
+                --card-w: min(66vw, 310px);
+                --card-h: 438px;
+                --card-step: min(70vw, 326px);
+              }
+
+              .reference-skill-card {
+                transform:
+                  translate(-50%, -50%)
+                  translateX(calc(var(--card-offset) * var(--card-step)))
+                  scale(calc(1 - (var(--card-distance) * 0.05)));
+              }
+
+              .reference-skill-card.is-active {
+                transform:
+                  translate(-50%, -50%)
+                  translateX(calc(var(--card-offset) * var(--card-step)))
+                  scale(1.035);
+              }
+            }
+
+            @media (max-width: 767px) {
+              .skills-stage {
+                --card-w: min(72vw, 310px);
+                --card-h: 432px;
+                --card-step: min(77vw, 326px);
+                height: 452px;
+              }
+
+              .reference-skill-image {
+                height: 194px;
+                flex-basis: 194px;
+              }
+            }
+
+            @media (max-width: 639px) {
+              .skills-stage {
+                --card-w: min(78vw, 304px);
+                --card-h: 420px;
+                --card-step: min(86vw, 326px);
+                height: 442px;
+              }
+
+              .reference-skill-card {
+                border-radius: 20px;
+              }
+
+              .reference-skill-image {
+                height: 184px;
+                flex-basis: 184px;
+                border-radius: 19px 19px 0 0;
+              }
+
+              .reference-skill-body {
+                min-height: 226px;
+                padding-left: 18px;
+                padding-right: 18px;
+              }
+
+              .reference-skill-icon {
+                width: 52px;
+                height: 52px;
+              }
+
+              .reference-skill-title,
+              .reference-skill-card.is-active .reference-skill-title {
+                font-size: 18px;
+              }
+
+              .reference-skill-copy,
+              .reference-skill-card.is-active .reference-skill-copy {
+                font-size: 13.5px;
+                line-height: 1.55;
+              }
+            }
+
+            @media (max-width: 420px) {
+              .skills-stage {
+                --card-w: min(76vw, 286px);
+                --card-h: 412px;
+                --card-step: 88vw;
+                height: 434px;
+              }
+
+              .reference-skill-image {
+                height: 176px;
+                flex-basis: 176px;
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .reference-skill-card {
+                transition: none !important;
+              }
+            }
+          `}</style>
+
+          <style>{`
+            @media (max-width: 767px) {
+              html,
+              body {
+                overflow-x: hidden;
+              }
+            }
+          `}</style>
+
         </div>
       </section>
 
@@ -749,7 +1199,6 @@ function IndividualsPage() {
         className="
           border-b
           border-border
-
           bg-background
         "
       >
@@ -757,28 +1206,111 @@ function IndividualsPage() {
           className="
             container-page
 
-            grid
-            gap-8
+            py-7
 
-            py-12
+            sm:py-9
 
-            sm:py-16
-
-            md:py-24
-
-            lg:grid-cols-[0.9fr_1.1fr]
-            lg:items-center
-            lg:gap-12
+            md:py-11
           "
         >
-          {/* left */}
+          {/* centered section header */}
+          <div
+            className="
+              mx-auto
+              max-w-4xl
+              text-center
+            "
+          >
+            <div className="text-center">
+              <div
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2.5
 
-          <div>
-            <p className="section-kicker">
-              How individual learning works
-            </p>
+                  rounded-full
 
-            <h2 className="section-title">
+                  border
+                  border-primary/15
+
+                  bg-white/85
+
+                  py-1.5
+                  pl-1.5
+                  pr-4
+
+                  shadow-[0_7px_20px_rgba(15,23,42,0.05)]
+                  backdrop-blur-sm
+                "
+              >
+                <span
+                  className="
+                    flex
+                    size-8
+                    shrink-0
+                    items-center
+                    justify-center
+
+                    rounded-full
+                    bg-primary/10
+                  "
+                >
+                  <Target
+                    className="size-4 text-primary"
+                    strokeWidth={2.4}
+                  />
+                </span>
+
+                <span
+                  className="
+                    text-[11px]
+                    font-extrabold
+                    uppercase
+                    tracking-[0.14em]
+
+                    text-primary
+
+                    sm:text-xs
+                  "
+                >
+                  How individual learning works
+                </span>
+
+                <span
+                  className="
+                    hidden
+                    text-[10px]
+                    font-bold
+                    text-foreground/40
+
+                    sm:inline
+                  "
+                >
+                  Practice • Feedback • Growth
+                </span>
+              </div>
+            </div>
+
+            <h2
+              className="
+                mx-auto
+                mt-4
+                max-w-3xl
+
+                text-center
+                text-2xl
+                font-extrabold
+                leading-tight
+                tracking-[-0.035em]
+
+                text-foreground
+
+                sm:text-3xl
+
+                md:text-4xl
+              "
+            >
               Practice first. Feedback next.{" "}
               <span className="text-primary">
                 Confidence follows.
@@ -787,119 +1319,168 @@ function IndividualsPage() {
 
             <p
               className="
+                mx-auto
                 mt-4
+                max-w-3xl
 
+                text-center
                 text-sm
                 leading-7
 
                 text-muted-foreground
 
                 sm:text-base
+                sm:leading-8
               "
             >
-              Individual learning is designed around practical
-              career situations, not theory alone.
+              Individual learning is designed around practical career
+              situations, not theory alone.
             </p>
+          </div>
 
-            <img
-              src={photos.corporateCohort}
-              alt="Elev8 learners"
+          {/* image left / cards right */}
+          <div
+            className="
+              mt-8
+              grid
+              gap-6
+
+              sm:mt-10
+              sm:gap-8
+
+              lg:grid-cols-[0.92fr_1.08fr]
+              lg:items-stretch
+              lg:gap-10
+            "
+          >
+            <div
               className="
-                mt-6
-
-                aspect-[4/3]
-
-                w-full
+                relative
+                min-h-[280px]
+                overflow-hidden
 
                 rounded-[1.5rem]
 
-                object-cover
-
-                shadow-xl
-
-                sm:mt-7
+                sm:min-h-[380px]
                 sm:rounded-[2rem]
+
+                lg:min-h-[520px]
               "
-            />
-          </div>
+            >
+              <img
+                src={photos.corporateCohort}
+                alt="Elev8 learners"
+                className="
+                  absolute
+                  inset-0
 
-          {/* right */}
+                  h-full
+                  w-full
 
-          <div
-            ref={processRef}
-            className="
-              space-y-3
+                  object-cover
+                  object-center
+                "
+              />
+            </div>
 
-              sm:space-y-4
-            "
-          >
-            {process.map(
-              ([number, title, body]) => (
-                <div
-                  key={number}
-                  className="
-                    reveal-child
+            <div
+              ref={processSequenceRef}
+              className="
+                grid
+                gap-3
 
-                    grid
-                    grid-cols-[auto_1fr]
-
-                    gap-3
-
-                    rounded-2xl
-
-                    border
-                    border-border
-
-                    bg-card
-
-                    p-4
-
-                    shadow-sm
-
-                    sm:gap-4
-                    sm:p-5
-                  "
-                >
-                  <span
-                    className="
-                      number-chip
-                      shrink-0
-                    "
+                sm:gap-4
+              "
+            >
+              {process.map(
+                ([number, title, body], index) => (
+                  <div
+                    key={number}
+                    className="relative"
                   >
-                    {number}
-                  </span>
+                    <div
+                      className={`
+                        process-step-card
+                        grid
+                        grid-cols-[auto_1fr]
+                        items-start
 
-                  <div className="min-w-0">
-                    <h3
-                      className="
-                        text-sm
-                        font-extrabold
+                        gap-3
 
-                        sm:text-base
-                      "
+                        rounded-2xl
+                        border
+
+                        p-4
+
+                        transition-all
+                        duration-500
+                        ease-out
+
+                        sm:gap-4
+                        sm:p-5
+
+                        lg:items-center
+
+                        ${
+                          activeProcessStep === index
+                            ? "-translate-y-1.5 border-primary/55 border-t-[5px] border-t-primary bg-[#fff3f7] shadow-[0_16px_36px_rgba(196,0,79,0.22)] ring-1 ring-primary/10"
+                            : "translate-y-0 border-border border-t-[5px] border-t-transparent bg-card shadow-sm"
+                        }
+                      `}
                     >
-                      {title}
-                    </h3>
+                      <span
+                        className={`
+                          number-chip
+                          shrink-0
 
-                    <p
-                      className="
-                        mt-2
+                          transition-all
+                          duration-500
 
-                        text-xs
-                        leading-5
+                          ${
+                            activeProcessStep === index
+                              ? "scale-110 shadow-[0_8px_20px_rgba(196,0,79,0.28)]"
+                              : "scale-100"
+                          }
+                        `}
+                      >
+                        {number}
+                      </span>
 
-                        text-muted-foreground
+                      <div className="min-w-0">
+                        <h3
+                          className="
+                            text-sm
+                            font-extrabold
+                            text-foreground
 
-                        sm:text-sm
-                        sm:leading-6
-                      "
-                    >
-                      {body}
-                    </p>
+                            sm:text-base
+                          "
+                        >
+                          {title}
+                        </h3>
+
+                        <p
+                          className="
+                            mt-1.5
+
+                            text-xs
+                            leading-5
+
+                            text-muted-foreground
+
+                            sm:text-sm
+                            sm:leading-6
+                          "
+                        >
+                          {body}
+                        </p>
+                      </div>
+                    </div>
+
                   </div>
-                </div>
-              ),
-            )}
+                ),
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -920,19 +1501,102 @@ function IndividualsPage() {
           className="
             container-page
 
-            grid
+            py-7
 
-            gap-4
+            sm:py-9
 
-            py-12
-
-            sm:py-16
-
-            md:grid-cols-3
-            md:gap-5
-            md:py-20
+            md:py-11
           "
         >
+          <div className="text-center">
+            <div
+              className="
+                justify-center
+                mx-auto
+                inline-flex
+                items-center
+                gap-2.5
+
+                rounded-full
+
+                border
+                border-primary/15
+
+                bg-white/85
+
+                py-1.5
+                pl-1.5
+                pr-4
+
+                shadow-[0_7px_20px_rgba(15,23,42,0.05)]
+              "
+            >
+              <span
+                className="
+                  flex
+                  size-8
+                  items-center
+                  justify-center
+
+                  rounded-full
+                  bg-primary/10
+                "
+              >
+                <CheckCircle2 className="size-4 text-primary" />
+              </span>
+
+              <span
+                className="
+                text-[11px]
+                font-extrabold
+                uppercase
+                tracking-[0.14em]
+
+                text-primary
+
+                sm:text-xs
+              "
+              >
+                What you take away
+              </span>
+            </div>
+
+            <h2
+              className="
+                mx-auto
+                mt-4
+                max-w-3xl
+
+                text-center
+                text-2xl
+                font-extrabold
+                leading-tight
+                tracking-[-0.035em]
+
+                text-foreground
+
+                sm:text-3xl
+
+                md:text-4xl
+              "
+            >
+              Skills that show up when{" "}
+              <span className="text-primary">
+                the moment matters.
+              </span>
+            </h2>
+          </div>
+
+          <div
+            className="
+              mt-7
+              grid
+              gap-4
+
+              md:grid-cols-3
+              md:gap-5
+            "
+          >
           {outcomes.map(([title, body]) => (
             <div
               key={title}
@@ -991,6 +1655,7 @@ function IndividualsPage() {
               </p>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
@@ -1013,14 +1678,16 @@ function IndividualsPage() {
 
             gap-6
 
-            py-10
+            py-7
 
-            sm:py-12
+            sm:py-8
 
-            md:flex-row
+            items-center
+            text-center
+
             md:items-center
-            md:justify-between
-            md:py-14
+            md:justify-center
+            md:py-9
           "
         >
           <div>
@@ -1036,19 +1703,26 @@ function IndividualsPage() {
                 sm:text-xs
               "
             >
-              Your next step
+              For Individuals • Your next step
             </p>
 
             <h2
               className="
-                mt-3
+                mx-auto
+                mt-4
                 max-w-3xl
 
+                text-center
                 text-2xl
                 font-extrabold
                 leading-tight
+                tracking-[-0.035em]
+
+                text-foreground
 
                 sm:text-3xl
+
+                md:text-4xl
               "
             >
               Tell us what you want to get better at.
@@ -1087,6 +1761,46 @@ function IndividualsPage() {
           </Link>
         </div>
       </section>
-    </>
+
+      <style>{`
+        @media (prefers-reduced-motion: reduce) {
+          .process-step-card {
+            transform: none !important;
+            transition: none !important;
+          }
+        }
+      `}</style>
+
+    
+          <style>{`
+            html,
+            body,
+            #root {
+              max-width: 100%;
+              overflow-x: hidden !important;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+
+            html::-webkit-scrollbar,
+            body::-webkit-scrollbar,
+            #root::-webkit-scrollbar {
+              width: 0;
+              height: 0;
+              display: none;
+            }
+
+            * {
+              scrollbar-width: none;
+            }
+
+            *::-webkit-scrollbar {
+              width: 0;
+              height: 0;
+              display: none;
+            }
+          `}</style>
+
+        </>
   );
 }
