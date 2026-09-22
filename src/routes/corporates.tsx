@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   BrainCircuit,
+  Check,
   CheckCircle2,
   Cog,
   Lightbulb,
@@ -167,6 +169,15 @@ const areas = [
   },
 ] as const;
 
+const capabilityCardThemes = [
+  "border-[#d9d0f5] bg-[#f2edff]",
+  "border-[#f1cfd8] bg-[#fff0f4]",
+  "border-[#bfe3df] bg-[#eafaf7]",
+  "border-[#efdcae] bg-[#fff8e7]",
+  "border-[#c9dcf3] bg-[#edf6ff]",
+  "border-[#d7d7d7] bg-[#f7f7f5]",
+] as const;
+
 /* =========================================================
    AI DETAILS
 ========================================================= */
@@ -194,6 +205,87 @@ const aiDetails = [
   ],
 ] as const;
 
+function AiDetailCard({
+  title,
+  body,
+  index,
+}: {
+  title: string;
+  body: string;
+  index: number;
+}) {
+  const cardRef = useReveal<HTMLDivElement>();
+
+  return (
+    <div
+      ref={cardRef}
+      style={{ transitionDelay: `${index * 120}ms` }}
+      className="reveal-right h-full duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none"
+    >
+      <div
+        className="
+          grid
+          h-full
+          grid-cols-[auto_1fr]
+          items-start
+          gap-3
+
+          rounded-2xl
+
+          border
+          border-border
+
+          bg-card
+
+          p-3.5
+
+          shadow-sm
+
+          transition-all
+          duration-300
+          ease-out
+
+          hover:-translate-y-1
+          hover:border-primary/25
+          hover:shadow-[0_14px_36px_rgba(190,24,93,0.10)]
+
+          sm:gap-3.5
+          sm:p-4
+
+          lg:items-center
+          lg:p-4
+        "
+      >
+        <span className="number-chip shrink-0">
+          0{index + 1}
+        </span>
+
+        <div className="min-w-0">
+          <h3 className="text-sm font-extrabold sm:text-base">
+            {title}
+          </h3>
+
+          <p
+            className="
+              mt-1.5
+
+              text-xs
+              leading-5
+
+              text-muted-foreground
+
+              sm:text-sm
+              sm:leading-6
+            "
+          >
+            {body}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* =========================================================
    PAGE
 ========================================================= */
@@ -205,11 +297,58 @@ function CorporatesPage() {
   const areaRef =
     useRevealChildren<HTMLDivElement>();
 
-  const aiRef =
-    useRevealChildren<HTMLDivElement>();
+  const processRef = useRef<HTMLDivElement>(null);
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
 
-  const processRef =
-    useRevealChildren<HTMLDivElement>();
+  useEffect(() => {
+    const section = processRef.current;
+    if (!section) return;
+
+    let timers: number[] = [];
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const stopAnimation = () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+      timers = [];
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          stopAnimation();
+          setActiveProcessStep(0);
+          return;
+        }
+
+        setActiveProcessStep(0);
+        if (reduceMotion) {
+          setActiveProcessStep(4);
+          return;
+        }
+
+        stopAnimation();
+        timers = [
+          window.setTimeout(() => setActiveProcessStep(1), 1200),
+          window.setTimeout(() => setActiveProcessStep(2), 2400),
+          window.setTimeout(() => setActiveProcessStep(3), 3600),
+          window.setTimeout(() => setActiveProcessStep(4), 4800),
+        ];
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      stopAnimation();
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
@@ -612,72 +751,6 @@ function CorporatesPage() {
       </section>
 
       {/* =====================================================
-          VALUE STRIP
-      ====================================================== */}
-
-      <section
-        className="
-          border-b
-          border-border
-          bg-ink
-          text-white
-        "
-      >
-        <div
-          className="
-            container-page
-
-            grid
-            gap-3
-
-            py-8
-
-            sm:gap-4
-            sm:py-10
-
-            md:grid-cols-3
-            md:gap-6
-          "
-        >
-          {[
-            "Customised around roles & business context",
-            "Practical and application-focused",
-            "Designed to improve performance at work",
-          ].map((item) => (
-            <div
-              key={item}
-              className="
-                flex
-                items-center
-                gap-3
-
-                rounded-2xl
-
-                border
-                border-white/10
-
-                bg-white/5
-
-                p-4
-              "
-            >
-              <CheckCircle2
-                className="
-                  size-5
-                  shrink-0
-                  text-primary
-                "
-              />
-
-              <p className="text-sm text-white/80">
-                {item}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* =====================================================
           CAPABILITY AREAS
       ====================================================== */}
 
@@ -696,18 +769,56 @@ function CorporatesPage() {
           className="
             container-page
 
-            py-12
+            py-10
 
-            sm:py-16
+            sm:py-12
 
-            md:py-24
+            md:py-16
           "
         >
-          <p className="section-kicker">
-            What we build
+          <p
+            className="
+              mx-auto
+              w-full
+
+              text-center
+              font-display
+              text-base
+              font-extrabold
+              tracking-[-0.03em]
+
+              text-foreground
+
+              sm:text-lg
+
+              md:text-xl
+            "
+          >
+            What we <span className="text-primary">build.</span>
           </p>
 
-          <h2 className="section-title">
+          <h2
+            className="
+              mx-auto
+              mt-3
+              max-w-4xl
+
+              text-center
+              font-display
+              text-2xl
+              font-extrabold
+              leading-[1.03]
+              tracking-[-0.045em]
+
+              text-foreground
+
+              sm:text-3xl
+
+              md:text-[2.25rem]
+
+              lg:text-[2.5rem]
+            "
+          >
             One workforce.{" "}
             <span className="text-primary">
               Multiple capability needs.
@@ -716,9 +827,11 @@ function CorporatesPage() {
 
           <p
             className="
+              mx-auto
               mt-4
               max-w-3xl
 
+              text-center
               text-sm
               leading-7
 
@@ -736,208 +849,274 @@ function CorporatesPage() {
           <div
             ref={areaRef}
             className="
+              relative
               mt-8
+              space-y-6
 
-              grid
-              gap-5
+              sm:mt-10
 
-              md:grid-cols-2
-
-              xl:gap-6
+              md:space-y-12
             "
           >
-            {areas.map((area) => {
+            {areas.map((area, index) => {
               const Icon = area.icon;
 
               return (
                 <article
                   key={area.title}
-                  className="
+                  style={{
+                    top: `${88 + index * 12}px`,
+                    zIndex: index + 1,
+                  }}
+                  className={`
                     reveal-child
-                    service-card
                     group
-
+                    relative
                     overflow-hidden
-                  "
+
+                    rounded-[1.75rem]
+                    border
+
+                    shadow-none
+
+                    md:rounded-[2.25rem]
+
+                    lg:sticky
+                    lg:min-h-[520px]
+
+                    ${capabilityCardThemes[index]}
+                  `}
                 >
                   <div
                     className="
-                      relative
-                      h-48
-                      overflow-hidden
+                      grid
 
-                      sm:h-56
+                      lg:min-h-[520px]
+                      lg:grid-cols-[0.9fr_1.1fr]
+                      lg:items-stretch
                     "
                   >
-                    <img
-                      src={area.image}
-                      alt={area.title}
-                      className="
-                        h-full
-                        w-full
-
-                        object-cover
-
-                        transition-transform
-                        duration-500
-
-                        group-hover:scale-105
-                      "
-                    />
-
                     <div
                       className="
-                        absolute
-                        inset-0
+                        relative
+                        m-4
+                        min-h-[240px]
+                        overflow-hidden
 
-                        bg-gradient-to-t
+                        rounded-[1.35rem]
 
-                        from-black/85
-                        via-black/20
-                        to-transparent
-                      "
-                    />
+                        sm:min-h-[300px]
 
-                    <div
-                      className="
-                        absolute
-                        bottom-4
-                        left-4
-                        right-4
+                        md:m-7
+                        md:rounded-[1.75rem]
 
-                        flex
-                        items-end
-                        justify-between
-                        gap-3
-
-                        sm:bottom-5
-                        sm:left-5
-                        sm:right-5
+                        lg:m-8
+                        lg:mr-0
+                        lg:min-h-0
                       "
                     >
-                      <div className="min-w-0">
-                        <p
+                      <img
+                        src={area.image}
+                        alt={area.title}
+                        className="
+                          absolute
+                          inset-0
+                          h-full
+                          w-full
+
+                          object-cover
+
+                          transition-transform
+                          duration-700
+                          ease-out
+
+                          group-hover:scale-105
+                        "
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+                      <div
+                        className="
+                          absolute
+                          bottom-4
+                          left-4
+
+                          flex
+                          items-center
+                          gap-2
+
+                          rounded-full
+
+                          border
+                          border-white/50
+
+                          bg-white/85
+
+                          px-3
+                          py-2
+
+                          text-[10px]
+                          font-extrabold
+                          uppercase
+                          tracking-[.14em]
+
+                          text-foreground
+
+                          shadow-lg
+                          backdrop-blur-md
+
+                          sm:bottom-5
+                          sm:left-5
+                          sm:text-xs
+                        "
+                      >
+                        <Icon className="size-4 text-primary" />
+                        Capability {area.number}
+                      </div>
+                    </div>
+
+                    <div
+                      className="
+                        flex
+                        flex-col
+                        justify-center
+
+                        px-5
+                        pb-7
+
+                        sm:px-7
+                        sm:pb-9
+
+                        md:p-8
+
+                        lg:p-12
+                      "
+                    >
+                      <div>
+                        <span
                           className="
-                            text-[9px]
+                            inline-flex
+                            items-center
+
+                            rounded-full
+
+                            border
+                            border-primary/15
+
+                            bg-white/75
+
+                            px-3
+                            py-1.5
+
+                            text-[10px]
                             font-extrabold
                             uppercase
-                            tracking-[.16em]
+                            tracking-[.12em]
 
-                            text-white/70
+                            text-primary
+
+                            shadow-sm
 
                             sm:text-xs
                           "
                         >
-                          {area.number} • Capability area
-                        </p>
+                          {area.line}
+                        </span>
 
                         <h3
                           className="
-                            mt-1.5
+                            mt-4
 
-                            text-lg
+                            max-w-xl
+
+                            text-2xl
                             font-extrabold
-                            leading-tight
+                            leading-[1.05]
+                            tracking-[-0.035em]
 
-                            text-white
+                            text-foreground
 
-                            sm:mt-2
-                            sm:text-2xl
+                            sm:text-3xl
+
+                            lg:text-[2.65rem]
                           "
                         >
                           {area.title}
                         </h3>
+
+                        <p
+                          className="
+                            mt-4
+                            max-w-xl
+
+                            text-sm
+                            leading-7
+
+                            text-foreground/65
+
+                            sm:text-base
+                          "
+                        >
+                          {area.body}
+                        </p>
                       </div>
 
                       <div
                         className="
+                          mt-6
+
                           flex
-                          size-10
-                          shrink-0
+                          flex-wrap
+                          gap-2
 
-                          items-center
-                          justify-center
-
-                          rounded-xl
-
-                          bg-white
-
-                          text-primary
-
-                          sm:size-12
-                          sm:rounded-2xl
+                          lg:mt-8
                         "
                       >
-                        <Icon className="size-5" />
+                        {area.items.map((item) => (
+                          <span
+                            key={item}
+                            className="
+                              rounded-full
+
+                              border
+                              border-black/10
+
+                              bg-white/65
+
+                              px-3
+                              py-1.5
+
+                              text-[10px]
+                              font-bold
+
+                              text-foreground/70
+
+                              shadow-sm
+
+                              transition-all
+                              duration-300
+                              ease-out
+
+                              hover:-translate-y-1
+                              hover:scale-105
+                              hover:border-primary/30
+                              hover:bg-primary
+                              hover:text-white
+                              hover:shadow-[0_10px_22px_rgba(236,72,153,0.24)]
+
+                              motion-reduce:transform-none
+                              motion-reduce:transition-none
+
+                              sm:px-3.5
+                              sm:py-2
+                              sm:text-xs
+                            "
+                          >
+                            {item}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="p-5 sm:p-6">
-                    <p
-                      className="
-                        font-display
-
-                        text-sm
-                        font-extrabold
-                        text-primary
-
-                        sm:text-base
-                      "
-                    >
-                      {area.line}
-                    </p>
-
-                    <p
-                      className="
-                        mt-2
-
-                        text-sm
-                        leading-6
-
-                        text-muted-foreground
-                      "
-                    >
-                      {area.body}
-                    </p>
-
-                    <div
-                      className="
-                        mt-5
-
-                        flex
-                        flex-wrap
-                        gap-1.5
-
-                        sm:gap-2
-                      "
-                    >
-                      {area.items.map((item) => (
-                        <span
-                          key={item}
-                          className="
-                            rounded-full
-
-                            border
-                            border-border
-
-                            bg-secondary/60
-
-                            px-2.5
-                            py-1.5
-
-                            text-[10px]
-                            font-bold
-
-                            text-foreground/70
-
-                            sm:px-3
-                            sm:text-xs
-                          "
-                        >
-                          {item}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 </article>
@@ -962,24 +1141,96 @@ function CorporatesPage() {
           className="
             container-page
 
-            py-12
+            py-8
 
-            sm:py-16
+            sm:py-9
 
-            md:py-24
+            md:py-11
           "
         >
+          <p
+            className="
+              mx-auto
+              mb-2
+              w-full
+
+              text-center
+              font-display
+              text-base
+              font-extrabold
+              tracking-[-0.03em]
+
+              text-foreground
+
+              sm:text-lg
+
+              md:mb-3
+              md:text-xl
+            "
+          >
+            AI &amp; Digital{" "}
+            <span className="text-primary">Skills.</span>
+          </p>
+
+          <h2
+            className="
+              mx-auto
+              max-w-4xl
+
+              text-center
+              font-display
+              text-2xl
+              font-extrabold
+              leading-[1.04]
+              tracking-[-0.045em]
+
+              text-foreground
+
+              sm:text-[1.8rem]
+
+              md:text-[2.05rem]
+
+              lg:text-[2.25rem]
+            "
+          >
+            Don't just talk about AI.{" "}
+            <span className="text-primary">
+              Put it to work.
+            </span>
+          </h2>
+
+          <p
+            className="
+              mx-auto
+              mt-2.5
+              max-w-3xl
+
+              text-center
+              text-sm
+              leading-7
+
+              text-muted-foreground
+
+              sm:text-base
+            "
+          >
+            AI is becoming a fundamental workplace capability. We
+            help employees, managers and teams use AI effectively,
+            responsibly and practically in their everyday work.
+          </p>
+
           <div
             className="
               grid
 
-              gap-8
+              mt-6
+              gap-5
 
               lg:grid-cols-2
               lg:items-stretch
-              lg:gap-8
+              lg:gap-5
 
-              xl:gap-10
+              xl:gap-6
             "
           >
             {/* ================= LEFT ================= */}
@@ -991,52 +1242,20 @@ function CorporatesPage() {
                 flex-col
               "
             >
-              <p className="section-kicker">
-                AI & Digital Skills
-              </p>
-
-              <h2 className="section-title">
-                Don't just talk about AI.{" "}
-                <span className="text-primary">
-                  Put it to work.
-                </span>
-              </h2>
-
-              <p
-                className="
-                  mt-4
-
-                  text-sm
-                  leading-7
-
-                  text-muted-foreground
-
-                  sm:text-base
-                "
-              >
-                AI is becoming a fundamental workplace capability.
-                We help employees, managers and teams use AI
-                effectively, responsibly and practically in their
-                everyday work.
-              </p>
-
               {/* image expands to help match right height */}
 
               <div
                 className="
-                  mt-6
-
                   overflow-hidden
 
                   rounded-[1.5rem]
 
                   shadow-xl
 
-                  sm:mt-7
                   sm:rounded-[2rem]
 
                   lg:flex-1
-                  lg:min-h-[280px]
+                  lg:min-h-[220px]
                 "
               >
                 <img
@@ -1048,24 +1267,24 @@ function CorporatesPage() {
 
                     object-cover
 
-                    min-h-[220px]
+                    min-h-[190px]
                   "
                 />
               </div>
 
               <div
                 className="
-                  mt-5
+                  mt-4
 
                   rounded-2xl
 
                   bg-ink
 
-                  p-5
+                  p-4
 
                   text-white
 
-                  sm:p-6
+                  sm:p-5
                 "
               >
                 <p
@@ -1099,91 +1318,25 @@ function CorporatesPage() {
             {/* ================= RIGHT ================= */}
 
             <div
-              ref={aiRef}
               className="
                 grid
 
-                gap-3
+                gap-2.5
 
-                sm:gap-4
+                sm:gap-3
 
                 lg:h-full
                 lg:grid-rows-5
               "
             >
-              {aiDetails.map(
-                ([title, body], index) => (
-                  <div
-                    key={title}
-                    className="
-                      reveal-child
-
-                      grid
-                      grid-cols-[auto_1fr]
-
-                      items-start
-
-                      gap-3
-
-                      rounded-2xl
-
-                      border
-                      border-border
-
-                      bg-card
-
-                      p-4
-
-                      shadow-sm
-
-                      sm:gap-4
-                      sm:p-5
-
-                      lg:h-full
-                      lg:items-center
-                      lg:p-6
-                    "
-                  >
-                    <span
-                      className="
-                        number-chip
-                        shrink-0
-                      "
-                    >
-                      0{index + 1}
-                    </span>
-
-                    <div className="min-w-0">
-                      <h3
-                        className="
-                          text-sm
-                          font-extrabold
-
-                          sm:text-base
-                        "
-                      >
-                        {title}
-                      </h3>
-
-                      <p
-                        className="
-                          mt-2
-
-                          text-xs
-                          leading-5
-
-                          text-muted-foreground
-
-                          sm:text-sm
-                          sm:leading-6
-                        "
-                      >
-                        {body}
-                      </p>
-                    </div>
-                  </div>
-                ),
-              )}
+              {aiDetails.map(([title, body], index) => (
+                <AiDetailCard
+                  key={title}
+                  title={title}
+                  body={body}
+                  index={index}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -1196,28 +1349,66 @@ function CorporatesPage() {
       <section
         className="
           border-b
-          border-border
-          bg-secondary/40
+          border-[#eadde0]
+          bg-[#fbf8f7]
         "
       >
         <div
           className="
             container-page
 
-            py-12
+            py-10
 
-            sm:py-16
+            sm:py-12
 
-            md:py-24
+            md:py-16
           "
         >
-          <p className="section-kicker">
-            How we work
+          <p
+            className="
+              mx-auto
+              w-full
+
+              text-center
+              font-display
+              text-base
+              font-extrabold
+              tracking-[-0.03em]
+
+              text-foreground
+
+              sm:text-lg
+
+              md:text-xl
+            "
+          >
+            How we <span className="text-primary">work.</span>
           </p>
 
-          <h2 className="section-title">
+          <h2
+            className="
+              mx-auto
+              mt-3
+              max-w-4xl
+
+              text-center
+              font-display
+              text-2xl
+              font-extrabold
+              leading-[1.03]
+              tracking-[-0.045em]
+
+              text-foreground
+
+              sm:text-3xl
+
+              md:text-[2.25rem]
+
+              lg:text-[2.5rem]
+            "
+          >
             Learning designed around{" "}
-            <span className="text-primary">
+            <span className="text-[#c4004f]">
               your business reality.
             </span>
           </h2>
@@ -1225,18 +1416,258 @@ function CorporatesPage() {
           <div
             ref={processRef}
             className="
-              mt-8
+              relative
+              left-1/2
+              mt-9
+              w-[calc(100vw-32px)]
+              max-w-[1500px]
+              -translate-x-1/2
+              overflow-hidden
 
-              grid
+              rounded-[1.75rem]
 
-              gap-4
+              border
+              border-[#ead5d9]
 
-              sm:grid-cols-2
+              bg-white
 
-              xl:grid-cols-4
+              px-6
+              py-10
+
+              shadow-[0_14px_35px_rgba(92,31,45,0.06)]
+
+              sm:w-[calc(100vw-48px)]
+              sm:px-10
+              sm:py-11
+
+              md:min-h-[310px]
+              md:w-[calc(100vw-64px)]
+
+              lg:w-[calc(100vw-96px)]
+              lg:px-16
+              lg:py-12
+
+              xl:max-w-[1500px]
             "
           >
-            {[
+            {/* Smooth celebration confetti - appears after all 4 steps complete */}
+            {activeProcessStep === 4 && (
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
+              >
+                {Array.from({ length: 150 }).map((_, index) => {
+                  const colors = [
+                    "#c4004f",
+                    "#22c55e",
+                    "#3b82f6",
+                    "#f59e0b",
+                    "#8b5cf6",
+                    "#ef4444",
+                  ];
+
+                  /*
+                   * Deterministic values keep SSR/client rendering stable,
+                   * while still making the confetti look naturally random.
+                   */
+                  const left = (index * 47 + 11) % 100;
+                  const delay = (index * 67) % 1350;
+                  const duration = 2400 + ((index * 137) % 1700);
+                  const size = 5 + ((index * 3) % 7);
+                  const height = Math.max(4, size - 2 + (index % 3));
+                  const drift = ((index * 29) % 150) - 75;
+                  const sway = ((index * 17) % 70) - 35;
+                  const rotate = 360 + ((index * 73) % 720);
+                  const startY = -18 - ((index * 13) % 70);
+                  const opacity = 0.72 + (index % 4) * 0.07;
+
+                  return (
+                    <span
+                      key={index}
+                      className="absolute block will-change-transform"
+                      style={{
+                        left: `${left}%`,
+                        top: `${startY}px`,
+                        width: `${size}px`,
+                        height: `${height}px`,
+                        opacity,
+                        backgroundColor: colors[index % colors.length],
+                        borderRadius:
+                          index % 7 === 0
+                            ? "9999px"
+                            : index % 3 === 0
+                              ? "2px"
+                              : "1px",
+                        animation: `process-confetti-fall ${duration}ms linear ${delay}ms forwards`,
+                        ["--confetti-drift" as string]: `${drift}px`,
+                        ["--confetti-sway" as string]: `${sway}px`,
+                        ["--confetti-rotate" as string]: `${rotate}deg`,
+                      }}
+                    />
+                  );
+                })}
+
+                <style>{`
+                  @keyframes process-confetti-fall {
+                    0% {
+                      opacity: 0;
+                      transform:
+                        translate3d(0, -8px, 0)
+                        rotate(0deg)
+                        scale(0.82);
+                    }
+
+                    7% {
+                      opacity: 1;
+                    }
+
+                    25% {
+                      transform:
+                        translate3d(
+                          calc(var(--confetti-sway) * 0.45),
+                          72px,
+                          0
+                        )
+                        rotate(calc(var(--confetti-rotate) * 0.22))
+                        scale(1);
+                    }
+
+                    50% {
+                      transform:
+                        translate3d(
+                          calc(var(--confetti-drift) * 0.45),
+                          145px,
+                          0
+                        )
+                        rotate(calc(var(--confetti-rotate) * 0.48))
+                        scale(0.96);
+                    }
+
+                    75% {
+                      opacity: 0.95;
+                      transform:
+                        translate3d(
+                          calc(
+                            var(--confetti-drift) +
+                            (var(--confetti-sway) * 0.35)
+                          ),
+                          225px,
+                          0
+                        )
+                        rotate(calc(var(--confetti-rotate) * 0.76))
+                        scale(1);
+                    }
+
+                    100% {
+                      opacity: 0;
+                      transform:
+                        translate3d(
+                          var(--confetti-drift),
+                          360px,
+                          0
+                        )
+                        rotate(var(--confetti-rotate))
+                        scale(0.9);
+                    }
+                  }
+
+                  @media (prefers-reduced-motion: reduce) {
+                    [style*="process-confetti-fall"] {
+                      animation: none !important;
+                      opacity: 0 !important;
+                    }
+                  }
+                `}</style>
+              </div>
+            )}
+
+            {/* Mobile vertical timeline */}
+            <div
+              className="
+                absolute
+                bottom-[4.5rem]
+                left-[2.75rem]
+                top-[3.8rem]
+
+                w-0.5
+
+                overflow-hidden
+                rounded-full
+
+                bg-[#eadfe2]
+
+                sm:left-[3.25rem]
+
+                md:hidden
+              "
+            >
+              <div
+                className="
+                  w-full
+
+                  rounded-full
+
+                  bg-[#c4004f]
+
+                  transition-[height]
+                  duration-500
+                  ease-in-out
+                "
+                style={{
+                  height: `${Math.min(activeProcessStep / 3, 1) * 100}%`,
+                }}
+              />
+            </div>
+
+            {/* Desktop horizontal timeline */}
+            <div
+              className="
+                absolute
+                left-[12.5%]
+                right-[12.5%]
+                top-[4.15rem]
+
+                hidden
+                h-0.5
+
+                overflow-hidden
+                rounded-full
+
+                bg-[#eadfe2]
+
+                md:block
+              "
+            >
+              <div
+                className="
+                  h-full
+
+                  rounded-full
+
+                  bg-[#c4004f]
+
+                  transition-[width]
+                  duration-500
+                  ease-in-out
+                "
+                style={{
+                  width: `${Math.min(activeProcessStep / 3, 1) * 100}%`,
+                }}
+              />
+            </div>
+
+            <div
+              className="
+                relative
+                grid
+                auto-rows-fr
+                gap-8
+
+                md:grid-cols-4
+                md:gap-10
+              "
+            >
+              {[
               [
                 "01",
                 "Understand",
@@ -1257,58 +1688,109 @@ function CorporatesPage() {
                 "Apply",
                 "Training should not end when the session ends. The objective is to help people apply what they learn at work.",
               ],
-            ].map(([number, title, body]) => (
-              <div
-                key={number}
-                className="
-                  reveal-child
+            ].map(([number, title, body], index) => {
+              const isComplete = index < activeProcessStep;
+              const isCurrent =
+                index === activeProcessStep && activeProcessStep < 4;
 
-                  rounded-2xl
-
-                  border
-                  border-border
-
-                  bg-card
-
-                  p-5
-
-                  shadow-sm
-
-                  sm:p-6
-                "
-              >
-                <span className="number-chip">
-                  {number}
-                </span>
-
-                <h3
+              return (
+                <article
+                  key={number}
+                  aria-current={isCurrent ? "step" : undefined}
                   className="
-                    mt-4
+                    relative
+                    z-10
 
-                    text-lg
-                    font-extrabold
+                    grid
+                    grid-cols-[3rem_1fr]
+                    items-start
+                    gap-5
 
-                    sm:mt-5
-                    sm:text-xl
+                    md:block
+                    md:text-center
                   "
                 >
-                  {title}
-                </h3>
+                  <span
+                    className="
+                      relative
+                      z-10
 
-                <p
-                  className="
-                    mt-3
+                      flex
+                      size-12
+                      items-center
+                      justify-center
 
-                    text-sm
-                    leading-6
+                      rounded-full
 
-                    text-muted-foreground
-                  "
-                >
-                  {body}
-                </p>
-              </div>
-            ))}
+                      border-[3px]
+                      border-white
+
+                      text-xs
+                      font-extrabold
+
+                      transition-all
+                      duration-500
+
+                      md:mx-auto
+                    "
+                    style={{
+                      color:
+                        isComplete || isCurrent ? "white" : "#64748b",
+                      backgroundColor: isComplete
+                        ? "#c4004f"
+                        : isCurrent
+                          ? "#c4004f"
+                          : "#f3d9e4",
+                      transform: isCurrent ? "scale(1.12)" : "scale(1)",
+                      boxShadow: isCurrent
+                        ? "0 0 0 9px rgba(196,0,79,0.10), 0 10px 26px rgba(196,0,79,0.24)"
+                        : isComplete
+                          ? "0 8px 20px rgba(196,0,79,0.18)"
+                          : "none",
+                    }}
+                  >
+                    {isComplete ? (
+                      <Check className="size-5" strokeWidth={3} />
+                    ) : (
+                      Number(number)
+                    )}
+                  </span>
+
+                  <div className="md:mt-5 md:px-3">
+                    <h3
+                      className="
+                        text-base
+                        font-extrabold
+
+                        text-foreground
+
+                        sm:text-lg
+                        md:text-[1.05rem]
+                      "
+                    >
+                      {title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-2.5
+
+                        text-sm
+                        leading-6
+
+                        text-muted-foreground
+
+                        sm:text-[0.9rem]
+                        sm:leading-6
+                      "
+                    >
+                      {body}
+                    </p>
+                  </div>
+                </article>
+              );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -1319,35 +1801,157 @@ function CorporatesPage() {
 
       <section
         className="
+          relative
+          overflow-hidden
           border-b
           border-border
           bg-background
         "
       >
+        {/* subtle decorative glow */}
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -left-24
+            top-16
+            size-64
+            rounded-full
+            bg-primary/5
+            blur-3xl
+
+            sm:size-80
+          "
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -right-24
+            bottom-0
+            size-64
+            rounded-full
+            bg-rose-100/45
+            blur-3xl
+
+            sm:size-80
+          "
+        />
+
         <div
           className="
             container-page
+            relative
+            z-10
 
             grid
             gap-8
 
-            py-12
+            py-10
 
-            sm:py-16
+            sm:py-12
 
-            md:py-24
+            md:py-16
 
-            lg:grid-cols-2
+            lg:grid-cols-[0.95fr_1.05fr]
             lg:items-center
-            lg:gap-10
+            lg:gap-12
           "
         >
-          <div>
-            <p className="section-kicker">
-              Learning that leads to performance
-            </p>
+          {/* CONTENT */}
+          <div
+            className="
+              order-2
+              text-center
 
-            <h2 className="section-title">
+              lg:order-1
+              lg:text-left
+            "
+          >
+            <div
+              className="
+                mx-auto
+                flex
+                w-fit
+                items-center
+                justify-center
+                gap-2
+
+                rounded-full
+                border
+                border-primary/15
+                bg-primary/5
+
+                px-3.5
+                py-2
+
+                text-xs
+                font-extrabold
+
+                sm:text-sm
+              "
+            >
+              <span
+                className="
+                  relative
+                  flex
+                  size-2.5
+                "
+              >
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-primary
+                    opacity-30
+
+                    motion-reduce:animate-none
+                  "
+                />
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    size-2.5
+                    rounded-full
+                    bg-primary
+                  "
+                />
+              </span>
+
+              Learning that leads to{" "}
+              <span className="text-primary">performance.</span>
+            </div>
+
+            <h2
+              className="
+                mx-auto
+                mt-4
+                max-w-2xl
+
+                font-display
+                text-[2rem]
+                font-extrabold
+                leading-[1.03]
+                tracking-[-0.045em]
+
+                text-foreground
+
+                sm:text-[2.5rem]
+
+                md:text-[2.85rem]
+
+                lg:mx-0
+                lg:text-[3rem]
+              "
+            >
               Training shouldn't end when{" "}
               <span className="text-primary">
                 the session ends.
@@ -1356,7 +1960,9 @@ function CorporatesPage() {
 
             <p
               className="
-                mt-4
+                mx-auto
+                mt-5
+                max-w-2xl
 
                 text-sm
                 leading-7
@@ -1364,6 +1970,8 @@ function CorporatesPage() {
                 text-muted-foreground
 
                 sm:text-base
+
+                lg:mx-0
               "
             >
               Whether you're building better communicators,
@@ -1374,12 +1982,24 @@ function CorporatesPage() {
 
             <div
               className="
-                mt-6
-
+                mt-7
                 grid
                 gap-3
 
-                min-[420px]:grid-cols-2
+                rounded-[1.75rem]
+                border
+                border-[#e7d9dd]
+
+                bg-white/35
+
+                p-3
+
+                shadow-[0_10px_30px_rgba(15,23,42,0.035)]
+
+                sm:grid-cols-2
+                sm:p-4
+
+                lg:max-w-2xl
               "
             >
               {[
@@ -1387,34 +2007,92 @@ function CorporatesPage() {
                 "Stronger leadership",
                 "Better collaboration",
                 "Improved client & internal communication",
-              ].map((item) => (
+              ].map((item, index) => (
                 <div
                   key={item}
+                  style={{
+                    animationDelay: `${index * 110}ms`,
+                  }}
                   className="
+                    group
                     flex
+                    min-h-[68px]
                     items-center
                     gap-3
 
-                    rounded-xl
+                    rounded-2xl
 
                     border
                     border-border
 
+                    bg-white/80
+
                     p-4
+
+                    text-left
+
+                    shadow-[0_8px_24px_rgba(15,23,42,0.04)]
+                    backdrop-blur-sm
+
+                    transition-all
+                    duration-300
+                    ease-out
+
+                    hover:-translate-y-1
+                    hover:border-primary/25
+                    hover:bg-white
+                    hover:shadow-[0_16px_34px_rgba(196,0,79,0.09)]
+
+                    motion-reduce:transform-none
+                    motion-reduce:transition-none
                   "
                 >
-                  <CheckCircle2
+                  <span
                     className="
-                      size-5
+                      flex
+                      size-9
                       shrink-0
-                      text-primary
+                      items-center
+                      justify-center
+
+                      rounded-full
+
+                      border
+                      border-primary
+
+                      bg-primary
+
+                      shadow-[0_7px_18px_rgba(196,0,79,0.20)]
+
+                      transition-all
+                      duration-300
+
+                      group-hover:scale-110
+                      group-hover:shadow-[0_9px_22px_rgba(196,0,79,0.28)]
+
+                      motion-reduce:transform-none
                     "
-                  />
+                  >
+                    <CheckCircle2
+                      className="
+                        size-5
+                        text-white
+
+                        transition-transform
+                        duration-300
+
+                        group-hover:scale-105
+                      "
+                    />
+                  </span>
 
                   <span
                     className="
                       text-sm
-                      font-bold
+                      font-extrabold
+                      leading-5
+
+                      sm:text-[0.95rem]
                     "
                   >
                     {item}
@@ -1424,24 +2102,131 @@ function CorporatesPage() {
             </div>
           </div>
 
-          <div className="order-first lg:order-none">
-            <img
-              src={photos.corporateGroup}
-              alt="Elev8 workplace training"
+          {/* IMAGE */}
+          <div
+            className="
+              order-1
+
+              lg:order-2
+            "
+          >
+            <div
               className="
-                aspect-[4/3]
+                group
+                relative
+                mx-auto
+                max-w-[720px]
+                overflow-hidden
 
-                w-full
+                rounded-[1.6rem]
 
-                rounded-[1.5rem]
+                border
+                border-black/5
 
-                object-cover
+                bg-white
 
-                shadow-xl
+                p-1.5
+
+                shadow-[0_20px_55px_rgba(15,23,42,0.12)]
 
                 sm:rounded-[2rem]
+                sm:p-2
               "
-            />
+            >
+              <div
+                aria-hidden="true"
+                className="
+                  absolute
+                  inset-x-[12%]
+                  -bottom-8
+                  h-20
+                  rounded-full
+                  bg-primary/10
+                  blur-3xl
+                "
+              />
+
+              <div
+                className="
+                  relative
+                  overflow-hidden
+
+                  rounded-[1.25rem]
+
+                  sm:rounded-[1.6rem]
+                "
+              >
+                <img
+                  src={photos.corporateGroup}
+                  alt="Elev8 workplace training"
+                  className="
+                    aspect-[16/10]
+                    w-full
+
+                    object-cover
+
+                    transition-transform
+                    duration-700
+                    ease-out
+
+                    group-hover:scale-[1.025]
+
+                    motion-reduce:transform-none
+                    motion-reduce:transition-none
+
+                    lg:aspect-[4/3]
+                  "
+                />
+
+                <div
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/10
+                    via-transparent
+                    to-transparent
+                  "
+                />
+              </div>
+
+              <div
+                className="
+                  absolute
+                  bottom-5
+                  left-5
+
+                  hidden
+                  items-center
+                  gap-2
+
+                  rounded-full
+
+                  border
+                  border-white/50
+
+                  bg-white/90
+
+                  px-4
+                  py-2.5
+
+                  text-xs
+                  font-extrabold
+
+                  text-foreground
+
+                  shadow-lg
+                  backdrop-blur-md
+
+                  sm:flex
+                "
+              >
+                <CheckCircle2 className="size-4 text-primary" />
+                Learning applied at work
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1452,71 +2237,119 @@ function CorporatesPage() {
 
       <section
         className="
+          relative
+          overflow-hidden
           bg-primary
           text-white
         "
       >
         <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -left-20
+            top-1/2
+            size-56
+            -translate-y-1/2
+            rounded-full
+            bg-white/10
+            blur-3xl
+          "
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -right-16
+            -top-24
+            size-64
+            rounded-full
+            bg-white/10
+            blur-3xl
+          "
+        />
+
+        <div
           className="
             container-page
+            relative
+            z-10
 
             flex
             flex-col
+            items-center
+            justify-between
 
-            gap-6
+            gap-5
 
-            py-10
+            py-8
 
-            sm:py-12
+            sm:py-9
 
             md:flex-row
-            md:items-center
-            md:justify-between
-            md:py-14
+            md:gap-8
+            md:py-10
           "
         >
-          <div>
+          <div
+            className="
+              max-w-3xl
+              text-center
+
+              md:text-left
+            "
+          >
             <p
               className="
-                text-[10px]
+                font-display
+                text-sm
                 font-extrabold
-                uppercase
-                tracking-[.16em]
+                tracking-[-0.02em]
 
-                text-white/65
+                text-white/70
 
-                sm:text-xs
+                sm:text-base
               "
             >
-              Let's build what your workforce needs next
+              Let's build what your workforce needs next.
             </p>
 
             <h2
               className="
-                mt-3
-                max-w-3xl
+                mt-2
 
+                font-display
                 text-2xl
                 font-extrabold
-                leading-tight
+                leading-[1.08]
+                tracking-[-0.04em]
 
                 sm:text-3xl
+
+                lg:text-[2.25rem]
               "
             >
-              Talk to Elev8 about your learning requirement.
+              Talk to Elev8 about your{" "}
+              <span className="text-white/70">
+                learning requirement.
+              </span>
             </h2>
           </div>
 
           <Link
             to="/contact"
             className="
+              group
+
               inline-flex
               w-full
               shrink-0
-
               items-center
               justify-center
-              gap-2
+              gap-2.5
 
               rounded-full
 
@@ -1529,15 +2362,40 @@ function CorporatesPage() {
               font-extrabold
               text-foreground
 
+              shadow-[0_10px_28px_rgba(0,0,0,0.12)]
+
+              transition-all
+              duration-300
+
+              hover:-translate-y-0.5
+              hover:shadow-[0_14px_34px_rgba(0,0,0,0.18)]
+
+              motion-reduce:transform-none
+              motion-reduce:transition-none
+
               sm:w-auto
+              sm:min-w-[210px]
             "
           >
             Start a conversation
 
-            <ArrowRight className="size-4" />
+            <ArrowRight
+              className="
+                size-4
+
+                transition-transform
+                duration-300
+
+                group-hover:translate-x-1
+
+                motion-reduce:transform-none
+              "
+            />
           </Link>
         </div>
       </section>
+
+
     </>
   );
 }

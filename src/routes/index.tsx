@@ -1153,17 +1153,15 @@ function HomePage() {
 
             <h2
               className="
-                mx-auto
-                mt-4
-                max-w-[780px]
-                text-[2rem]
+                 mt-3
+                text-[1.7rem]
                 font-extrabold
-                leading-[0.98]
-                tracking-[-0.045em]
+                leading-[1]
+                tracking-[-0.04em]
                 text-[#0b1020]
-                sm:text-[2.5rem]
-                md:text-[3rem]
-                lg:text-[3.45rem]
+                sm:text-[2rem]
+                md:text-[2.2rem]
+                lg:text-[2.45rem]
               "
             >
               Skills people can <span className="text-primary">actually use.</span>
@@ -1553,17 +1551,15 @@ function HomePage() {
 
             <h2
               className="
-                mx-auto
-                mt-4
-                max-w-[780px]
-                text-[2rem]
+                 mt-3
+                text-[1.7rem]
                 font-extrabold
-                leading-[1.02]
-                tracking-[-0.042em]
+                leading-[1]
+                tracking-[-0.04em]
                 text-[#0b1020]
-                sm:text-[2.4rem]
-                md:text-[2.7rem]
-                lg:text-[2.9rem]
+                sm:text-[2rem]
+                md:text-[2.2rem]
+                lg:text-[2.45rem]
               "
             >
               A practical path from need to{" "}
