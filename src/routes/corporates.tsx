@@ -209,59 +209,107 @@ function AiDetailCard({
   title,
   body,
   index,
+  isActive,
 }: {
   title: string;
   body: string;
   index: number;
+  isActive: boolean;
 }) {
   const cardRef = useReveal<HTMLDivElement>();
 
   return (
     <div
       ref={cardRef}
-      style={{ transitionDelay: `${index * 120}ms` }}
+      style={{ transitionDelay: `${index * 90}ms` }}
       className="reveal-right h-full duration-700 ease-out motion-reduce:transform-none motion-reduce:transition-none"
     >
       <div
-        className="
+        className={`
+          group
+          relative
           grid
           h-full
           grid-cols-[auto_1fr]
           items-start
           gap-3
+          overflow-hidden
 
           rounded-2xl
-
           border
-          border-border
-
-          bg-card
 
           p-3.5
 
-          shadow-sm
-
           transition-all
-          duration-300
+          duration-500
           ease-out
-
-          hover:-translate-y-1
-          hover:border-primary/25
-          hover:shadow-[0_14px_36px_rgba(190,24,93,0.10)]
 
           sm:gap-3.5
           sm:p-4
 
           lg:items-center
           lg:p-4
-        "
+
+          ${
+            isActive
+              ? "scale-[1.018] border-primary/45 bg-[#fff7fa] shadow-[0_16px_40px_rgba(196,0,79,0.16)]"
+              : "border-border bg-card shadow-sm"
+          }
+        `}
       >
-        <span className="number-chip shrink-0">
+        {/* animated brand accent */}
+        <span
+          aria-hidden="true"
+          className={`
+            absolute
+            bottom-0
+            left-0
+            top-0
+            w-1
+
+            bg-primary
+
+            transition-all
+            duration-500
+
+            ${isActive ? "opacity-100" : "opacity-0"}
+          `}
+        />
+
+        <span
+          className={`
+            number-chip
+            relative
+            z-10
+            shrink-0
+
+            transition-all
+            duration-500
+
+            ${
+              isActive
+                ? "scale-110 shadow-[0_8px_22px_rgba(196,0,79,0.24)]"
+                : "scale-100"
+            }
+          `}
+        >
           0{index + 1}
         </span>
 
-        <div className="min-w-0">
-          <h3 className="text-sm font-extrabold sm:text-base">
+        <div className="relative z-10 min-w-0">
+          <h3
+            className={`
+              text-sm
+              font-extrabold
+
+              transition-colors
+              duration-500
+
+              sm:text-base
+
+              ${isActive ? "text-primary" : "text-foreground"}
+            `}
+          >
             {title}
           </h3>
 
@@ -281,6 +329,30 @@ function AiDetailCard({
             {body}
           </p>
         </div>
+
+        {/* soft moving highlight */}
+        <span
+          aria-hidden="true"
+          className={`
+            pointer-events-none
+            absolute
+            -right-12
+            -top-12
+            size-28
+            rounded-full
+            bg-primary/10
+            blur-2xl
+
+            transition-all
+            duration-700
+
+            ${
+              isActive
+                ? "scale-125 opacity-100"
+                : "scale-75 opacity-0"
+            }
+          `}
+        />
       </div>
     </div>
   );
@@ -293,6 +365,59 @@ function AiDetailCard({
 function CorporatesPage() {
   const heroText = useReveal<HTMLDivElement>();
   const heroVisual = useReveal<HTMLDivElement>();
+
+  const aiSectionRef = useRef<HTMLElement>(null);
+  const [activeAiCard, setActiveAiCard] = useState(-1);
+
+  useEffect(() => {
+    const section = aiSectionRef.current;
+    if (!section) return;
+
+    let intervalId: number | null = null;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const stopAiAnimation = () => {
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          stopAiAnimation();
+          setActiveAiCard(-1);
+          return;
+        }
+
+        if (reduceMotion) {
+          setActiveAiCard(0);
+          return;
+        }
+
+        stopAiAnimation();
+        setActiveAiCard(0);
+
+        intervalId = window.setInterval(() => {
+          setActiveAiCard((current) => (current + 1) % aiDetails.length);
+        }, 1450);
+      },
+      {
+        threshold: 0.22,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      stopAiAnimation();
+      observer.disconnect();
+    };
+  }, []);
 
   const areaRef =
     useRevealChildren<HTMLDivElement>();
@@ -353,192 +478,221 @@ function CorporatesPage() {
   return (
     <>
       {/* =====================================================
-          HERO
+          HERO — PREMIUM ORGANIZATIONS
       ====================================================== */}
 
       <section
         className="
-          soft-grid
           relative
           overflow-hidden
           border-b
           border-border
-          bg-background
+          bg-[#fffaf8]
         "
       >
-        {/* Glows */}
-
+        {/* restrained premium background */}
         <div
+          aria-hidden="true"
           className="
             pointer-events-none
             absolute
-            -left-24
-            top-10
-            size-72
+            -left-40
+            -top-40
+            size-[32rem]
             rounded-full
-            bg-primary/10
+            bg-primary/[0.07]
             blur-3xl
-            md:size-80
+          "
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -bottom-48
+            right-[-8rem]
+            size-[34rem]
+            rounded-full
+            bg-[#f6dce5]/55
+            blur-3xl
           "
         />
 
         <div
           className="
-            pointer-events-none
-            absolute
-            right-0
-            top-0
-            size-80
-            rounded-full
-            bg-rose-100/70
-            blur-3xl
-            md:size-96
-          "
-        />
-
-        {/* HERO WRAPPER */}
-
-        <div
-          className="
+            container-page
             relative
             z-10
-            mx-auto
 
             grid
-            w-full
-            max-w-[1440px]
-
-            items-center
-
             gap-10
 
-            px-4
-            py-10
+            py-8
 
-            sm:px-6
-            sm:py-12
+            sm:py-10
 
-            md:px-8
-            md:py-14
+            md:py-12
 
-            lg:min-h-[calc(100svh-96px)]
-            lg:grid-cols-[0.94fr_1.06fr]
-            lg:gap-10
-            lg:px-10
-            lg:py-5
-
-            xl:grid-cols-[0.92fr_1.08fr]
-            xl:gap-12
-
-            2xl:max-w-[1500px]
+            lg:min-h-[650px]
+            lg:grid-cols-[0.98fr_1.02fr]
+            lg:items-center
+            lg:gap-14
+            lg:py-16
           "
         >
-          {/* ================= LEFT ================= */}
-
+          {/* LEFT */}
           <div
             ref={heroText}
             className="
               reveal-left
-              relative
-              z-20
-              max-w-[650px]
+              text-center
+
+              lg:text-left
             "
           >
-            <p className="section-kicker">
-              For Organizations
-            </p>
+            {/* Primary page identity */}
+            <div
+              className="
+                mx-auto
+                inline-flex
+                items-center
+                gap-3
+
+                rounded-full
+
+                border
+                border-primary/20
+
+                bg-white
+
+                py-1.5
+                pl-1.5
+                pr-4
+
+                shadow-[0_10px_30px_rgba(196,0,79,0.10)]
+
+                lg:mx-0
+              "
+            >
+              <span
+                className="
+                  flex
+                  size-9
+                  shrink-0
+                  items-center
+                  justify-center
+
+                  rounded-full
+
+                  bg-primary
+
+                  shadow-[0_7px_18px_rgba(196,0,79,0.24)]
+                "
+              >
+                <UsersRound
+                  className="size-[18px] text-white"
+                  strokeWidth={2.5}
+                />
+              </span>
+
+              <span
+                className="
+                  text-xs
+                  font-extrabold
+                  uppercase
+                  tracking-[0.16em]
+                  text-primary
+
+                  sm:text-[13px]
+                "
+              >
+                For Organizations
+              </span>
+
+               
+
+               
+            </div>
 
             <h1
               className="
-                mt-4
+                mx-auto
+                mt-6
+                max-w-[760px]
 
-                text-[2.35rem]
+                font-display
+                text-[2.25rem]
                 font-extrabold
                 leading-[0.98]
-                tracking-[-0.045em]
+                tracking-[-0.055em]
 
                 text-foreground
 
-                sm:text-[2.9rem]
+                sm:text-[3.2rem]
 
-                md:text-[3.3rem]
+                md:text-[3.8rem]
 
-                lg:text-[3.45rem]
+                lg:mx-0
+                lg:text-[4.15rem]
 
-                xl:text-[3.8rem]
-
-                2xl:text-[4rem]
+                xl:text-[4.55rem]
               "
             >
-              Build a workforce ready for{" "}
+              Build a workforce{" "}
               <span className="text-primary">
-                what's next.
+                ready for what’s next.
               </span>
             </h1>
 
             <p
               className="
+                mx-auto
                 mt-5
-                max-w-[620px]
+                max-w-[640px]
 
                 text-sm
                 leading-7
                 text-muted-foreground
 
                 sm:text-base
+                sm:leading-8
 
-                lg:text-[1.02rem]
-                lg:leading-7
+                lg:mx-0
               "
             >
-              Elev8 Learning is a corporate training and workforce
-              capability partner. We build practical skills across
-              communication, professional effectiveness, leadership,
-              AI & digital capability, technical skills and problem
-              solving.
-            </p>
-
-            <p
-              className="
-                mt-4
-                max-w-[620px]
-
-                text-sm
-                leading-7
-                text-muted-foreground
-
-                sm:text-base
-              "
-            >
-              We design learning experiences around your people,
-              roles and business objectives — not off-the-shelf
-              training.
+              Practical learning for communication, leadership, AI,
+              digital capability and workplace effectiveness — designed
+              around your people, roles and business priorities.
             </p>
 
             <div
               className="
-                mt-6
-
+                mt-7
                 flex
                 flex-col
                 gap-3
 
-                min-[440px]:flex-row
-                min-[440px]:flex-wrap
+                sm:flex-row
+                sm:justify-center
+
+                lg:justify-start
               "
             >
               <Link
                 to="/contact"
                 className="
-                  cta-glow
-
+                  group
                   inline-flex
+                  min-h-12
+                  w-full
+
+                  sm:w-auto
                   items-center
                   justify-center
-                  gap-2
+                  gap-2.5
 
                   rounded-full
-
                   bg-primary
 
                   px-6
@@ -547,203 +701,413 @@ function CorporatesPage() {
                   text-sm
                   font-extrabold
                   text-white
+
+                  shadow-[0_12px_30px_rgba(196,0,79,0.22)]
+
+                  transition-all
+                  duration-300
+
+                  hover:-translate-y-0.5
+                  hover:shadow-[0_16px_36px_rgba(196,0,79,0.30)]
+
+                  motion-reduce:transform-none
                 "
               >
-                Discuss your learning need
-
-                <ArrowRight className="size-4" />
+                Talk to Elev8
+                <ArrowRight
+                  className="
+                    size-4
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
               </Link>
 
               <a
                 href="#capability-areas"
                 className="
+                  group
                   inline-flex
+                  min-h-12
+                  w-full
+
+                  sm:w-auto
                   items-center
                   justify-center
-                  gap-2
+                  gap-2.5
 
                   rounded-full
 
                   border
-                  border-foreground/20
+                  border-black/10
 
-                  bg-card
+                  bg-white
 
                   px-6
                   py-3
 
                   text-sm
                   font-extrabold
+                  text-foreground
 
-                  transition
+                  shadow-[0_8px_22px_rgba(15,23,42,0.05)]
 
-                  hover:border-primary
+                  transition-all
+                  duration-300
+
+                  hover:-translate-y-0.5
+                  hover:border-primary/25
                   hover:text-primary
+
+                  motion-reduce:transform-none
                 "
               >
-                View capability areas
-
-                <ArrowRight className="size-4" />
+                Explore capabilities
+                <ArrowRight
+                  className="
+                    size-4
+                    rotate-90
+                    transition-transform
+                    duration-300
+                    group-hover:translate-y-1
+                  "
+                />
               </a>
             </div>
+
+            {/* Useful organization context */}
+            <div
+              className="
+                mx-auto
+                mt-6
+                flex
+                max-w-xl
+                flex-wrap
+                items-center
+                justify-center
+                gap-x-5
+                gap-y-2
+
+                text-[11px]
+                font-bold
+                text-foreground/50
+
+                sm:text-xs
+
+                lg:mx-0
+                lg:justify-start
+              "
+            >
+              {[
+                "Customized to your teams",
+                "Built around real work",
+                "Designed for application",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="
+                    inline-flex
+                    items-center
+                    gap-2
+                  "
+                >
+                  <span
+                    className="
+                      flex
+                      size-5
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-primary/10
+                    "
+                  >
+                    <Check
+                      className="size-3 text-primary"
+                      strokeWidth={3}
+                    />
+                  </span>
+
+                  {item}
+                </span>
+              ))}
+            </div>
+
           </div>
 
-          {/* ================= RIGHT HERO VISUAL ================= */}
-
+          {/* RIGHT */}
           <div
             ref={heroVisual}
             className="
               reveal-right
               relative
-
               mx-auto
               w-full
-              max-w-[680px]
+              min-w-0
+              max-w-[720px]
 
-              lg:max-w-none
+              lg:mx-0
             "
           >
+            {/* offset brand frame */}
+            <div
+              aria-hidden="true"
+              className="
+                absolute
+                -bottom-4
+                -right-4
+                h-[86%]
+                w-[88%]
+
+                rounded-[2rem]
+
+                border
+                border-primary/20
+
+                bg-primary/[0.035]
+
+                sm:-bottom-5
+                sm:-right-5
+                sm:rounded-[2.5rem]
+              "
+            />
+
             <div
               className="
-                grid
-                grid-cols-2
-                gap-3
+                group
+                relative
+                overflow-hidden
 
-                sm:grid-cols-12
-                sm:gap-4
+                rounded-[1.75rem]
+
+                border
+                border-black/[0.06]
+
+                bg-white
+
+                p-1.5
+
+                shadow-[0_26px_65px_rgba(38,22,30,0.14)]
+
+                sm:rounded-[2.25rem]
+                sm:p-2
               "
             >
-              {/* Main image */}
-
               <div
                 className="
-                  col-span-2
-
+                  relative
                   overflow-hidden
 
-                  rounded-[1.6rem]
+                  rounded-[1.4rem]
 
-                  shadow-2xl
-
-                  sm:col-span-8
-                  sm:rounded-[2rem]
+                  sm:rounded-[1.85rem]
                 "
               >
                 <img
-                  src={photos.teamSession}
-                  alt="Elev8 corporate team training"
+                  src={photos.corporateGroup}
+                  alt="Elev8 learning for organizations"
                   className="
                     aspect-[4/3]
                     w-full
-
                     object-cover
 
-                    sm:aspect-[4/5]
+                    transition-transform
+                    duration-700
+                    ease-out
 
-                    lg:h-[500px]
-                    lg:aspect-auto
+                    group-hover:scale-[1.025]
 
-                    xl:h-[520px]
+                    motion-reduce:transform-none
+
+                    lg:aspect-[5/4]
                   "
                 />
-              </div>
-
-              {/* Side column */}
-
-              <div
-                className="
-                  col-span-2
-
-                  grid
-                  grid-cols-2
-                  gap-3
-
-                  sm:col-span-4
-                  sm:mt-12
-                  sm:block
-                  sm:space-y-4
-
-                  lg:mt-12
-                "
-              >
-                <img
-                  src={remoteImages.communication}
-                  alt="Communication training"
-                  className="
-                    aspect-square
-                    w-full
-
-                    rounded-[1.3rem]
-
-                    object-cover
-
-                    shadow-xl
-
-                    sm:rounded-[1.5rem]
-
-                    lg:h-[175px]
-                    lg:aspect-auto
-                  "
-                />
-
-                {/* FIXED: dark card same as other pages */}
 
                 <div
+                  aria-hidden="true"
                   className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/25
+                    via-transparent
+                    to-transparent
+                  "
+                />
+
+                {/* image bottom label */}
+                <div
+                  className="
+                    absolute
+                    bottom-4
+                    left-4
+                    right-4
+
                     flex
-                    min-h-full
-                    flex-col
-                    justify-end
+                    items-center
+                    justify-between
+                    gap-3
 
-                    rounded-[1.3rem]
+                    rounded-2xl
 
-                    bg-ink
+                    border
+                    border-white/40
 
-                    p-4
+                    bg-white/90
 
-                    text-white
+                    p-3
 
-                    shadow-xl
+                    shadow-lg
+                    backdrop-blur-xl
 
-                    sm:min-h-[210px]
-                    sm:rounded-[1.5rem]
-                    sm:p-5
-
-                    lg:min-h-[260px]
+                    sm:bottom-5
+                    sm:left-5
+                    sm:right-5
+                    sm:p-4
                   "
                 >
-                  <p
+                  <div
                     className="
-                      text-[9px]
+                      flex
+                      min-w-0
+                      items-center
+                      gap-3
+                    "
+                  >
+                    <span
+                      className="
+                        flex
+                        size-10
+                        shrink-0
+                        items-center
+                        justify-center
+
+                        rounded-full
+
+                        bg-primary
+
+                        shadow-[0_7px_18px_rgba(196,0,79,0.22)]
+                      "
+                    >
+                      <Check
+                        className="size-5 text-white"
+                        strokeWidth={3}
+                      />
+                    </span>
+
+                    <div className="min-w-0">
+                      <p
+                        className="
+                          truncate
+                          text-xs
+                          font-extrabold
+                          text-foreground
+
+                          sm:text-sm
+                        "
+                      >
+                        Learning built around your business
+                      </p>
+
+                      <p
+                        className="
+                          mt-0.5
+                          hidden
+                          text-[10px]
+                          font-semibold
+                          text-foreground/50
+
+                          sm:block
+                          sm:text-[11px]
+                        "
+                      >
+                        Relevant skills • real scenarios • practical application
+                      </p>
+                    </div>
+                  </div>
+
+                  <span
+                    className="
+                      hidden
+                      shrink-0
+
+                      rounded-full
+
+                      border
+                      border-primary/15
+
+                      bg-primary/5
+
+                      px-3
+                      py-1.5
+
+                      text-[10px]
                       font-extrabold
                       uppercase
-                      tracking-[.16em]
+                      tracking-[0.1em]
 
-                      text-white/60
+                      text-primary
 
-                      sm:text-xs
+                      md:inline-flex
                     "
                   >
-                    Built for
-                  </p>
-
-                  <p
-                    className="
-                      mt-2
-
-                      text-xs
-                      font-bold
-                      leading-5
-
-                      sm:mt-3
-                      sm:text-sm
-                      sm:leading-6
-                    "
-                  >
-                    Employees • Managers • Leaders • Functional
-                    Teams
-                  </p>
+                    Organizations
+                  </span>
                 </div>
+              </div>
+            </div>
+
+            {/* floating badge */}
+            <div
+              className="
+                absolute
+                -left-4
+                top-7
+
+                hidden
+                items-center
+                gap-2.5
+
+                rounded-2xl
+
+                border
+                border-primary/15
+
+                bg-white/95
+
+                px-3.5
+                py-3
+
+                shadow-[0_14px_34px_rgba(38,22,30,0.12)]
+                backdrop-blur-md
+
+                sm:flex
+
+                lg:-left-7
+              "
+            >
+              <span
+                className="
+                  flex
+                  size-9
+                  items-center
+                  justify-center
+
+                  rounded-full
+                  bg-primary/10
+                "
+              >
+                <Target className="size-4 text-primary" />
+              </span>
+
+              <div>
+                <p className="text-xs font-extrabold text-foreground">
+                  Business-led learning
+                </p>
+                <p className="mt-0.5 text-[10px] font-semibold text-foreground/45">
+                  From capability gap to application
+                </p>
               </div>
             </div>
           </div>
@@ -850,12 +1214,15 @@ function CorporatesPage() {
             ref={areaRef}
             className="
               relative
-              mt-8
-              space-y-6
+              mt-7
+              space-y-5
 
-              sm:mt-10
+              sm:mt-9
+              sm:space-y-7
 
-              md:space-y-12
+              md:space-y-9
+
+              lg:space-y-12
             "
           >
             {areas.map((area, index) => {
@@ -865,7 +1232,11 @@ function CorporatesPage() {
                 <article
                   key={area.title}
                   style={{
-                    top: `${88 + index * 12}px`,
+                    top:
+                      typeof window !== "undefined" &&
+                      window.innerWidth < 640
+                        ? `${12 + index * 7}px`
+                        : `${76 + index * 14}px`,
                     zIndex: index + 1,
                   }}
                   className={`
@@ -881,8 +1252,17 @@ function CorporatesPage() {
 
                     md:rounded-[2.25rem]
 
-                    lg:sticky
-                    lg:min-h-[520px]
+                    sticky
+                    min-h-[470px]
+
+                    transition-transform
+                    duration-500
+                    ease-out
+
+                    sm:min-h-[500px]
+
+                    lg:min-h-[500px]
+                    lg:hover:-translate-y-1
 
                     ${capabilityCardThemes[index]}
                   `}
@@ -891,8 +1271,12 @@ function CorporatesPage() {
                     className="
                       grid
 
-                      lg:min-h-[520px]
-                      lg:grid-cols-[0.9fr_1.1fr]
+                      min-h-[470px]
+
+                      sm:min-h-[500px]
+
+                      lg:min-h-[500px]
+                      lg:grid-cols-[0.92fr_1.08fr]
                       lg:items-stretch
                     "
                   >
@@ -900,7 +1284,7 @@ function CorporatesPage() {
                       className="
                         relative
                         m-4
-                        min-h-[240px]
+                        min-h-[210px]
                         overflow-hidden
 
                         rounded-[1.35rem]
@@ -1131,6 +1515,7 @@ function CorporatesPage() {
       ====================================================== */}
 
       <section
+        ref={aiSectionRef}
         className="
           border-b
           border-border
@@ -1224,7 +1609,9 @@ function CorporatesPage() {
               grid
 
               mt-6
-              gap-5
+              gap-6
+
+              sm:mt-7
 
               lg:grid-cols-2
               lg:items-stretch
@@ -1335,6 +1722,7 @@ function CorporatesPage() {
                   title={title}
                   body={body}
                   index={index}
+                  isActive={activeAiCard === index}
                 />
               ))}
             </div>
@@ -1417,11 +1805,9 @@ function CorporatesPage() {
             ref={processRef}
             className="
               relative
-              left-1/2
-              mt-9
-              w-[calc(100vw-32px)]
+              mt-8
+              w-full
               max-w-[1500px]
-              -translate-x-1/2
               overflow-hidden
 
               rounded-[1.75rem]
@@ -1431,19 +1817,21 @@ function CorporatesPage() {
 
               bg-white
 
-              px-6
-              py-10
+              px-4
+              py-8
+
+              xs:px-5
 
               shadow-[0_14px_35px_rgba(92,31,45,0.06)]
 
-              sm:w-[calc(100vw-48px)]
               sm:px-10
               sm:py-11
 
               md:min-h-[310px]
-              md:w-[calc(100vw-64px)]
 
+              lg:left-1/2
               lg:w-[calc(100vw-96px)]
+              lg:-translate-x-1/2
               lg:px-16
               lg:py-12
 
@@ -1992,7 +2380,7 @@ function CorporatesPage() {
 
                 bg-white/35
 
-                p-3
+                p-2.5
 
                 shadow-[0_10px_30px_rgba(15,23,42,0.035)]
 
@@ -2395,6 +2783,59 @@ function CorporatesPage() {
         </div>
       </section>
 
+
+
+      <style>{`
+        /*
+         * What we build — stacked cards on every screen size.
+         * Each card stays sticky while the next card slides over it.
+         */
+        #capability-areas article.reveal-child {
+          transform-origin: center top;
+          will-change: transform;
+          box-shadow: none !important;
+        }
+
+        #capability-areas article.reveal-child:not(:last-child) {
+          margin-bottom: 0;
+        }
+
+        /* Phones: compact sticky stack with no horizontal overflow/shadow. */
+        @media (max-width: 639px) {
+          #capability-areas {
+            overflow: clip;
+          }
+
+          #capability-areas article.reveal-child {
+            min-width: 0;
+            width: 100%;
+            min-height: min(470px, calc(100svh - 24px));
+          }
+
+          #capability-areas article.reveal-child > div {
+            min-width: 0;
+            box-shadow: none !important;
+          }
+
+          #capability-areas h3,
+          #capability-areas p {
+            overflow-wrap: anywhere;
+          }
+        }
+
+        /* Keep the stack usable on shorter laptop displays too. */
+        @media (min-width: 1024px) and (max-height: 700px) {
+          #capability-areas article.reveal-child {
+            min-height: 440px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #capability-areas article.reveal-child {
+            transition: none !important;
+          }
+        }
+      `}</style>
 
     </>
   );
