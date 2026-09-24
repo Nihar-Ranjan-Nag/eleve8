@@ -72,7 +72,7 @@ const audienceCards = [
     iconColor: "text-primary",
     buttonBorder: "border-[#f4bfd2]",
     buttonText: "text-primary",
-    imagePosition: "object-[center_center]",
+    imagePosition: "object-[center_54%]",
     icon: UserRound,
   },
 
@@ -827,17 +827,18 @@ function HomePage() {
                     alt={`${card.label} training and development`}
                     className={`
                       absolute
-                      -inset-[12px]
                       z-0
-                      h-[calc(100%+24px)]
-                      w-[calc(100%+24px)]
                       max-w-none
                       object-cover
                       opacity-100
                       transition-all
                       duration-500
                       ease-out
-                      group-hover:scale-[1.025]
+                      ${
+                        card.label === "Individuals"
+                          ? "-inset-[28px] h-[calc(100%+56px)] w-[calc(100%+56px)] scale-[0.92] group-hover:scale-[0.945]"
+                          : "-inset-[12px] h-[calc(100%+24px)] w-[calc(100%+24px)] scale-100 group-hover:scale-[1.025]"
+                      }
                       group-hover:blur-[3px]
                       group-hover:brightness-[0.68]
                       group-hover:saturate-[0.92]
