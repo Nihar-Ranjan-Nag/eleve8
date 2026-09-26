@@ -585,16 +585,15 @@ return (
               className="
                 mt-4
                 max-w-[700px]
-                text-[2.25rem]
+                font-display
+                text-[1.55rem]
                 font-extrabold
-                leading-[0.97]
-                tracking-[-0.045em]
+                leading-[1.08]
+                tracking-[-0.035em]
                 text-foreground
-                sm:text-[2.7rem]
-                md:text-[3rem]
-                lg:text-[3rem]
-                xl:text-[3.45rem]
-                2xl:text-[3.6rem]
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
             >
               Your students are ready to graduate.{" "}
@@ -781,19 +780,16 @@ return (
           border-b
           border-border
           bg-secondary/35
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
         "
       >
         <div
           className="
             container-page
             w-full
-            py-10
-            sm:py-12
-            md:py-14
-            lg:py-8
+            py-6
+            sm:py-7
+            md:py-8
+            lg:py-5
           "
         >
           {/* TOP CONTENT — ONE CLEAN ROW / CENTERED */}
@@ -805,11 +801,40 @@ return (
               text-center
             "
           >
-            <p className="section-kicker">
+            <p className="
+              mx-auto
+inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]
+            ">
               Trusted across campuses
             </p>
 
-            <h2 className="section-title">
+            <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
               A real network of{" "}
               <span className="text-primary">
                 institution partnerships.
@@ -821,10 +846,10 @@ return (
                 mx-auto
                 mt-4
                 max-w-3xl
-                text-sm
-                leading-7
+                text-[13px]
+                leading-6
                 text-muted-foreground
-                sm:text-base
+                sm:text-sm
               "
             >
               The brochure documents partnerships across colleges and
@@ -838,13 +863,13 @@ return (
           <div
             className="
               mx-auto
-              mt-6
+              mt-4
               grid
               max-w-5xl
               grid-cols-1
               gap-4
               sm:grid-cols-2
-              lg:mt-7
+              lg:mt-4
             "
           >
             <div
@@ -903,10 +928,10 @@ return (
           <div
             className="
               relative
-              mt-7
+              mt-4
               w-full
               overflow-hidden
-              lg:mt-8
+              lg:mt-4
             "
           >
             <div
@@ -1027,19 +1052,44 @@ className="
             md:py-12
 
             lg:py-8
-            lg:py-8
 
           "
 
         >
 
-          <p className="section-kicker">
+          <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
             01 • Diagnose
 
           </p>
 
-          <h2 className="section-title">
+          <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
             Start With Data,{" "}
 
@@ -1284,13 +1334,39 @@ className="
 
         >
 
-          <p className="section-kicker">
+          <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
             02 • Build
 
           </p>
 
-          <h2 className="section-title">
+          <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
             Build the capabilities{" "}
 
@@ -1555,13 +1631,39 @@ className="
 
         >
 
-          <p className="section-kicker">
+          <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
             03 • Company-Specific Preparation
 
           </p>
 
-          <h2 className="section-title">
+          <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
             Different companies test{" "}
 
@@ -1968,13 +2070,39 @@ className="
 
           <div>
 
-            <p className="section-kicker">
+            <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
               04 • Mock Tests
 
             </p>
 
-            <h2 className="section-title">
+            <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
               Practice the test{" "}
 
@@ -1992,13 +2120,13 @@ className="
 
                 mt-4
 
-                text-sm
+                text-[13px]
 
-                leading-7
+                leading-6
 
                 text-muted-foreground
 
-                sm:text-base
+                sm:text-sm
 
               "
 
@@ -2267,7 +2395,24 @@ className="
 
             >
 
-              <p className="section-kicker">
+              <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
                 05 • Practise the Interview
 
@@ -2279,13 +2424,13 @@ className="
 
                   mt-4
 
-                  text-xl
+                  text-lg
 
                   font-extrabold
 
-                  leading-tight
+                  leading-[1.15]
 
-                  sm:text-2xl
+                  sm:text-xl
 
                 "
 
@@ -2419,7 +2564,24 @@ className="
 
             >
 
-              <p className="section-kicker">
+              <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
                 06 • Mock Drives
 
@@ -2431,13 +2593,13 @@ className="
 
                   mt-4
 
-                  text-xl
+                  text-lg
 
                   font-extrabold
 
-                  leading-tight
+                  leading-[1.15]
 
-                  sm:text-2xl
+                  sm:text-xl
 
                 "
 
@@ -2590,13 +2752,39 @@ className="
 
         >
 
-          <p className="section-kicker">
+          <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
             07 • Measure
 
           </p>
 
-          <h2 className="section-title">
+          <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
             Don't just report attendance.{" "}
 
@@ -2849,13 +3037,39 @@ className="
 
         >
 
-          <p className="section-kicker">
+          <p className="inline-flex
+              w-fit
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-primary/25
+              bg-primary/[0.10]
+              px-5
+              py-2.5
+              font-display
+              text-sm
+              font-black
+              tracking-[-0.01em]
+              text-primary
+              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
+              sm:text-base
+              md:text-[17px]">
 
             Modular • Flexible • Built Around Your College
 
           </p>
 
-          <h2 className="section-title">
+          <h2 className="mt-3
+              font-display
+              text-[1.55rem]
+              font-extrabold
+              leading-[1.08]
+              tracking-[-0.035em]
+              text-foreground
+              sm:text-[1.8rem]
+              md:text-[2rem]
+              lg:text-[2.2rem]">
 
             Choose the intervention{" "}
 
@@ -3078,9 +3292,6 @@ className="
           border-border
 
           bg-secondary/40
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
         "
 
       >
@@ -3091,12 +3302,15 @@ className="
 
             container-page
 
-            py-10
+            py-6
 
-            sm:py-12
+            sm:py-7
 
-            md:py-16
+            md:py-8
 
+          
+
+            lg:py-5
           "
 
         >
@@ -3136,15 +3350,18 @@ className="
             <h2
 
               className="
-
-                section-title
-
                 mx-auto
-
-                mt-4
-
+                mt-3
                 max-w-4xl
-
+                font-display
+                text-[1.55rem]
+                font-extrabold
+                leading-[1.08]
+                tracking-[-0.035em]
+                text-foreground
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
 
             >
@@ -3169,13 +3386,13 @@ className="
 
                 max-w-3xl
 
-                text-sm
+                text-[13px]
 
-                leading-7
+                leading-6
 
                 text-muted-foreground
 
-                sm:text-base
+                sm:text-sm
 
               "
 
@@ -3196,10 +3413,10 @@ className="
           <div
             className="
               relative
-              mt-6
+              mt-4
               space-y-3
               overflow-hidden
-              sm:mt-7
+              sm:mt-5
               sm:space-y-4
             "
           >
@@ -3413,22 +3630,22 @@ className="
                 justify-center
                 rounded-full
                 border
-                border-primary/20
-                bg-primary/[0.08]
+                border-primary/25
+                bg-primary/[0.10]
                 px-5
                 py-2.5
-                shadow-sm
+                shadow-[0_8px_24px_rgba(196,0,79,0.10)]
               "
             >
               <span
                 className="
                   font-display
-                  text-base
+                  text-sm
                   font-black
-                  tracking-[-0.02em]
+                  tracking-[-0.01em]
                   text-primary
-                  sm:text-lg
-                  md:text-xl
+                  sm:text-base
+                  md:text-[17px]
                 "
               >
                 Campus Recommendations
@@ -3437,10 +3654,18 @@ className="
 
             <h2
               className="
-                section-title
                 mx-auto
-                mt-4
+                mt-3
                 max-w-4xl
+                font-display
+                text-[1.55rem]
+                font-extrabold
+                leading-[1.08]
+                tracking-[-0.035em]
+                text-foreground
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
             >
               What placement leaders say{" "}
@@ -3725,23 +3950,19 @@ className="
             </p>
 
             <h2
-
-className="
-
+              className="
                 mt-3
-
                 max-w-3xl
-
-                text-2xl
-
+                font-display
+                text-[1.55rem]
                 font-extrabold
-
-                leading-tight
-
-                sm:text-3xl
-
+                leading-[1.08]
+                tracking-[-0.035em]
+                text-white
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
-
             >
 
               Prepare students for the companies they want to

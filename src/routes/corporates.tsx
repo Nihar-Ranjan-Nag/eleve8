@@ -483,7 +483,6 @@ function CorporatesPage() {
 
       <section
         className="
-          soft-grid
           relative
           overflow-hidden
           border-b
