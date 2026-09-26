@@ -407,29 +407,9 @@ function IndividualsPage() {
                 For Individuals
               </span>
 
-              <span
-                className="
-                  hidden
-                  h-4
-                  w-px
-                  bg-primary/15
+               
 
-                  sm:block
-                "
-              />
-
-              <span
-                className="
-                  hidden
-                  text-[11px]
-                  font-bold
-                  text-foreground/45
-
-                  sm:inline
-                "
-              >
-                Learn • Grow • Progress
-              </span>
+               
             </div>
 
             <h1

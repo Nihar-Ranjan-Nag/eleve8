@@ -31,6 +31,35 @@ import {
 import { photos } from "@/lib/site";
 import landingHero from "@/assets/landingHero.png";
 
+import amazonLogo from "@/assets/brand/amazon.png";
+import pwcLogo from "@/assets/brand/pwc.png";
+import kpmgLogo from "@/assets/brand/kpmg.png";
+import accentureLogo from "@/assets/brand/accenture.png";
+import hclLogo from "@/assets/brand/hcl.png";
+import relianceLogo from "@/assets/brand/reliance.png";
+import infosysLogo from "@/assets/brand/infosys.png";
+import eyLogo from "@/assets/brand/ey.png";
+import pfizerLogo from "@/assets/brand/pfizer.png";
+import barclaysLogo from "@/assets/brand/barclays.png";
+import capgeminiLogo from "@/assets/brand/capgemini.png";
+import hdfcLogo from "@/assets/brand/hdfc.png";
+
+import mountCarmelLogo from "@/assets/institution/mount-carmel-college.png";
+import sibmPuneLogo from "@/assets/institution/sibm-pune.png";
+import amityUniversityLogo from "@/assets/institution/amity-university.png";
+import immLogo from "@/assets/institution/institute-of-marketing-management.png";
+import alkeshDineshLogo from "@/assets/institution/alkesh-dinesh-study-institute.png";
+import sindhiCollegeLogo from "@/assets/institution/sindhi-college.png";
+import gardenCityLogo from "@/assets/institution/garden-city-university.png";
+import dayanandaSagarLogo from "@/assets/institution/dayananda-sagar-business-school.png";
+import oxfordLogo from "@/assets/institution/oxford-educational-institutions.png";
+import rayatBahraLogo from "@/assets/institution/rayat-bahra-university.png";
+import pcteLogo from "@/assets/institution/pcte-group-of-institutes.png";
+import asciLogo from "@/assets/institution/asci.png";
+import paduaLogo from "@/assets/institution/padua-institutions.png";
+import shasunJainLogo from "@/assets/institution/shasun-jain-college-for-women.png";
+import hlCommerceLogo from "@/assets/institution/hl-commerce-college.png";
+
 import {
 
   useReveal,
@@ -323,28 +352,67 @@ const years = [
 
 ] as const;
 
+const institutionBrands = [
+  ["Mount Carmel College", mountCarmelLogo],
+  ["SIBM Pune", sibmPuneLogo],
+  ["Amity University", amityUniversityLogo],
+  ["Institute of Marketing Management", immLogo],
+  ["Alkesh Dinesh Study Institute", alkeshDineshLogo],
+  ["Sindhi College", sindhiCollegeLogo],
+  ["Garden City University", gardenCityLogo],
+  ["Dayananda Sagar Business School", dayanandaSagarLogo],
+  ["Oxford Educational Institutions", oxfordLogo],
+  ["Rayat Bahra University", rayatBahraLogo],
+  ["PCTE Group of Institutes", pcteLogo],
+  ["ASCI", asciLogo],
+  ["Padua Institutions", paduaLogo],
+  ["Shasun Jain College for Women", shasunJainLogo],
+  ["HL Commerce College", hlCommerceLogo],
+] as const;
+
+const placementBrandsTop = [
+  ["Amazon", amazonLogo],
+  ["PwC", pwcLogo],
+  ["KPMG", kpmgLogo],
+  ["Accenture", accentureLogo],
+  ["HCL", hclLogo],
+  ["Reliance", relianceLogo],
+] as const;
+
+const placementBrandsBottom = [
+  ["Infosys", infosysLogo],
+  ["EY", eyLogo],
+  ["Pfizer", pfizerLogo],
+  ["Barclays", barclaysLogo],
+  ["Capgemini", capgeminiLogo],
+  ["HDFC", hdfcLogo],
+] as const;
+
 const testimonials = [
-
   [
-
     "Dr. S. Rajkumar",
-
     "Dean of Management Studies, Mount Carmel College",
-
     "Elev8 Learning's 80-hour training streamlined MBA placements and tailored internships. Exceptional skills training notably enhanced student capabilities. Insightful mock interviews effectively revealed individual strengths with scorecards.",
-
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=85",
   ],
-
   [
-
     "Prof. Smita Lal",
-
     "Dean, Institute of Marketing & Management",
-
     "Your workshops on ATS Resumes at IMM C2C Summit was invaluable. Students gained rich insights on personal branding, confidence building. Your guidance will undoubtedly steer their career paths.",
-
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=85",
   ],
-
+  [
+    "Sanmay Rath",
+    "Placement Officer, AMITY University",
+    "Coach Ashfak has been a very popular brand name at AGBS, BHUBANESWAR campus. He has taken many enthralling sessions on job hunting skills and life skills at our campus and students love to hear his words of wisdom. He was one of our guests at the orientation programme 2021 who took a wonderful motivational session.",
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85",
+  ],
+  [
+    "Dr. B.S. Srikanta",
+    "Director, Sindhi College",
+    "The Job Hunting skills workshop is a unique concept for fresh graduates and working professionals who are serious about getting good jobs in today’s very competitive job market.",
+    "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=85",
+  ],
 ] as const;
 
 /* =========================================================
@@ -481,18 +549,7 @@ return (
                 py-2.5
               "
             >
-              <span
-                className="
-                  text-[10px]
-                  font-bold
-                  uppercase
-                  tracking-[0.14em]
-                  text-muted-foreground
-                  sm:text-[11px]
-                "
-              >
-                For Institutions
-              </span>
+               
 
               <span
                 aria-hidden="true"
@@ -696,15 +753,14 @@ return (
                 block
                 h-auto
                 w-full
-                max-w-[750px]
-                max-h-[575px]
+                max-w-[810px]
+                max-h-[600px]
                 object-contain
-                sm:max-h-[595px]
-                 lg:max-w-[825px]
-lg:max-h-[615px]
-
-xl:max-w-[865px]
-xl:max-h-[625px]
+                sm:max-h-[620px]
+                lg:max-w-[825px]
+                lg:max-h-[615px]
+                xl:max-w-[865px]
+                xl:max-h-[625px]
               "
             />
           </div>
@@ -718,217 +774,222 @@ xl:max-h-[625px]
       ====================================================== */}
 
       <section
-
-id="trusted-campuses"
-
-className="
-
+        id="trusted-campuses"
+        className="
           scroll-mt-24
-
+          overflow-hidden
           border-b
-
           border-border
-
           bg-secondary/35
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
-
       >
-
         <div
-
-className="
-
+          className="
             container-page
-
-            grid
-
-            gap-8
-
-            py-12
-
-            sm:py-14
-
-            md:py-20
-
-            lg:grid-cols-[.75fr_1.25fr]
-
-            lg:items-center
-
-            lg:gap-10
-
+            w-full
+            py-10
+            sm:py-12
+            md:py-14
+            lg:py-8
           "
-
         >
+          {/* TOP CONTENT — ONE CLEAN ROW / CENTERED */}
 
-          <div>
-
+          <div
+            className="
+              mx-auto
+              max-w-4xl
+              text-center
+            "
+          >
             <p className="section-kicker">
-
               Trusted across campuses
-
             </p>
 
             <h2 className="section-title">
-
               A real network of{" "}
-
               <span className="text-primary">
-
                 institution partnerships.
-
               </span>
-
             </h2>
 
             <p
-
-className="
-
+              className="
+                mx-auto
                 mt-4
-
+                max-w-3xl
                 text-sm
-
                 leading-7
-
                 text-muted-foreground
-
                 sm:text-base
-
               "
-
             >
-
-              The brochure documents partnerships across
-
-              colleges and universities in Bengaluru, Pune,
-
-              Bhubaneswar, Delhi, Mumbai, Mohali, Punjab,
-
-              Mangalore, Chennai and Ahmedabad.
-
+              The brochure documents partnerships across colleges and
+              universities in Bengaluru, Pune, Bhubaneswar, Delhi, Mumbai,
+              Mohali, Punjab, Mangalore, Chennai and Ahmedabad.
             </p>
-
-            <div
-
-className="
-
-                mt-6
-
-                grid
-
-                grid-cols-2
-
-                gap-3
-
-              "
-
-            >
-
-              <img
-
-src={photos.campusCohort}
-
-alt="Campus training"
-
-className="
-
-                  h-32
-
-                  w-full
-
-                  rounded-xl
-
-                  object-cover
-
-                  sm:h-40
-
-                  sm:rounded-2xl
-
-                "
-
-              />
-
-              <img
-
-src={photos.lectureHall}
-
-alt="Campus session"
-
-className="
-
-                  h-32
-
-                  w-full
-
-                  rounded-xl
-
-                  object-cover
-
-                  sm:h-40
-
-                  sm:rounded-2xl
-
-                "
-
-              />
-
-            </div>
-
           </div>
+
+          {/* TWO CAMPUS IMAGES — TWO COLUMNS */}
 
           <div
-
-className="
-
-              overflow-hidden
-
-              rounded-[1.5rem]
-
-              border
-
-              border-border
-
-              bg-white
-
-              p-2
-
-              shadow-xl
-
-              sm:rounded-[2rem]
-
-              sm:p-3
-
+            className="
+              mx-auto
+              mt-6
+              grid
+              max-w-5xl
+              grid-cols-1
+              gap-4
+              sm:grid-cols-2
+              lg:mt-7
             "
-
           >
-
-            <img
-
-src={photos.partnerCollage}
-
-alt="Elev8 partner colleges and universities"
-
-className="
-
-                h-auto
-
-                w-full
-
-                rounded-[1.1rem]
-
-                object-contain
-
-                sm:rounded-[1.4rem]
-
+            <div
+              className="
+                overflow-hidden
+                rounded-[1.35rem]
+                border
+                border-border
+                bg-white
+                p-1.5
+                shadow-sm
               "
+            >
+              <img
+                src={photos.campusCohort}
+                alt="Campus training"
+                className="
+                  h-44
+                  w-full
+                  rounded-[1.05rem]
+                  object-cover
+                  sm:h-48
+                  lg:h-44
+                "
+              />
+            </div>
 
-            />
-
+            <div
+              className="
+                overflow-hidden
+                rounded-[1.35rem]
+                border
+                border-border
+                bg-white
+                p-1.5
+                shadow-sm
+              "
+            >
+              <img
+                src={photos.lectureHall}
+                alt="Campus session"
+                className="
+                  h-44
+                  w-full
+                  rounded-[1.05rem]
+                  object-cover
+                  sm:h-48
+                  lg:h-44
+                "
+              />
+            </div>
           </div>
 
-        </div>
+          {/* INSTITUTION LOGOS — SINGLE STRAIGHT SCROLLING LINE */}
 
+          <div
+            className="
+              relative
+              mt-7
+              w-full
+              overflow-hidden
+              lg:mt-8
+            "
+          >
+            <div
+              className="
+                institution-logo-marquee
+                flex
+                w-max
+                items-center
+                gap-4
+                py-2
+                sm:gap-5
+              "
+            >
+              {[...institutionBrands, ...institutionBrands].map(
+                ([name, logo], index) => (
+                  <div
+                    key={`${name}-${index}`}
+                    className="
+                      flex
+                      h-[86px]
+                      w-[170px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      border
+                      border-border
+                      bg-white
+                      px-4
+                      py-3
+                      shadow-sm
+                      sm:h-[92px]
+                      sm:w-[185px]
+                      sm:px-5
+                      md:w-[195px]
+                    "
+                  >
+                    <img
+                      src={logo}
+                      alt={`${name} logo`}
+                      loading="lazy"
+                      className="
+                        block
+                        max-h-[62px]
+                        max-w-full
+                        object-contain
+                        sm:max-h-[66px]
+                      "
+                    />
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+
+          <style>{`
+            @keyframes institution-logo-marquee {
+              from {
+                transform: translateX(0);
+              }
+
+              to {
+                transform: translateX(-50%);
+              }
+            }
+
+            .institution-logo-marquee {
+              animation: institution-logo-marquee 42s linear infinite;
+              will-change: transform;
+            }
+
+            .institution-logo-marquee:hover {
+              animation-play-state: paused;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .institution-logo-marquee {
+                animation: none;
+                transform: none;
+              }
+            }
+          `}</style>
+        </div>
       </section>
 
       {/* =====================================================
@@ -946,7 +1007,9 @@ className="
           border-border
 
           bg-background
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -957,11 +1020,14 @@ className="
 
             container-page
 
-            py-12
+            py-8
 
-            sm:py-16
+            sm:py-10
 
-            md:py-24
+            md:py-12
+
+            lg:py-8
+            lg:py-8
 
           "
 
@@ -1015,7 +1081,7 @@ ref={diagnoseRef}
 
 className="
 
-              mt-7
+              mt-5
 
               grid
 
@@ -1055,13 +1121,13 @@ className="
 
                   bg-card
 
-                  p-4
+                  p-3.5
 
                   shadow-sm
 
                   sm:block
 
-                  sm:p-5
+                  sm:p-4
 
                 "
 
@@ -1109,7 +1175,7 @@ className="
 
 className="
 
-              mt-6
+              mt-5
 
               rounded-2xl
 
@@ -1194,7 +1260,9 @@ className="
           border-border
 
           bg-secondary/40
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -1209,7 +1277,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
           "
 
@@ -1263,7 +1332,7 @@ ref={moduleRef}
 
 className="
 
-              mt-8
+              mt-5
 
               grid
 
@@ -1462,7 +1531,9 @@ className="
           border-border
 
           bg-background
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -1477,7 +1548,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
           "
 
@@ -1621,7 +1693,7 @@ className="
 
 className="
 
-              mt-8
+              mt-6
 
               hidden
 
@@ -1629,7 +1701,7 @@ className="
 
               bg-ink
 
-              p-6
+              p-5
 
               text-white
 
@@ -1719,7 +1791,7 @@ className="
 
 className="
 
-              mt-6
+              mt-5
 
               grid
 
@@ -1749,7 +1821,7 @@ className="
 
                   bg-card
 
-                  p-5
+                  p-4
 
                   shadow-sm
 
@@ -1785,11 +1857,13 @@ className="
 
 className="
 
-                    mt-3
+                    mt-2
 
-                    text-sm
+                    text-xs
 
-                    leading-6
+                    leading-5
+
+                    sm:text-sm
 
                     text-muted-foreground
 
@@ -1858,7 +1932,9 @@ className="
           border-border
 
           bg-secondary/40
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -1877,7 +1953,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
             lg:grid-cols-2
 
@@ -2108,7 +2185,9 @@ className="
           border-border
 
           bg-background
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -2127,7 +2206,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
             lg:grid-cols-2
 
@@ -2159,13 +2239,15 @@ alt="Mock interviews"
 
 className="
 
-                h-44
+                h-36
 
                 w-full
 
                 object-cover
 
-                sm:h-56
+                sm:h-44
+
+                lg:h-36
 
               "
 
@@ -2177,7 +2259,9 @@ className="
 
                 p-5
 
-                sm:p-7
+                sm:p-6
+
+                lg:p-5
 
               "
 
@@ -2213,7 +2297,7 @@ className="
 
               </h2>
 
-              <div className="mt-6 space-y-5">
+              <div className="mt-4 space-y-3.5">
 
                 <div>
 
@@ -2327,7 +2411,9 @@ className="
 
                 p-5
 
-                sm:p-7
+                sm:p-6
+
+                lg:p-5
 
               "
 
@@ -2363,7 +2449,7 @@ className="
 
               </h2>
 
-              <div className="mt-6 space-y-2.5">
+              <div className="mt-4 space-y-2">
 
                 {[
 
@@ -2480,7 +2566,9 @@ className="
           border-border
 
           bg-secondary/40
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -2495,7 +2583,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
           "
 
@@ -2547,7 +2636,7 @@ className="
 
 className="
 
-              mt-7
+              mt-5
 
               grid
 
@@ -2736,7 +2825,9 @@ className="
           border-border
 
           bg-background
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -2751,7 +2842,8 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
           "
 
@@ -2833,7 +2925,7 @@ className="
 
 className="
 
-                    mt-5
+                    mt-3
 
                     font-extrabold
 
@@ -2909,9 +3001,9 @@ className="
 
                   bg-secondary/50
 
-                  p-5
+                  p-4
 
-                  sm:p-6
+                  sm:p-5
 
                 "
 
@@ -2923,9 +3015,9 @@ className="
 
 className="
 
-                    mt-4
+                    mt-3
 
-                    text-lg
+                    text-base
 
                     font-extrabold
 
@@ -2977,53 +3069,85 @@ className="
 
       <section
 
-className="
+        className="
+
+          overflow-hidden
 
           border-b
 
           border-border
 
           bg-secondary/40
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
 
         <div
 
-className="
+          className="
 
             container-page
 
-            grid
+            py-10
 
-            gap-8
+            sm:py-12
 
-            py-12
-
-            sm:py-16
-
-            md:py-24
-
-            lg:grid-cols-[.9fr_1.1fr]
-
-            lg:items-center
-
-            lg:gap-10
+            md:py-16
 
           "
 
         >
 
-          <div>
+          <div className="text-center">
 
-            <p className="section-kicker">
+            <div
+              className="
+                mx-auto
+                inline-flex
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-primary/20
+                bg-primary/[0.08]
+                px-5
+                py-2.5
+                shadow-sm
+              "
+            >
+              <span
+                className="
+                  font-display
+                  text-base
+                  font-black
+                  tracking-[-0.02em]
+                  text-primary
+                  sm:text-lg
+                  md:text-xl
+                "
+              >
+                Placement Companies
+              </span>
+            </div>
 
-              Placement companies
+            <h2
 
-            </p>
+              className="
 
-            <h2 className="section-title">
+                section-title
+
+                mx-auto
+
+                mt-4
+
+                max-w-4xl
+
+              "
+
+            >
 
               Students get trained for{" "}
 
@@ -3037,9 +3161,13 @@ className="
 
             <p
 
-className="
+              className="
 
-                mt-5
+                mx-auto
+
+                mt-4
+
+                max-w-3xl
 
                 text-sm
 
@@ -3063,55 +3191,175 @@ className="
 
           </div>
 
+          {/* TWO STRAIGHT CONTINUOUS SCROLLING ROWS */}
+
           <div
-
-className="
-
+            className="
+              relative
+              mt-6
+              space-y-3
               overflow-hidden
-
-              rounded-[1.5rem]
-
-              border
-
-              border-border
-
-              bg-white
-
-              p-2
-
-              shadow-xl
-
-              sm:rounded-[2rem]
-
-              sm:p-3
-
+              sm:mt-7
+              sm:space-y-4
             "
-
           >
+            {/* ROW 1 — LEFT TO RIGHT */}
 
-            <img
-
-src={photos.companyCollage}
-
-alt="Top company placement logos from Elev8 brochure"
-
-className="
-
-                h-auto
-
-                w-full
-
-                rounded-[1.1rem]
-
-                object-contain
-
-                sm:rounded-[1.3rem]
-
+            <div
+              className="
+                placement-logo-marquee-forward
+                flex
+                w-max
+                items-center
+                gap-4
+                py-1
+                sm:gap-5
               "
+            >
+              {[...placementBrandsTop, ...placementBrandsTop].map(
+                ([name, logo], index) => (
+                  <div
+                    key={`forward-${name}-${index}`}
+                    className="
+                      flex
+                      h-[82px]
+                      w-[170px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      border
+                      border-border
+                      bg-white
+                      px-4
+                      py-3
+                      shadow-sm
+                      sm:h-[92px]
+                      sm:w-[185px]
+                      sm:px-5
+                      md:h-[98px]
+                      md:w-[200px]
+                    "
+                  >
+                    <img
+                      src={logo}
+                      alt={`${name} logo`}
+                      loading="lazy"
+                      className="
+                        block
+                        max-h-[56px]
+                        max-w-full
+                        object-contain
+                        sm:max-h-[62px]
+                        md:max-h-[66px]
+                      "
+                    />
+                  </div>
+                ),
+              )}
+            </div>
 
-            />
+            {/* ROW 2 — RIGHT TO LEFT */}
 
+            <div
+              className="
+                placement-logo-marquee-reverse
+                flex
+                w-max
+                items-center
+                gap-4
+                py-1
+                sm:gap-5
+              "
+            >
+              {[...placementBrandsBottom, ...placementBrandsBottom].map(
+                ([name, logo], index) => (
+                  <div
+                    key={`reverse-${name}-${index}`}
+                    className="
+                      flex
+                      h-[82px]
+                      w-[170px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      border
+                      border-border
+                      bg-white
+                      px-4
+                      py-3
+                      shadow-sm
+                      sm:h-[92px]
+                      sm:w-[185px]
+                      sm:px-5
+                      md:h-[98px]
+                      md:w-[200px]
+                    "
+                  >
+                    <img
+                      src={logo}
+                      alt={`${name} logo`}
+                      loading="lazy"
+                      className="
+                        block
+                        max-h-[56px]
+                        max-w-full
+                        object-contain
+                        sm:max-h-[62px]
+                        md:max-h-[66px]
+                      "
+                    />
+                  </div>
+                ),
+              )}
+            </div>
           </div>
+
+          <style>{`
+            @keyframes placement-logo-forward {
+              from {
+                transform: translateX(-50%);
+              }
+
+              to {
+                transform: translateX(0);
+              }
+            }
+
+            @keyframes placement-logo-reverse {
+              from {
+                transform: translateX(0);
+              }
+
+              to {
+                transform: translateX(-50%);
+              }
+            }
+
+            .placement-logo-marquee-forward {
+              animation: placement-logo-forward 34s linear infinite;
+              will-change: transform;
+            }
+
+            .placement-logo-marquee-reverse {
+              animation: placement-logo-reverse 34s linear infinite;
+              will-change: transform;
+            }
+
+            .placement-logo-marquee-forward:hover,
+            .placement-logo-marquee-reverse:hover {
+              animation-play-state: paused;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .placement-logo-marquee-forward,
+              .placement-logo-marquee-reverse {
+                animation: none;
+                transform: none;
+              }
+            }
+          `}</style>
 
         </div>
 
@@ -3132,7 +3380,9 @@ className="
           border-border
 
           bg-background
-
+          lg:min-h-[calc(100svh-74px)]
+          lg:flex
+          lg:items-center
         "
 
       >
@@ -3147,132 +3397,255 @@ className="
 
             sm:py-16
 
-            md:py-24
+            md:py-16
+            lg:py-8
 
           "
 
         >
 
-          <p className="section-kicker">
+          <div className="text-center">
+            <div
+              className="
+                mx-auto
+                inline-flex
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-primary/20
+                bg-primary/[0.08]
+                px-5
+                py-2.5
+                shadow-sm
+              "
+            >
+              <span
+                className="
+                  font-display
+                  text-base
+                  font-black
+                  tracking-[-0.02em]
+                  text-primary
+                  sm:text-lg
+                  md:text-xl
+                "
+              >
+                Campus Recommendations
+              </span>
+            </div>
 
-            Campus recommendations
-
-          </p>
-
-          <h2 className="section-title">
-
-            What placement leaders say{" "}
-
-            <span className="text-primary">
-
-              about Elev8.
-
-            </span>
-
-          </h2>
+            <h2
+              className="
+                section-title
+                mx-auto
+                mt-4
+                max-w-4xl
+              "
+            >
+              What placement leaders say{" "}
+              <span className="text-primary">
+                about Elev8.
+              </span>
+            </h2>
+          </div>
 
           <div
-
-className="
-
-              mt-7
-
+            className="
+              mt-6
               grid
-
-              gap-4
-
-              lg:grid-cols-2
-
-              lg:gap-5
-
+              gap-6
+              md:grid-cols-2
+              xl:gap-7
             "
-
           >
-
             {testimonials.map(
-
-              ([name, role, text]) => (
-
-                <div
-
-key={name}
-
-className="
-
-                    rounded-[1.5rem]
-
+              ([name, role, testimonialText, image]) => (
+                <article
+                  key={name}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[1.8rem]
                     border
-
-                    border-border
-
-                    bg-card
-
-                    p-5
-
-                    shadow-sm
-
-                    sm:rounded-[1.7rem]
-
-                    sm:p-7
-
+                    border-primary/15
+                    bg-white
+                    p-4
+                    shadow-[0_12px_35px_rgba(15,23,42,0.06)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1.5
+                    hover:border-primary/30
+                    hover:shadow-[0_24px_60px_rgba(196,0,79,0.12)]
+                    sm:p-5
+                    lg:p-5
                   "
-
                 >
+                  {/* soft brand accent */}
+                  <div
+                    aria-hidden="true"
+                    className="
+                      absolute
+                      -right-16
+                      -top-16
+                      size-40
+                      rounded-full
+                      bg-primary/[0.06]
+                      blur-3xl
+                    "
+                  />
 
-                  <Quote className="size-6 text-primary" />
+                  <div
+                    className="
+                      relative
+                      z-10
+                      flex
+                      items-center
+                      gap-4
+                    "
+                  >
+                    <div
+                      className="
+                        h-16
+                        w-16
+                        shrink-0
+                        overflow-hidden
+                        rounded-[1.35rem]
+                        border
+                        border-primary/15
+                        bg-secondary
+                        shadow-md
+                        sm:h-[72px]
+                        sm:w-[72px]
+                      "
+                    >
+                      <img
+                        src={image}
+                        alt={name}
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        className="
+                          h-full
+                          w-full
+                          object-cover
+                        "
+                      />
+                    </div>
 
-                  <p
+                    <div className="min-w-0 flex-1">
+                      <h3
+                        className="
+                          font-display
+                          text-lg
+                          font-extrabold
+                          leading-tight
+                          text-foreground
+                          sm:text-xl
+                        "
+                      >
+                        {name}
+                      </h3>
 
-className="
+                      <p
+                        className="
+                          mt-1.5
+                          text-xs
+                          font-bold
+                          leading-5
+                          text-primary
+                          sm:text-[13px]
+                        "
+                      >
+                        {role}
+                      </p>
+                    </div>
 
+                    <div
+                      className="
+                        hidden
+                        h-11
+                        w-11
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-primary/10
+                        text-primary
+                        sm:flex
+                      "
+                    >
+                      <Quote className="size-5" />
+                    </div>
+                  </div>
+
+                  <div
+                    className="
+                      relative
+                      z-10
                       mt-4
-
-                      text-sm
-
-                      leading-7
-
-                      text-muted-foreground
-
+                      rounded-[1.25rem]
+                      border
+                      border-border
+                      bg-secondary/30
+                      p-3.5
+                      sm:p-4
                     "
-
                   >
+                    <Quote
+                      className="
+                        size-5
+                        text-primary
+                      "
+                    />
 
-                    {text}
+                    <p
+                      className="
+                        mt-2.5
+                        text-[13px]
+                        leading-6
+                        text-muted-foreground
+                        sm:text-sm
+                        sm:leading-6
+                      "
+                    >
+                      {testimonialText}
+                    </p>
+                  </div>
 
-                  </p>
-
-                  <p className="mt-5 font-extrabold">
-
-                    {name}
-
-                  </p>
-
-                  <p
-
-className="
-
-                      mt-1
-
-                      text-xs
-
-                      leading-5
-
-                      text-muted-foreground
-
+                  <div
+                    className="
+                      relative
+                      z-10
+                      mt-4
+                      flex
+                      items-center
+                      gap-3
                     "
-
                   >
+                    <span
+                      className="
+                        h-px
+                        flex-1
+                        bg-border
+                      "
+                    />
 
-                    {role}
-
-                  </p>
-
-                </div>
-
+                    <span
+                      className="
+                        text-[10px]
+                        font-extrabold
+                        uppercase
+                        tracking-[0.14em]
+                        text-primary/70
+                      "
+                    >
+                      Campus Recommendation
+                    </span>
+                  </div>
+                </article>
               ),
-
             )}
-
           </div>
 
         </div>
