@@ -483,6 +483,7 @@ function CorporatesPage() {
 
       <section
         className="
+          soft-grid
           relative
           overflow-hidden
           border-b
@@ -521,24 +522,37 @@ function CorporatesPage() {
 
         <div
           className="
-            container-page
             relative
             z-10
 
+            mx-auto
+
             grid
-            gap-10
+            w-full
+            max-w-[1440px]
 
-            py-8
+            gap-8
 
-            sm:py-10
+            px-4
+            py-7
 
-            md:py-12
+            sm:px-6
+            sm:py-9
 
-            lg:min-h-[650px]
+            md:px-8
+            md:py-10
+
+            lg:min-h-[620px]
             lg:grid-cols-[0.98fr_1.02fr]
             lg:items-center
-            lg:gap-14
-            lg:py-16
+            lg:gap-12
+            lg:px-10
+            lg:py-10
+
+            xl:gap-12
+            xl:px-10
+
+            2xl:max-w-[1500px]
           "
         >
           {/* LEFT */}
@@ -609,34 +623,30 @@ function CorporatesPage() {
               >
                 For Organizations
               </span>
-
-               
-
-               
             </div>
 
             <h1
               className="
                 mx-auto
-                mt-6
-                max-w-[760px]
+                mt-5
+                max-w-[720px]
 
                 font-display
-                text-[2.25rem]
+                text-[2.15rem]
                 font-extrabold
-                leading-[0.98]
-                tracking-[-0.055em]
+                leading-[1.07]
+                tracking-[-0.05em]
 
                 text-foreground
 
-                sm:text-[3.2rem]
+                sm:text-[2.8rem]
 
-                md:text-[3.8rem]
+                md:text-[3.3rem]
 
                 lg:mx-0
-                lg:text-[4.15rem]
+                lg:text-[3.55rem]
 
-                xl:text-[4.55rem]
+                xl:text-[3.9rem]
               "
             >
               Build a workforce{" "}
@@ -648,15 +658,15 @@ function CorporatesPage() {
             <p
               className="
                 mx-auto
-                mt-5
+                mt-4
                 max-w-[640px]
 
                 text-sm
-                leading-7
+                leading-[1.85]
                 text-muted-foreground
 
                 sm:text-base
-                sm:leading-8
+                sm:leading-[1.9]
 
                 lg:mx-0
               "
@@ -668,7 +678,7 @@ function CorporatesPage() {
 
             <div
               className="
-                mt-7
+                mt-6
                 flex
                 flex-col
                 gap-3
@@ -687,7 +697,6 @@ function CorporatesPage() {
                   min-h-12
                   w-full
 
-                  sm:w-auto
                   items-center
                   justify-center
                   gap-2.5
@@ -711,6 +720,8 @@ function CorporatesPage() {
                   hover:shadow-[0_16px_36px_rgba(196,0,79,0.30)]
 
                   motion-reduce:transform-none
+
+                  sm:w-auto
                 "
               >
                 Talk to Elev8
@@ -732,7 +743,6 @@ function CorporatesPage() {
                   min-h-12
                   w-full
 
-                  sm:w-auto
                   items-center
                   justify-center
                   gap-2.5
@@ -761,6 +771,8 @@ function CorporatesPage() {
                   hover:text-primary
 
                   motion-reduce:transform-none
+
+                  sm:w-auto
                 "
               >
                 Explore capabilities
@@ -780,7 +792,7 @@ function CorporatesPage() {
             <div
               className="
                 mx-auto
-                mt-6
+                mt-5
                 flex
                 max-w-xl
                 flex-wrap
@@ -833,7 +845,6 @@ function CorporatesPage() {
                 </span>
               ))}
             </div>
-
           </div>
 
           {/* RIGHT */}
@@ -845,9 +856,13 @@ function CorporatesPage() {
               mx-auto
               w-full
               min-w-0
-              max-w-[720px]
+              max-w-[640px]
 
               lg:mx-0
+              lg:justify-self-end
+              lg:max-w-[620px]
+
+              xl:max-w-[650px]
             "
           >
             {/* offset brand frame */}
@@ -855,8 +870,8 @@ function CorporatesPage() {
               aria-hidden="true"
               className="
                 absolute
-                -bottom-4
-                -right-4
+                -bottom-3
+                -right-3
                 h-[86%]
                 w-[88%]
 
@@ -867,8 +882,8 @@ function CorporatesPage() {
 
                 bg-primary/[0.035]
 
-                sm:-bottom-5
-                sm:-right-5
+                sm:-bottom-4
+                sm:-right-4
                 sm:rounded-[2.5rem]
               "
             />
@@ -1084,7 +1099,7 @@ function CorporatesPage() {
 
                 sm:flex
 
-                lg:-left-7
+                lg:-left-6
               "
             >
               <span
@@ -1105,6 +1120,7 @@ function CorporatesPage() {
                 <p className="text-xs font-extrabold text-foreground">
                   Business-led learning
                 </p>
+
                 <p className="mt-0.5 text-[10px] font-semibold text-foreground/45">
                   From capability gap to application
                 </p>

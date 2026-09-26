@@ -821,18 +821,7 @@ function IndividualsPage() {
                           What you can build
                         </span>
           
-                        <span
-                          className="
-                            hidden
-                            text-[10px]
-                            font-bold
-                            text-foreground/40
-          
-                            sm:inline
-                          "
-                        >
-                          Skills for real moments
-                        </span>
+                         
                       </div>
           </div>
 
