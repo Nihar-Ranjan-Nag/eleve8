@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import {
@@ -5,27 +6,16 @@ import {
   ArrowDown,
 
   ArrowRight,
-
-  BarChart3,
-
   Building2,
 
   CheckCircle2,
+  ChevronDown,
 
   ClipboardCheck,
-
-  Code2,
-
   GraduationCap,
-
-  MessageCircle,
-
   Quote,
 
   Target,
-
-  Users,
-
 } from "lucide-react";
 
 import { photos } from "@/lib/site";
@@ -106,117 +96,7 @@ export const Route = createFileRoute("/colleges")({
 
 ========================================================= */
 
-const diagnose = [
 
-  "Quantitative Aptitude",
-
-  "Logical Reasoning",
-
-  "Verbal Ability",
-
-  "Communication",
-
-  "Technical Skills",
-
-  "Coding Readiness",
-
-  "Interview Readiness",
-
-];
-
-// Topic-specific online images for the placement modules.
-
-// Each card also has a local fallback so the section still looks good
-
-// if an external image is unavailable.
-
-const buildModules = [
-
-  [
-
-    "Aptitude",
-
-    "Quantitative Aptitude • Logical Reasoning • Data Interpretation • Speed & Accuracy",
-
-    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1400&q=85",
-
-    photos.computerLab,
-
-    Target,
-
-  ],
-
-  [
-
-    "Verbal & Communication",
-
-    "Verbal Ability • Business Communication • Vocabulary & Grammar • Speaking Skills",
-
-    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=85",
-
-    photos.lectureHall,
-
-    MessageCircle,
-
-  ],
-
-  [
-
-    "Technical & Coding",
-
-    "Core Technical Concepts • Programming Fundamentals • Coding Practice • Problem Solving • Role-Based Technical Preparation",
-
-    "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=85",
-
-    photos.labSession,
-
-    Code2,
-
-  ],
-
-  [
-
-    "Group Discussion",
-
-    "Structured Thinking • Current Affairs • Opinion Building • Listening & Collaboration • Persuasive Communication",
-
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=85",
-
-    photos.batchGroup,
-
-    Users,
-
-  ],
-
-  [
-
-    "Interview Readiness",
-
-    "Self-Introduction • Resume-Based Questions • Technical Interviews • HR Interviews • Behavioural & Situational Questions • Project Presentation",
-
-    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85",
-
-    photos.campusCohort,
-
-    MessageCircle,
-
-  ],
-
-  [
-
-    "Workplace Readiness",
-
-    "Professional Communication • Workplace Behaviour • Email & Chat Etiquette • Teamwork • Problem Solving • Adaptability",
-
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85",
-
-    photos.seminarRoom,
-
-    GraduationCap,
-
-  ],
-
-] as const;
 
 const companyPrep = [
 
@@ -423,17 +303,22 @@ const testimonials = [
 
 function CollegesPage() {
 
+  const [progressExpanded, setProgressExpanded] = useState(false);
+
+  const progressCardStyle = (index: number) => ({
+    transform: progressExpanded
+      ? "translateX(0) translateY(0) scale(1)"
+      : `translateX(${index * 24}px) translateY(${index * 16}px) scale(${1 - index * 0.012})`,
+    opacity: 1,
+    zIndex: 30 - index,
+    transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+  });
+
   const heroText = useReveal<HTMLDivElement>();
 
   const heroVisual = useReveal<HTMLDivElement>();
 
-  const moduleRef =
 
-    useRevealChildren<HTMLDivElement>();
-
-  const diagnoseRef =
-
-    useRevealChildren<HTMLDivElement>();
 
   const packageRef =
 
@@ -458,7 +343,7 @@ return (
           border-border
           bg-background
 
-          lg:h-[620px]
+          lg:h-[600px]
         "
       >
         {/* Decorative background */}
@@ -1019,577 +904,1002 @@ inline-flex
 
       {/* =====================================================
 
-          01 DIAGNOSE
+          PROGRESS FRAMEWORK
 
       ====================================================== */}
 
       <section
-
-className="
-
+        className="
+          overflow-hidden
           border-b
-
           border-border
-
           bg-background
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
         "
-
       >
-
         <div
-
-className="
-
+          className="
             container-page
-
-            py-8
-
-            sm:py-10
-
-            md:py-12
-
-            lg:py-8
-
+            w-full
+            py-5
+            sm:py-6
+            md:py-7
+            lg:py-4
           "
-
         >
-
-          <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-            01 • Diagnose
-
-          </p>
-
-          <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-            Start With Data,{" "}
-
-            <span className="text-primary">
-
-              Not Assumptions.
-
-            </span>
-
-          </h2>
-
-          <p
-
-className="
-
-              mt-4
-
-              max-w-3xl
-
-              text-sm
-
-              text-muted-foreground
-
-              sm:text-base
-
-            "
-
-          >
-
-            Before training begins, we assess where students
-
-            actually stand.
-
-          </p>
-
           <div
-
-ref={diagnoseRef}
-
-className="
-
+            className={`
+              relative
               mt-5
-
               grid
-
-              gap-3
-
               grid-cols-1
-
-              min-[420px]:grid-cols-2
-
-              lg:grid-cols-4
-
-            "
-
+              gap-5
+              transition-[height]
+              duration-700
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+              lg:block
+              ${progressExpanded ? "lg:h-[825px]" : "lg:h-[650px]"}
+            `}
           >
+            <article
+              className={`
+                hidden
+                lg:flex
+                absolute
+                left-0
+                top-0
+                z-50
+                h-[620px]
+                w-[31.5%]
+                flex-col
+                overflow-hidden
+                rounded-[1.65rem]
+                border
+                border-primary/20
+                bg-gradient-to-b
+                from-[#8d0035]
+                via-primary
+                to-[#6f0029]
+                text-white
+                shadow-[0_20px_60px_rgba(93,0,38,0.22)]
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                ${
+                  progressExpanded
+                    ? "pointer-events-none translate-x-[335%] opacity-0"
+                    : "translate-x-0 opacity-100"
+                }
+              `}
+            >
+              <div className="flex flex-1 flex-col justify-between p-5 text-center">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-white/70">
+                    Progress Framework
+                  </p>
 
-            {diagnose.map((item) => (
+                  <h3 className="mt-3 font-display text-[1.85rem] font-extrabold leading-[1.12] text-center">
+                    Pre-Assessment
+                    <span className="block text-white/45">↓</span>
+                    Training
+                    <span className="block text-white/45">↓</span>
+                    Post-Assessment
+                  </h3>
 
-              <div
+                  <p className="mx-auto mt-3 max-w-[300px] text-sm leading-6 text-white/75">
+                    A structured 3-step journey that helps colleges assess,
+                    train and measure student readiness.
+                  </p>
+                </div>
 
-key={item}
+                <div className="space-y-3">
+                  {["Pre-Assessment", "Training", "Post-Assessment"].map((label) => (
+                    <div
+                      key={label}
+                      className="
+                        flex
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        border
+                        border-white/15
+                        bg-white/10
+                        px-4
+                        py-2.5
+                        text-center
+                        backdrop-blur-sm
+                      "
+                    >
+                      <span className="text-sm font-extrabold">{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
 
-className="
-
-                  reveal-child
-
-                  flex
-
-                  items-center
-
-                  gap-3
-
-                  rounded-2xl
-
-                  border
-
-                  border-border
-
-                  bg-card
-
-                  p-3.5
-
-                  shadow-sm
-
-                  sm:block
-
-                  sm:p-4
-
-                "
-
-              >
-
-                <ClipboardCheck
-
-className="
-
-                    size-5
-
-                    shrink-0
-
+            <div
+              className={`
+                lg:absolute
+                lg:top-0
+                lg:w-[28.5%]
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                ${progressExpanded ? "lg:left-0 lg:top-[205px]" : "lg:left-[1.2%] lg:top-[6px]"}
+              `}
+            >
+<article
+              style={{
+                ...progressCardStyle(0),
+              }}
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[1.65rem]
+                border
+                border-rose-100
+                bg-white
+                shadow-[0_16px_45px_rgba(15,23,42,0.08)]
+                transition-all
+                duration-500
+                hover:-translate-y-1.5
+                hover:shadow-[0_22px_60px_rgba(196,0,79,0.12)]
+              
+                lg:h-[600px]
+                lg:overflow-hidden"
+            >
+              <div className="relative p-3 pb-0 sm:p-4 sm:pb-0">
+                <div
+                  className="
+                    absolute
+                    left-5
+                    top-5
+                    z-20
+                    flex
+                    size-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    border-4
+                    border-white
+                    bg-rose-100
+                    font-display
+                    text-lg
+                    font-black
                     text-primary
-
+                    shadow-sm
+                    sm:size-14
+                    sm:text-xl
                   "
-
-                />
-
-                <p
-
-className="
-
-                    text-sm
-
-                    font-extrabold
-
-                    sm:mt-4
-
-                  "
-
                 >
+                  01
+                </div>
 
-                  {item}
+                <div
+                  className="
+                    relative
+                    h-[220px]
+                    overflow-hidden
+                    rounded-[1.35rem]
+                    bg-rose-50
+                    sm:h-[245px]
+                    lg:h-[155px]
+                    xl:h-[165px]
+                  "
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1400&q=90"
+                    alt="Student completing a pre-assessment"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = photos.computerLab;
+                    }}
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-[1.04]
+                    "
+                  />
 
-                </p>
-
+                  <div
+                    className="
+                      absolute
+                      right-3
+                      top-4
+                      rounded-2xl
+                      border
+                      border-white/70
+                      bg-white/95
+                      px-3
+                      py-3
+                      shadow-lg
+                      backdrop-blur
+                      sm:right-4
+                      sm:top-5
+                    "
+                  >
+                    <p className="text-[10px] font-extrabold text-foreground sm:text-xs">
+                      Assessment Results
+                    </p>
+                    <div className="mt-2 flex h-10 items-end gap-1">
+                      {[14, 22, 31, 25, 38, 48].map((height, index) => (
+                        <span
+                          key={height}
+                          className={`w-2 rounded-t ${
+                            index === 5
+                              ? "bg-primary"
+                              : index >= 3
+                                ? "bg-primary/45"
+                                : "bg-primary/20"
+                          }`}
+                          style={{ height: `${height}px` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
-            ))}
-
-          </div>
-
-          <div
-
-className="
-
-              mt-5
-
-              rounded-2xl
-
-              border
-
-              border-primary/20
-
-              bg-accent
-
-              p-5
-
-              sm:p-6
-
-            "
-
-          >
-
-            <p
-
-className="
-
-                text-[10px]
-
-                font-extrabold
-
-                uppercase
-
-                tracking-[.16em]
-
-                text-primary
-
-                sm:text-xs
-
-              "
-
-            >
-
-              What the college gets
-
-            </p>
-
-            <p
-
-className="
-
-                mt-2
-
-                text-sm
-
-                font-extrabold
-
-                sm:text-base
-
-              "
-
-            >
-
-              A clear picture of strengths, gaps and training
-
-              priorities.
-
-            </p>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-
-          02 BUILD
-
-      ====================================================== */}
-
-      <section
-
-className="
-
-          border-b
-
-          border-border
-
-          bg-secondary/40
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
-        "
-
-      >
-
-        <div
-
-className="
-
-            container-page
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
-          "
-
-        >
-
-          <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-            02 • Build
-
-          </p>
-
-          <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-            Build the capabilities{" "}
-
-            <span className="text-primary">
-
-              companies look for.
-
-            </span>
-
-          </h2>
-
-          <p
-
-className="
-
-              mt-4
-
-              max-w-3xl
-
-              text-sm
-
-              text-muted-foreground
-
-              sm:text-base
-
-            "
-
-          >
-
-            Students move through focused modules designed
-
-            around actual recruitment requirements.
-
-          </p>
-
-          <div
-
-ref={moduleRef}
-
-className="
-
-              mt-5
-
-              grid
-
-              gap-5
-
-              md:grid-cols-2
-
-              xl:grid-cols-3
-
-            "
-
-          >
-
-            {buildModules.map(
-
-              ([title, body, image, fallbackImage, Icon]) => (
-
-                <article
-
-key={title}
-
-className="
-
-                    reveal-child
-
-                    service-card
-
-                    group
-
-                    overflow-hidden
-
-                  "
-
-                >
-
+              <div className="p-4 sm:p-5 lg:p-4">
+                <div className="flex items-start gap-3">
                   <div
-
-className="
-
-                      h-44
-
-                      overflow-hidden
-
-                      sm:h-48
-
+                    className="
+                      flex
+                      size-11
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-rose-50
+                      text-primary
                     "
-
                   >
-
-                    <img
-
-src={image}
-
-alt={`${title} training`}
-
-loading="lazy"
-
-referrerPolicy="no-referrer"
-
-onError={(event) => {
-
-                        event.currentTarget.onerror = null;
-
-                        event.currentTarget.src = fallbackImage;
-
-                      }}
-
-className="
-
-                        h-full
-
-                        w-full
-
-                        object-cover
-
-                        transition-transform
-
-                        duration-500
-
-                        group-hover:scale-105
-
-                      "
-
-                    />
-
+                    <ClipboardCheck className="size-5" />
                   </div>
 
-                  <div
-
-className="
-
-                      p-5
-
-                      sm:p-6
-
-                    "
-
-                  >
-
-                    <div
-
-className="
-
-                        flex
-
-                        size-10
-
-                        items-center
-
-                        justify-center
-
-                        rounded-xl
-
-                        bg-accent
-
-                        text-primary
-
-                        sm:size-11
-
-                        sm:rounded-2xl
-
-                      "
-
-                    >
-
-                      <Icon className="size-5" />
-
-                    </div>
-
-                    <h3
-
-className="
-
-                        mt-4
-
-                        text-lg
-
-                        font-extrabold
-
-                        sm:text-xl
-
-                      "
-
-                    >
-
-                      {title}
-
+                  <div>
+                    <h3 className="font-display text-xl font-extrabold sm:text-[1.35rem]">
+                      Pre-Assessment
                     </h3>
-
-                    <p
-
-className="
-
-                        mt-3
-
-                        text-sm
-
-                        leading-6
-
-                        text-muted-foreground
-
-                      "
-
-                    >
-
-                      {body}
-
+                    <p className="mt-1 text-sm leading-5 text-muted-foreground">
+                      Identify strengths, gaps and training priorities.
                     </p>
+                  </div>
+                </div>
 
+                <div className="mt-2.5 space-y-1.5">
+                  {[
+                    "Quantitative Aptitude",
+                    "Logical Reasoning",
+                    "Verbal Ability",
+                    "Communication",
+                    "Technical Skills",
+                    "Coding Readiness",
+                    "Interview Readiness",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="
+                        flex
+                        items-center
+                        gap-3
+                        rounded-xl
+                        border
+                        border-rose-100
+                        bg-rose-50/50
+                        px-3
+                        py-1.5
+                      "
+                    >
+                      <span
+                        className="
+                          flex
+                          size-5
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-primary
+                          text-white
+                        "
+                      >
+                        <CheckCircle2 className="size-3.5" />
+                      </span>
+                      <span className="text-[12px] font-semibold leading-4 sm:text-[13px]">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+              </div>
+
+            <div
+              className={`
+                lg:absolute
+                lg:top-0
+                lg:w-[28.5%]
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                ${progressExpanded ? "lg:left-[30.5%] lg:top-[205px]" : "lg:left-[2.4%] lg:top-[12px]"}
+              `}
+            >
+<article
+              style={{
+                ...progressCardStyle(1),
+              }}
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[1.65rem]
+                border
+                border-sky-100
+                bg-white
+                shadow-[0_16px_45px_rgba(15,23,42,0.08)]
+                transition-all
+                duration-500
+                hover:-translate-y-1.5
+                hover:shadow-[0_22px_60px_rgba(59,130,246,0.14)]
+              
+                lg:h-[600px]
+                lg:overflow-hidden"
+            >
+              <div className="relative p-3 pb-0 sm:p-4 sm:pb-0">
+                <div
+                  className="
+                    absolute
+                    left-5
+                    top-5
+                    z-20
+                    flex
+                    size-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    border-4
+                    border-white
+                    bg-sky-100
+                    font-display
+                    text-lg
+                    font-black
+                    text-sky-600
+                    shadow-sm
+                    sm:size-14
+                    sm:text-xl
+                  "
+                >
+                  02
+                </div>
+
+                <div
+                  className="
+                    relative
+                    h-[220px]
+                    overflow-hidden
+                    rounded-[1.35rem]
+                    bg-sky-50
+                    sm:h-[245px]
+                    lg:h-[155px]
+                    xl:h-[165px]
+                  "
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=90"
+                    alt="Students taking part in focused training"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = photos.lectureHall;
+                    }}
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-[1.04]
+                    "
+                  />
+
+                  <div
+                    className="
+                      absolute
+                      right-3
+                      top-4
+                      w-[145px]
+                      rounded-2xl
+                      border
+                      border-white/70
+                      bg-white/95
+                      p-3
+                      shadow-lg
+                      backdrop-blur
+                      sm:right-4
+                      sm:top-5
+                      sm:w-[155px]
+                    "
+                  >
+                    {[
+                      ["Aptitude", "75%"],
+                      ["Communication", "68%"],
+                      ["Technical Skills", "82%"],
+                    ].map(([label, width]) => (
+                      <div key={label} className="mb-2.5 last:mb-0">
+                        <p className="text-[9px] font-bold text-foreground sm:text-[10px]">
+                          {label}
+                        </p>
+                        <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                          <div
+                            className="h-full rounded-full bg-sky-500"
+                            style={{ width }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-5 lg:p-4">
+                <div className="flex items-start gap-3">
+                  <div
+                    className="
+                      flex
+                      size-11
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-sky-50
+                      text-sky-600
+                    "
+                  >
+                    <GraduationCap className="size-5" />
                   </div>
 
-                </article>
+                  <div>
+                    <h3 className="font-display text-xl font-extrabold sm:text-[1.35rem]">
+                      Training
+                    </h3>
+                    <p className="mt-1 text-sm leading-5 text-muted-foreground">
+                      Build aptitude, communication and technical capabilities.
+                    </p>
+                  </div>
+                </div>
 
-              ),
+                <div className="mt-2.5 space-y-1.5">
+                  {[
+                    "Aptitude",
+                    "Verbal & Communication",
+                    "Technical & Coding",
+                    "Group Discussion",
+                    "Interview Readiness",
+                    "Workplace Readiness",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="
+                        flex
+                        items-center
+                        gap-3
+                        rounded-xl
+                        border
+                        border-sky-100
+                        bg-sky-50/50
+                        px-3
+                        py-1.5
+                      "
+                    >
+                      <span
+                        className="
+                          flex
+                          size-5
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          bg-sky-500
+                          text-white
+                        "
+                      >
+                        <CheckCircle2 className="size-3.5" />
+                      </span>
+                      <span className="text-[12px] font-semibold leading-4 sm:text-[13px]">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+              </div>
 
+            <div
+              className={`
+                lg:absolute
+                lg:top-0
+                lg:w-[28.5%]
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                ${progressExpanded ? "lg:left-[61%] lg:top-[205px]" : "lg:left-[3.6%] lg:top-[18px]"}
+              `}
+            >
+<article
+              style={{
+                ...progressCardStyle(2),
+              }}
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[1.65rem]
+                border
+                border-emerald-100
+                bg-white
+                shadow-[0_16px_45px_rgba(15,23,42,0.08)]
+                transition-all
+                duration-500
+                hover:-translate-y-1.5
+                hover:shadow-[0_22px_60px_rgba(16,185,129,0.14)]
+              
+                lg:h-[600px]
+                lg:overflow-hidden"
+            >
+              <div className="relative p-3 pb-0 sm:p-4 sm:pb-0">
+                <div
+                  className="
+                    absolute
+                    left-5
+                    top-5
+                    z-20
+                    flex
+                    size-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    border-4
+                    border-white
+                    bg-emerald-100
+                    font-display
+                    text-lg
+                    font-black
+                    text-emerald-600
+                    shadow-sm
+                    sm:size-14
+                    sm:text-xl
+                  "
+                >
+                  03
+                </div>
+
+                <div
+                  className="
+                    relative
+                    h-[220px]
+                    overflow-hidden
+                    rounded-[1.35rem]
+                    bg-emerald-50
+                    sm:h-[245px]
+                    lg:h-[155px]
+                    xl:h-[165px]
+                  "
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=90"
+                    alt="Students celebrating improved placement readiness"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = photos.campusCohort;
+                    }}
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-[1.04]
+                    "
+                  />
+
+                  <div
+                    className="
+                      absolute
+                      right-3
+                      top-4
+                      rounded-2xl
+                      border
+                      border-white/70
+                      bg-white/95
+                      px-4
+                      py-3
+                      text-center
+                      shadow-lg
+                      backdrop-blur
+                      sm:right-4
+                      sm:top-5
+                    "
+                  >
+                    <p className="text-[10px] font-extrabold text-foreground sm:text-xs">
+                      Placement Readiness
+                    </p>
+                    <div
+                      className="
+                        mx-auto
+                        mt-2
+                        flex
+                        size-16
+                        items-center
+                        justify-center
+                        rounded-full
+                        border-[7px]
+                        border-emerald-500
+                        text-sm
+                        font-black
+                        text-foreground
+                      "
+                    >
+                      92%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-5 lg:p-4">
+                <div className="flex items-start gap-3">
+                  <div
+                    className="
+                      flex
+                      size-11
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      bg-emerald-50
+                      text-emerald-600
+                    "
+                  >
+                    <Target className="size-5" />
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-xl font-extrabold sm:text-[1.35rem]">
+                      Post-Assessment
+                    </h3>
+                    <p className="mt-1 text-sm leading-5 text-muted-foreground">
+                      Measure improvement and placement readiness after intervention.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-2.5 space-y-1.5">
+                  {[
+                    {
+                      title: "Aptitude Mock Tests",
+                      detail: "Quantitative | Logical | Verbal",
+                    },
+                    {
+                      title: "Technical Mock Tests",
+                      detail:
+                        "Core concepts | Programming | Role-specific questions",
+                    },
+                    {
+                      title: "Company-Pattern Tests",
+                      detail:
+                        "Relevant recruitment formats and difficulty levels",
+                    },
+                    {
+                      title: "Sectional Tests",
+                      detail:
+                        "Focused practice for specific capability areas",
+                    },
+                    {
+                      title: "Full-Length Recruitment Tests",
+                      detail:
+                        "Complete timed assessment simulation",
+                    },
+                  ].map(({ title, detail }) => (
+                    <details
+                      key={title}
+                      className="
+                        group
+                        overflow-hidden
+                        rounded-xl
+                        border
+                        border-emerald-100
+                        bg-emerald-50/50
+                        transition
+                        open:bg-white
+                        open:shadow-sm
+                      "
+                    >
+                      <summary
+                        className="
+                          flex
+                          cursor-pointer
+                          list-none
+                          items-center
+                          gap-3
+                          px-3
+                          py-1.5
+                          [&::-webkit-details-marker]:hidden
+                        "
+                      >
+                        <span
+                          className="
+                            flex
+                            size-5
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-full
+                            bg-emerald-500
+                            text-white
+                          "
+                        >
+                          <CheckCircle2 className="size-3.5" />
+                        </span>
+
+                        <span className="min-w-0 flex-1 text-[11px] font-semibold leading-4 sm:text-[12px]">
+                          {title}
+                        </span>
+
+                        <ChevronDown
+                          className="
+                            size-4
+                            shrink-0
+                            text-emerald-600
+                            transition-transform
+                            duration-300
+                            group-open:rotate-180
+                          "
+                        />
+                      </summary>
+
+                      <div
+                        className="
+                          border-t
+                          border-emerald-100
+                          bg-white/70
+                          px-3
+                          py-2
+                          pl-11
+                          text-[11px]
+                          leading-4
+                          text-muted-foreground
+                          sm:text-[13px]
+                        "
+                      >
+                        {detail}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </article>
+              </div>
+
+            {/* RIGHT CONTENT + ARROW — INITIAL STATE ONLY */}
+            <div
+              className={`
+                absolute
+                z-[70]
+                hidden
+                text-center
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                lg:block
+                ${
+                  progressExpanded
+                    ? "left-1/2 top-0 w-[72%] -translate-x-1/2 translate-y-0 opacity-100"
+                    : "right-[2%] top-[310px] w-[40%] -translate-y-1/2 translate-x-0 opacity-100"
+                }
+              `}
+            >
+              <p
+                className="
+                  mx-auto
+                  inline-flex
+                  w-fit
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-primary/25
+                  bg-primary/[0.08]
+                  px-5
+                  py-2.5
+                  font-display
+                  text-sm
+                  font-black
+                  tracking-[-0.01em]
+                  text-primary
+                  shadow-[0_8px_24px_rgba(196,0,79,0.08)]
+                  sm:text-base
+                  md:text-[17px]
+                "
+              >
+                Progress Framework
+              </p>
+
+              <h2
+                className="
+                  mx-auto
+                  mt-3
+                  max-w-[620px]
+                  text-center
+                  font-display
+                  text-[1.8rem]
+                  font-extrabold
+                  leading-[1.05]
+                  tracking-[-0.04em]
+                  text-foreground
+                  sm:text-[2.1rem]
+                  md:text-[2.45rem]
+                  lg:text-[2.35rem]
+                "
+              >
+                From Assessment{" "}
+                <span className="text-primary">to Outcomes.</span>
+              </h2>
+
+              <p
+                className="
+                  mx-auto
+                  mt-3
+                  max-w-[500px]
+                  text-center
+                  text-sm
+                  leading-6
+                  text-muted-foreground
+                  sm:text-[15px]
+                  md:text-base
+                "
+              >
+                A structured 3-step journey that helps colleges assess, train and
+                measure student readiness.
+              </p>
+
+              <div
+                className={`
+                  mt-5
+                  items-center
+                  justify-center
+                  gap-4
+                  ${progressExpanded ? "hidden" : "flex"}
+                `}
+              >
+                <div
+                  className="
+                    h-px
+                    w-[220px]
+                    bg-gradient-to-r
+                    from-primary/15
+                    via-primary/50
+                    to-primary
+                  "
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setProgressExpanded(true)}
+                  aria-label="Show the three progress cards"
+                  className="
+                    group
+                    flex
+                    size-16
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    border-2
+                    border-primary/30
+                    bg-white
+                    text-primary
+                    shadow-[0_16px_40px_rgba(196,0,79,0.16)]
+                    transition-all
+                    duration-300
+                    hover:border-primary
+                    hover:bg-primary
+                    hover:text-white
+                  "
+                >
+                  <ArrowRight
+                    className="
+                      size-7
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-1.5
+                    "
+                  />
+                </button>
+              </div>
+
+            </div>
+
+            {progressExpanded && (
+              <div
+                className="
+                  absolute
+                  left-[94%]
+                  top-[205px]
+                  z-[85]
+                  hidden
+                  h-[600px]
+                  w-[10%]
+                  items-center
+                  justify-center
+                  lg:flex
+                "
+              >
+                <button
+                  type="button"
+                  onClick={() => setProgressExpanded(false)}
+                  aria-label="Stack progress cards"
+                  className="
+                    flex
+                    min-w-[86px]
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    border-2
+                    border-primary/25
+                    bg-white
+                    px-4
+                    py-3
+                    text-xs
+                    font-extrabold
+                    uppercase
+                    tracking-[0.06em]
+                    text-primary
+                    shadow-[0_10px_28px_rgba(196,0,79,0.12)]
+                    transition-all
+                    duration-300
+                    hover:border-primary
+                    hover:bg-primary
+                    hover:text-white
+                  "
+                >
+                  <span>Stack</span>
+                  <ArrowRight
+                    className="
+                      size-4
+                      rotate-180
+                      animate-[stack-arrow-blink_1s_ease-in-out_infinite]
+                    "
+                  />
+                </button>
+              </div>
             )}
-
           </div>
+          <style>{`
+            @keyframes stack-arrow-blink {
+              0%, 100% {
+                opacity: 1;
+                transform: translateX(0) rotate(180deg);
+              }
+
+              50% {
+                opacity: 0.25;
+                transform: translateX(-5px) rotate(180deg);
+              }
+            }
+          `}</style>
 
         </div>
-
       </section>
 
       {/* =====================================================
@@ -2014,985 +2324,6 @@ className="
             </span>
 
           </p>
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-
-          04 MOCK TESTS
-
-      ====================================================== */}
-
-      <section
-
-className="
-
-          border-b
-
-          border-border
-
-          bg-secondary/40
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
-        "
-
-      >
-
-        <div
-
-className="
-
-            container-page
-
-            grid
-
-            gap-8
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
-            lg:grid-cols-2
-
-            lg:items-center
-
-            lg:gap-10
-
-          "
-
-        >
-
-          <div>
-
-            <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-              04 • Mock Tests
-
-            </p>
-
-            <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-              Practice the test{" "}
-
-              <span className="text-primary">
-
-                before the real test.
-
-              </span>
-
-            </h2>
-
-            <p
-
-className="
-
-                mt-4
-
-                text-[13px]
-
-                leading-6
-
-                text-muted-foreground
-
-                sm:text-sm
-
-              "
-
-            >
-
-              Knowing a concept isn't enough. Students need to
-
-              experience time pressure, negative marking,
-
-              sectional cut-offs, question difficulty and
-
-              recruitment-style evaluation.
-
-            </p>
-
-            <div className="mt-6 space-y-3">
-
-              {[
-
-                "Aptitude Mock Tests — Quantitative | Logical | Verbal",
-
-                "Technical Mock Tests — Core concepts | Programming | Role-specific questions",
-
-                "Company-Pattern Tests — relevant recruitment formats and difficulty levels",
-
-                "Sectional Tests — focused practice for specific capability areas",
-
-                "Full-Length Recruitment Tests — complete timed assessment simulation",
-
-              ].map((item) => (
-
-                <div
-
-key={item}
-
-className="
-
-                    flex
-
-                    gap-3
-
-                    rounded-xl
-
-                    border
-
-                    border-border
-
-                    bg-card
-
-                    p-4
-
-                  "
-
-                >
-
-                  <CheckCircle2
-
-className="
-
-                      mt-0.5
-
-                      size-5
-
-                      shrink-0
-
-                      text-primary
-
-                    "
-
-                  />
-
-                  <p
-
-className="
-
-                      text-sm
-
-                      leading-6
-
-                    "
-
-                  >
-
-                    {item}
-
-                  </p>
-
-                </div>
-
-              ))}
-
-            </div>
-
-            <div
-
-className="
-
-                mt-6
-
-                rounded-xl
-
-                bg-primary
-
-                p-4
-
-                text-center
-
-                text-xs
-
-                font-extrabold
-
-                leading-6
-
-                text-white
-
-                sm:p-5
-
-                sm:text-sm
-
-              "
-
-            >
-
-              Test → Analyse → Identify Gaps → Practise → Retest
-
-            </div>
-
-          </div>
-
-          <div
-
-className="
-
-              order-first
-
-              lg:order-none
-
-            "
-
-          >
-
-            <img
-
-src={photos.computerLab}
-
-alt="Mock test practice"
-
-className="
-
-                aspect-[4/3]
-
-                w-full
-
-                rounded-[1.5rem]
-
-                object-cover
-
-                shadow-xl
-
-                sm:rounded-[2rem]
-
-              "
-
-            />
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-
-          05 + 06
-
-      ====================================================== */}
-
-      <section
-
-className="
-
-          border-b
-
-          border-border
-
-          bg-background
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
-        "
-
-      >
-
-        <div
-
-className="
-
-            container-page
-
-            grid
-
-            gap-5
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
-            lg:grid-cols-2
-
-            lg:gap-6
-
-          "
-
-        >
-
-          {/* INTERVIEW */}
-
-          <article
-
-className="
-
-              service-card
-
-              overflow-hidden
-
-            "
-
-          >
-
-            <img
-
-src={photos.campusCohort}
-
-alt="Mock interviews"
-
-className="
-
-                h-36
-
-                w-full
-
-                object-cover
-
-                sm:h-44
-
-                lg:h-36
-
-              "
-
-            />
-
-            <div
-
-className="
-
-                p-5
-
-                sm:p-6
-
-                lg:p-5
-
-              "
-
-            >
-
-              <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-                05 • Practise the Interview
-
-              </p>
-
-              <h2
-
-className="
-
-                  mt-4
-
-                  text-lg
-
-                  font-extrabold
-
-                  leading-[1.15]
-
-                  sm:text-xl
-
-                "
-
-              >
-
-                Because knowing the answer isn't the same as
-
-                answering well.
-
-              </h2>
-
-              <div className="mt-4 space-y-3.5">
-
-                <div>
-
-                  <h3 className="font-extrabold">
-
-                    Technical Mock Interviews
-
-                  </h3>
-
-                  <p className="mt-2 text-sm text-muted-foreground">
-
-                    Projects | Core Concepts | Problem Solving |
-
-                    Technical Questions
-
-                  </p>
-
-                </div>
-
-                <div>
-
-                  <h3 className="font-extrabold">
-
-                    HR Mock Interviews
-
-                  </h3>
-
-                  <p className="mt-2 text-sm text-muted-foreground">
-
-                    Introduction | Behavioural Questions |
-
-                    Strengths & Weaknesses | Career Goals |
-
-                    Situational Questions
-
-                  </p>
-
-                </div>
-
-                <div>
-
-                  <h3 className="font-extrabold">
-
-                    Interview Feedback
-
-                  </h3>
-
-                  <p className="mt-2 text-sm text-muted-foreground">
-
-                    Content | Clarity | Confidence | Structure |
-
-                    Communication | Professionalism
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </article>
-
-          {/* MOCK DRIVE */}
-
-          <article
-
-className="
-
-              overflow-hidden
-
-              rounded-[1.5rem]
-
-              bg-ink
-
-              text-white
-
-              shadow-xl
-
-              sm:rounded-[1.75rem]
-
-            "
-
-          >
-
-            <img
-
-src={photos.auditoriumCelebration}
-
-alt="Mock placement drive"
-
-className="
-
-                h-44
-
-                w-full
-
-                object-cover
-
-                opacity-85
-
-                sm:h-56
-
-              "
-
-            />
-
-            <div
-
-className="
-
-                p-5
-
-                sm:p-6
-
-                lg:p-5
-
-              "
-
-            >
-
-              <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-                06 • Mock Drives
-
-              </p>
-
-              <h2
-
-className="
-
-                  mt-4
-
-                  text-lg
-
-                  font-extrabold
-
-                  leading-[1.15]
-
-                  sm:text-xl
-
-                "
-
-              >
-
-                Give students the experience before the actual
-
-                placement drive.
-
-              </h2>
-
-              <div className="mt-4 space-y-2">
-
-                {[
-
-                  "Pre-Assessment",
-
-                  "Aptitude / Online Test",
-
-                  "Technical / Coding Round",
-
-                  "Group Discussion / Case Round",
-
-                  "Technical Interview",
-
-                  "HR Interview",
-
-                  "Final Evaluation",
-
-                ].map((item, index) => (
-
-                  <div
-
-key={item}
-
-className="
-
-                      flex
-
-                      items-center
-
-                      gap-3
-
-                    "
-
-                  >
-
-                    <span
-
-className="
-
-                        flex
-
-                        size-7
-
-                        shrink-0
-
-                        items-center
-
-                        justify-center
-
-                        rounded-full
-
-                        bg-primary
-
-                        text-[10px]
-
-                        font-extrabold
-
-                        sm:size-8
-
-                        sm:text-xs
-
-                      "
-
-                    >
-
-                      {index + 1}
-
-                    </span>
-
-                    <span
-
-className="
-
-                        text-xs
-
-                        font-semibold
-
-                        sm:text-sm
-
-                      "
-
-                    >
-
-                      {item}
-
-                    </span>
-
-                  </div>
-
-                ))}
-
-              </div>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </section>
-
-      {/* =====================================================
-
-          07 MEASURE
-
-      ====================================================== */}
-
-      <section
-
-className="
-
-          border-b
-
-          border-border
-
-          bg-secondary/40
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
-        "
-
-      >
-
-        <div
-
-className="
-
-            container-page
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
-          "
-
-        >
-
-          <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-            07 • Measure
-
-          </p>
-
-          <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-            Don't just report attendance.{" "}
-
-            <span className="text-primary">
-
-              Measure capability development.
-
-            </span>
-
-          </h2>
-
-          <p
-
-className="
-
-              mt-4
-
-              max-w-3xl
-
-              text-sm
-
-              text-muted-foreground
-
-              sm:text-base
-
-            "
-
-          >
-
-            We compare student performance before and after the
-
-            intervention.
-
-          </p>
-
-          <div
-
-className="
-
-              mt-5
-
-              grid
-
-              gap-3
-
-              min-[420px]:grid-cols-2
-
-              md:grid-cols-3
-
-              xl:grid-cols-5
-
-            "
-
-          >
-
-            {[
-
-              [
-
-                "Aptitude Improvement",
-
-                "Accuracy | Speed | Problem Solving",
-
-              ],
-
-              [
-
-                "Technical Improvement",
-
-                "Concept Clarity | Coding | Technical Application",
-
-              ],
-
-              [
-
-                "Communication Improvement",
-
-                "Clarity | Fluency | Confidence | Structure",
-
-              ],
-
-              [
-
-                "Interview Readiness",
-
-                "Answer Quality | Confidence | Professionalism",
-
-              ],
-
-              [
-
-                "Overall Placement Readiness",
-
-                "A complete view of student preparedness",
-
-              ],
-
-            ].map(([title, body]) => (
-
-              <div
-
-key={title}
-
-className="
-
-                  rounded-2xl
-
-                  border
-
-                  border-border
-
-                  bg-card
-
-                  p-4
-
-                  shadow-sm
-
-                  sm:p-5
-
-                "
-
-              >
-
-                <BarChart3 className="size-5 text-primary" />
-
-                <h3
-
-className="
-
-                    mt-4
-
-                    text-sm
-
-                    font-extrabold
-
-                  "
-
-                >
-
-                  {title}
-
-                </h3>
-
-                <p
-
-className="
-
-                    mt-2
-
-                    text-xs
-
-                    leading-5
-
-                    text-muted-foreground
-
-                  "
-
-                >
-
-                  {body}
-
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
-          <div
-
-className="
-
-              mt-7
-
-              rounded-2xl
-
-              bg-ink
-
-              p-5
-
-              text-center
-
-              font-display
-
-              text-xs
-
-              font-extrabold
-
-              leading-6
-
-              text-white
-
-              sm:p-6
-
-              sm:text-sm
-
-              md:text-base
-
-            "
-
-          >
-
-            PRE-ASSESSMENT → TRAINING → MOCK TEST →
-
-            POST-ASSESSMENT
-
-          </div>
 
         </div>
 
