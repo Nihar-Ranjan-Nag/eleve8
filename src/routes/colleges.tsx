@@ -2,24 +2,25 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import {
-
-  ArrowDown,
-
   ArrowRight,
+  BarChart3,
   Building2,
-
+  Check,
   CheckCircle2,
   ChevronDown,
-
   ClipboardCheck,
   GraduationCap,
+  MonitorCheck,
   Quote,
-
   Target,
+  UserRound,
 } from "lucide-react";
 
 import { photos } from "@/lib/site";
 import landingHero from "@/assets/landingHero.png";
+import itImage from "@/assets/it.png";
+import bfsiImage from "@/assets/bfsi.png";
+import graduateImage from "@/assets/graduate.png";
 
 import amazonLogo from "@/assets/brand/amazon.png";
 import pwcLogo from "@/assets/brand/pwc.png";
@@ -99,48 +100,77 @@ export const Route = createFileRoute("/colleges")({
 
 
 const companyPrep = [
-
-  [
-
-    "IT / Technology Hiring",
-
-    "Coding | Technical MCQs | Logical Reasoning | Technical Interviews",
-
-  ],
-
-  [
-
-    "BFSI / Finance Roles",
-
-    "Quantitative Ability | Reasoning | Financial Awareness | Communication | HR Interviews",
-
-  ],
-
-  [
-
-    "Graduate / General Management Roles",
-
-    "Aptitude | Communication | GD | Case Discussions | HR & Managerial Interviews",
-
-  ],
-
+  {
+    title: "IT / Technology Hiring",
+    items: [
+      "Coding",
+      "Technical MCQs",
+      "Logical Reasoning",
+      "Technical Interviews",
+    ],
+    image: itImage,
+    imageAlt: "IT and technology hiring preparation",
+    theme: "pink",
+  },
+  {
+    title: "BFSI / Finance Roles",
+    items: [
+      "Quantitative Ability",
+      "Reasoning",
+      "Financial Awareness",
+      "Communication",
+      "HR Interviews",
+    ],
+    image: bfsiImage,
+    imageAlt: "BFSI and finance hiring preparation",
+    theme: "blue",
+  },
+  {
+    title: "Graduate / General Management Roles",
+    items: [
+      "Aptitude",
+      "Communication",
+      "GD / Case Discussions",
+      "HR & Managerial Interviews",
+    ],
+    image: graduateImage,
+    imageAlt: "Graduate and general management preparation",
+    theme: "green",
+  },
 ] as const;
 
 const companyFlow = [
-
-  "Company",
-
-  "Role",
-
-  "Assessment",
-
-  "Training",
-
-  "Mock Test",
-
-  "Feedback",
-
-];
+  {
+    title: "Company",
+    description: "Understand targets",
+    icon: Building2,
+  },
+  {
+    title: "Role",
+    description: "Analyse requirements",
+    icon: UserRound,
+  },
+  {
+    title: "Assessment",
+    description: "Decode patterns",
+    icon: BarChart3,
+  },
+  {
+    title: "Training",
+    description: "Focused modules",
+    icon: GraduationCap,
+  },
+  {
+    title: "Mock Test",
+    description: "Practice environment",
+    icon: MonitorCheck,
+  },
+  {
+    title: "Feedback",
+    description: "Improve performance",
+    icon: Target,
+  },
+] as const;
 
 const packages = [
 
@@ -306,9 +336,7 @@ function CollegesPage() {
   const [progressExpanded, setProgressExpanded] = useState(false);
 
   const progressCardStyle = (index: number) => ({
-    transform: progressExpanded
-      ? "translateX(0) translateY(0) scale(1)"
-      : `translateX(${index * 24}px) translateY(${index * 16}px) scale(${1 - index * 0.012})`,
+    transform: "translateX(0) translateY(0) scale(1)",
     opacity: 1,
     zIndex: 30 - index,
     transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
@@ -1020,11 +1048,11 @@ inline-flex
               className={`
                 lg:absolute
                 lg:top-0
-                lg:w-[28.5%]
                 transition-all
+                ${progressExpanded ? "lg:w-[28.5%]" : "lg:w-[31.5%]"}
                 duration-700
                 ease-[cubic-bezier(0.22,1,0.36,1)]
-                ${progressExpanded ? "lg:left-0 lg:top-[205px]" : "lg:left-[1.2%] lg:top-[6px]"}
+                ${progressExpanded ? "lg:left-0 lg:top-[205px]" : "lg:left-[18px] lg:top-0"}
               `}
             >
 <article
@@ -1224,11 +1252,11 @@ inline-flex
               className={`
                 lg:absolute
                 lg:top-0
-                lg:w-[28.5%]
                 transition-all
+                ${progressExpanded ? "lg:w-[28.5%]" : "lg:w-[31.5%]"}
                 duration-700
                 ease-[cubic-bezier(0.22,1,0.36,1)]
-                ${progressExpanded ? "lg:left-[30.5%] lg:top-[205px]" : "lg:left-[2.4%] lg:top-[12px]"}
+                ${progressExpanded ? "lg:left-[30.5%] lg:top-[205px]" : "lg:left-[36px] lg:top-0"}
               `}
             >
 <article
@@ -1427,11 +1455,11 @@ inline-flex
               className={`
                 lg:absolute
                 lg:top-0
-                lg:w-[28.5%]
                 transition-all
+                ${progressExpanded ? "lg:w-[28.5%]" : "lg:w-[31.5%]"}
                 duration-700
                 ease-[cubic-bezier(0.22,1,0.36,1)]
-                ${progressExpanded ? "lg:left-[61%] lg:top-[205px]" : "lg:left-[3.6%] lg:top-[18px]"}
+                ${progressExpanded ? "lg:left-[61%] lg:top-[205px]" : "lg:left-[54px] lg:top-0"}
               `}
             >
 <article
@@ -1893,8 +1921,8 @@ inline-flex
               }
 
               50% {
-                opacity: 0.25;
-                transform: translateX(-5px) rotate(180deg);
+                opacity: 0.35;
+                transform: translateX(-8px) rotate(180deg);
               }
             }
           `}</style>
@@ -1903,431 +1931,637 @@ inline-flex
       </section>
 
       {/* =====================================================
-
-          03 COMPANY PREP
-
+          03 COMPANY-SPECIFIC PREPARATION
       ====================================================== */}
-
       <section
-
-className="
-
+        className="
+          relative
+          overflow-hidden
           border-b
-
           border-border
-
-          bg-background
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
+          bg-[#fffdfa]
         "
-
       >
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -left-20
+            -top-20
+            h-64
+            w-64
+            rounded-full
+            bg-primary/[0.035]
+            sm:h-72
+            sm:w-72
+          "
+        />
 
         <div
-
-className="
-
-            container-page
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -bottom-24
+            -right-24
+            h-72
+            w-72
+            rounded-full
+            bg-primary/[0.035]
           "
+        />
 
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            left-5
+            top-10
+            hidden
+            grid-cols-4
+            gap-2
+            lg:grid
+          "
         >
-
-          <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-            03 • Company-Specific Preparation
-
-          </p>
-
-          <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-            Different companies test{" "}
-
-            <span className="text-primary">
-
-              different capabilities.
-
-            </span>
-
-          </h2>
-
-          <p
-
-className="
-
-              mt-4
-
-              max-w-3xl
-
-              text-sm
-
-              text-muted-foreground
-
-              sm:text-base
-
-            "
-
-          >
-
-            Our training can be customised around the roles,
-
-            assessment patterns and recruitment stages relevant
-
-            to your target companies.
-
-          </p>
-
-          {/* MOBILE FLOW */}
-
-          <div
-
-className="
-
-              mt-7
-
-              rounded-[1.5rem]
-
-              bg-ink
-
-              p-5
-
-              text-white
-
-              shadow-xl
-
-              md:hidden
-
-            "
-
-          >
-
-            <div className="space-y-2">
-
-              {companyFlow.map((item, index) => (
-
-                <div key={item}>
-
-                  <div
-
-className="
-
-                      rounded-xl
-
-                      border
-
-                      border-white/10
-
-                      bg-white/5
-
-                      px-4
-
-                      py-3
-
-                      text-center
-
-                      text-sm
-
-                      font-extrabold
-
-                    "
-
-                  >
-
-                    {item}
-
-                  </div>
-
-                  {index !== companyFlow.length - 1 && (
-
-                    <ArrowDown
-
-className="
-
-                        mx-auto
-
-                        my-2
-
-                        size-4
-
-                        text-primary
-
-                      "
-
-                    />
-
-                  )}
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          {/* DESKTOP FLOW */}
-
-          <div
-
-className="
-
-              mt-6
-
-              hidden
-
-              rounded-[1.7rem]
-
-              bg-ink
-
-              p-5
-
-              text-white
-
-              shadow-xl
-
-              md:block
-
-            "
-
-          >
-
-            <div
-
-className="
-
-                flex
-
-                items-center
-
-                justify-between
-
-                gap-3
-
-                text-xs
-
-                font-extrabold
-
-                lg:text-sm
-
-              "
-
-            >
-
-              {companyFlow.map((item, index) => (
-
-                <div
-
-key={item}
-
-className="
-
-                    flex
-
-                    min-w-0
-
-                    items-center
-
-                    gap-3
-
-                  "
-
-                >
-
-                  <span className="whitespace-nowrap">
-
-                    {item}
-
-                  </span>
-
-                  {index !== companyFlow.length - 1 && (
-
-                    <ArrowRight
-
-className="
-
-                        size-4
-
-                        shrink-0
-
-                        text-primary
-
-                      "
-
-                    />
-
-                  )}
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          <div
-
-className="
-
-              mt-5
-
-              grid
-
-              gap-4
-
-              md:grid-cols-2
-
-              xl:grid-cols-3
-
-            "
-
-          >
-
-            {companyPrep.map(([title, body]) => (
-
-              <div
-
-key={title}
-
-className="
-
-                  rounded-2xl
-
-                  border
-
-                  border-border
-
-                  bg-card
-
-                  p-4
-
-                  shadow-sm
-
-                  sm:p-6
-
-                "
-
-              >
-
-                <Building2 className="size-5 text-primary" />
-
-                <h3
-
-className="
-
-                    mt-4
-
-                    text-base
-
-                    font-extrabold
-
-                    sm:text-lg
-
-                  "
-
-                >
-
-                  {title}
-
-                </h3>
-
-                <p
-
-className="
-
-                    mt-2
-
-                    text-xs
-
-                    leading-5
-
-                    sm:text-sm
-
-                    text-muted-foreground
-
-                  "
-
-                >
-
-                  {body}
-
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
-          <p
-
-className="
-
-              mt-7
-
-              text-center
-
-              font-display
-
-              text-lg
-
-              font-extrabold
-
-              leading-7
-
-              sm:text-xl
-
-            "
-
-          >
-
-            Students should know what they are likely to face{" "}
-
-            <span className="text-primary">
-
-              before they face it.
-
-            </span>
-
-          </p>
-
+          {Array.from({ length: 16 }).map((_, index) => (
+            <span
+              key={index}
+              className="size-1 rounded-full bg-primary/20"
+            />
+          ))}
         </div>
 
+        <div
+          className="
+            container-page
+            relative
+            z-10
+            py-12
+            sm:py-14
+            md:py-16
+            lg:py-14
+            xl:py-16
+          "
+        >
+          {/* HEADING */}
+          <div className="mx-auto max-w-[1080px] text-center">
+            <p
+              className="
+                 mx-auto
+                  inline-flex
+                  w-fit
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-primary/25
+                  bg-primary/[0.08]
+                  px-5
+                  py-2.5
+                  font-display
+                  text-sm
+                  font-black
+                  tracking-[-0.01em]
+                  text-primary
+                  shadow-[0_8px_24px_rgba(196,0,79,0.08)]
+                  sm:text-base
+                  md:text-[17px]
+                "
+            >
+              Company-Specific Preparation
+            </p>
+
+            <h2
+              className="
+                mx-auto
+                mt-3
+                max-w-[1050px]
+                font-display
+                text-[1.55rem]
+                font-extrabold
+                leading-[1.08]
+                tracking-[-0.035em]
+                text-foreground
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
+              "
+            >
+              Different companies test{" "}
+              <span className="text-primary">different capabilities.</span>
+            </h2>
+
+            <p
+              className="
+                mx-auto
+                mt-4
+                max-w-3xl
+                text-[13px]
+                leading-6
+                text-muted-foreground
+                sm:text-sm
+              "
+            >
+              Our training can be customised around the roles, assessment
+              patterns and recruitment stages relevant to your target companies.
+            </p>
+          </div>
+
+          {/* FLOW */}
+          <div className="relative mt-7 md:mt-8 lg:mt-9">
+            <div
+              aria-hidden="true"
+              className="
+                absolute
+                left-[8%]
+                right-[8%]
+                top-[36px]
+                hidden
+                h-px
+                bg-primary/25
+                md:block
+              "
+            />
+
+            <div
+              className="
+                company-flow-scroll
+                -mx-4
+                overflow-x-auto
+                px-4
+                pb-3
+                sm:-mx-6
+                sm:px-6
+                md:mx-0
+                md:overflow-visible
+                md:px-0
+                md:pb-0
+              "
+            >
+              <div
+                className="
+                  flex
+                  min-w-[870px]
+                  items-start
+                  justify-between
+                  gap-4
+                  md:min-w-0
+                "
+              >
+                {companyFlow.map(
+                  ({ title, description, icon: Icon }, index) => (
+                    <div
+                      key={title}
+                      className="
+                        relative
+                        z-10
+                        flex
+                        w-[135px]
+                        shrink-0
+                        flex-col
+                        items-center
+                        text-center
+                        md:w-auto
+                        md:flex-1
+                      "
+                    >
+                      <div className="relative">
+                        <div
+                          className="
+                            flex
+                            size-[72px]
+                            items-center
+                            justify-center
+                            rounded-full
+                            border
+                            border-primary/20
+                            bg-[#fff8fa]
+                            text-primary
+                            shadow-[0_8px_24px_rgba(196,0,79,0.06)]
+                            transition
+                            duration-300
+                            hover:-translate-y-1
+                            hover:border-primary/40
+                            hover:shadow-[0_12px_28px_rgba(196,0,79,0.10)]
+                          "
+                        >
+                          <Icon strokeWidth={2} className="size-[25px]" />
+                        </div>
+                      </div>
+
+                      <h3
+                        className="
+                          mt-2.5
+                          font-display
+                          text-[13px]
+                          font-black
+                          leading-tight
+                          text-foreground
+                          sm:text-sm
+                          lg:text-[15px]
+                        "
+                      >
+                        {title}
+                      </h3>
+
+                      <p
+                        className="
+                          mt-0.5
+                          text-[10px]
+                          leading-4
+                          text-muted-foreground
+                          sm:text-[11px]
+                          lg:text-xs
+                        "
+                      >
+                        {description}
+                      </p>
+
+                      {index !== companyFlow.length - 1 && (
+                        <>
+                          <div
+                            className="
+                              absolute
+                              -right-[14px]
+                              top-[29px]
+                              z-20
+                              flex
+                              size-7
+                              items-center
+                              justify-center
+                              rounded-full
+                              border
+                              border-primary/15
+                              bg-white/90
+                              text-primary
+                              shadow-[0_8px_20px_rgba(196,0,79,0.10)]
+                              md:hidden
+                            "
+                          >
+                            <ArrowRight className="size-3.5" />
+                          </div>
+
+                          <div
+                            className="
+                              absolute
+                              -right-4
+                              top-[22px]
+                              z-20
+                              hidden
+                              h-7
+                              w-8
+                              items-center
+                              justify-center
+                              md:flex
+                            "
+                          >
+                            <span
+                              className="
+                                flow-arrow-chip
+                                inline-flex
+                                items-center
+                                justify-center
+                                rounded-full
+                                border
+                                border-primary/15
+                                bg-white px-2.5
+                                py-1
+                                text-primary
+                                shadow-[0_8px_20px_rgba(196,0,79,0.10)]
+                              "
+                            >
+                              <ArrowRight className="size-3.5" />
+                            </span>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* CARDS */}
+          <div
+            className="
+              mt-6
+              grid
+              grid-cols-1
+              gap-4
+              sm:gap-5
+              lg:mt-7
+              lg:grid-cols-3
+            "
+          >
+            {companyPrep.map((card) => {
+              const isPink = card.theme === "pink";
+              const isBlue = card.theme === "blue";
+              const isGreen = card.theme === "green";
+
+              return (
+                <article
+                  key={card.title}
+                  className={`
+                    group
+                    relative
+                    min-h-[245px]
+                    overflow-hidden
+                    rounded-[1.5rem]
+                    border
+                    bg-white
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1.5
+                    ${
+                      isPink
+                        ? "border-primary/25 bg-gradient-to-br from-[#fff9fb] via-white to-[#fff5f8] shadow-[0_15px_45px_rgba(196,0,79,0.07)] hover:border-primary/45 hover:shadow-[0_22px_55px_rgba(196,0,79,0.12)]"
+                        : ""
+                    }
+                    ${
+                      isBlue
+                        ? "border-blue-200/70 bg-gradient-to-br from-[#f9fcff] via-white to-[#f1f7ff] shadow-[0_15px_45px_rgba(37,99,235,0.07)] hover:border-blue-300 hover:shadow-[0_22px_55px_rgba(37,99,235,0.12)]"
+                        : ""
+                    }
+                    ${
+                      isGreen
+                        ? "border-emerald-200/70 bg-gradient-to-br from-[#fbfffd] via-white to-[#f0fdf8] shadow-[0_15px_45px_rgba(5,150,105,0.07)] hover:border-emerald-300 hover:shadow-[0_22px_55px_rgba(5,150,105,0.12)]"
+                        : ""
+                    }
+                  `}
+                >
+                  <div
+                    aria-hidden="true"
+                    className={`
+                      pointer-events-none
+                      absolute
+                      -bottom-16
+                      -right-12
+                      size-52
+                      rounded-full
+                      ${isPink ? "bg-primary/[0.045]" : ""}
+                      ${isBlue ? "bg-blue-500/[0.055]" : ""}
+                      ${isGreen ? "bg-emerald-500/[0.055]" : ""}
+                    `}
+                  />
+
+                  <div
+                    className="
+                      relative
+                      z-10
+                      flex
+                      h-full
+                      min-h-[245px]
+                      flex-col
+                      p-5
+                      sm:p-6
+                      lg:min-h-[255px]
+                      lg:p-5
+                      xl:p-6
+                    "
+                  >
+                    <div
+                      className="
+                        flex
+                        min-h-[52px]
+                        items-center
+                        gap-3
+                        sm:min-h-[54px]
+                      "
+                    >
+                      <div
+                        className={`
+                          flex
+                          size-12
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-[1rem]
+                          ${isPink ? "bg-primary/[0.08] text-primary" : ""}
+                          ${isBlue ? "bg-blue-500/[0.08] text-blue-600" : ""}
+                          ${isGreen ? "bg-emerald-500/[0.08] text-emerald-600" : ""}
+                        `}
+                      >
+                        {isPink && <MonitorCheck className="size-6" />}
+                        {isBlue && <BarChart3 className="size-6" />}
+                        {isGreen && <UserRound className="size-6" />}
+                      </div>
+
+                      <h3
+                        className="
+                          min-w-0
+                          flex-1
+                          font-display
+                          text-[15px]
+                          font-extrabold
+                          leading-[1.2]
+                          tracking-[-0.02em]
+                          text-foreground
+                          sm:text-base
+                          lg:text-[15px]
+                          xl:text-base
+                        "
+                      >
+                        {card.title}
+                      </h3>
+                    </div>
+
+                    <div
+                      className="
+                        mt-2
+                        grid
+                        flex-1
+                        grid-cols-[minmax(0,1fr)_120px]
+                        items-center
+                        gap-3
+                        sm:grid-cols-[minmax(0,1fr)_145px]
+                        md:grid-cols-[minmax(0,1fr)_175px]
+                        lg:grid-cols-[minmax(0,1fr)_130px]
+                        xl:grid-cols-[minmax(0,1fr)_155px]
+                      "
+                    >
+                      <div className="space-y-2">
+                        {card.items.map((item) => (
+                          <div key={item} className="flex items-start gap-2">
+                            <span
+                              className={`
+                                mt-[2px]
+                                flex
+                                size-[18px]
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-full
+                                text-white
+                                ${isPink ? "bg-primary" : ""}
+                                ${isBlue ? "bg-blue-600" : ""}
+                                ${isGreen ? "bg-emerald-600" : ""}
+                              `}
+                            >
+                              <Check strokeWidth={3} className="size-3" />
+                            </span>
+
+                            <span
+                              className="
+                                text-[12px]
+                                font-medium
+                                leading-[1.4]
+                                text-muted-foreground
+                                sm:text-[13px]
+                                lg:text-[12px]
+                                xl:text-[13px]
+                              "
+                            >
+                              {item}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div
+                        className="
+                          relative
+                          flex
+                          h-[115px]
+                          items-center
+                          justify-center
+                          sm:h-[125px]
+                          md:h-[135px]
+                          lg:h-[125px]
+                          xl:h-[135px]
+                        "
+                      >
+                        <div
+                          aria-hidden="true"
+                          className={`
+                            absolute
+                            inset-3
+                            rounded-full
+                            blur-2xl
+                            ${isPink ? "bg-primary/10" : ""}
+                            ${isBlue ? "bg-blue-500/10" : ""}
+                            ${isGreen ? "bg-emerald-500/10" : ""}
+                          `}
+                        />
+
+                        <img
+                          src={card.image}
+                          alt={card.imageAlt}
+                          loading="lazy"
+                          className="
+                            relative
+                            z-10
+                            h-[90px]
+                            w-[90px]
+                            object-contain
+                            drop-shadow-[0_14px_16px_rgba(15,23,42,0.10)]
+                            transition-transform
+                            duration-500
+                            group-hover:scale-[1.05]
+                            sm:h-[100px]
+                            sm:w-[100px]
+                            md:h-[108px]
+                            md:w-[108px]
+                            lg:h-[100px]
+                            lg:w-[100px]
+                            xl:h-[110px]
+                            xl:w-[110px]
+                          "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* BOTTOM MESSAGE */}
+          <div
+            className="
+              mx-auto
+              mt-7
+              flex
+              max-w-[850px]
+              items-center
+              justify-center
+              gap-3
+              rounded-full
+              bg-primary/[0.055]
+              px-4
+              py-3
+              text-center
+              sm:mt-8
+              sm:px-6
+              sm:py-3.5
+            "
+          >
+            <div
+              className="
+                hidden
+                size-9
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-white
+                text-primary
+                shadow-sm
+                sm:flex
+              "
+            >
+              <Target className="size-[18px]" />
+            </div>
+
+            <p
+              className="
+                font-display
+                text-sm
+                font-extrabold
+                leading-5
+                text-foreground
+                sm:text-base
+                md:text-lg
+              "
+            >
+              Students should know what they are likely to face{" "}
+              <span className="text-primary">before they face it.</span>
+            </p>
+          </div>
+
+          <style>{`
+            .company-flow-scroll {
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+
+            .company-flow-scroll::-webkit-scrollbar {
+              display: none;
+            }
+
+            @keyframes flowArrowPulse {
+              0%,
+              100% {
+                transform: translateX(0);
+                opacity: 0.75;
+              }
+
+              50% {
+                transform: translateX(4px);
+                opacity: 1;
+              }
+            }
+
+            .flow-arrow-chip {
+              animation: flowArrowPulse 1.35s ease-in-out infinite;
+            }
+          `}</style>
+        </div>
       </section>
+
+
 
       {/* =====================================================
 
