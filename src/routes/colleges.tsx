@@ -25,6 +25,7 @@ import manSuccessImage from "@/assets/manSuccess.png";
 import rajakumarImage from "@/assets/rajakumar.png";
 import sanmayImage from "@/assets/sanmay.png";
 import srikantaImage from "@/assets/srikanta.png";
+import smitha from "@/assets/smitha.jpeg";
 
 import amazonLogo from "@/assets/brand/amazon.png";
 import pwcLogo from "@/assets/brand/pwc.png";
@@ -313,7 +314,7 @@ const testimonials = [
     "Prof. Smita Lal",
     "Dean, Institute of Marketing & Management",
     "Your workshops on ATS Resumes at IMM C2C Summit was invaluable. Students gained rich insights on personal branding, confidence building. Your guidance will undoubtedly steer their career paths.",
-    null,
+    smitha,
   ],
   [
     "Sanmay Rath",
