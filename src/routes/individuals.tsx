@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 import { photos, remoteImages } from "@/lib/site";
-import landingHero from "@/assets/landingHero.png";
+import landingHero from "@/assets/individual.png";
 
 import {
   useReveal,
@@ -1632,81 +1632,112 @@ function IndividualsPage() {
           FINAL CTA
       ====================================================== */}
 
-      <section
-        className="
+       <section
+
+className="
+
           bg-primary
+
           text-white
+
         "
+
       >
+
         <div
-          className="
+
+className="
+
             container-page
 
             flex
+
             flex-col
 
             gap-6
 
-            py-7
+            py-10
 
-            sm:py-8
+            sm:py-12
 
-            items-center
-            text-center
+            md:flex-row
 
             md:items-center
-            md:justify-center
-            md:py-9
+
+            md:justify-between
+
+            md:py-14
+
           "
+
         >
+
           <div>
+
             <p
-              className="
+
+className="
+
                 text-[10px]
+
                 font-extrabold
+
                 uppercase
+
                 tracking-[.16em]
 
                 text-white/65
 
                 sm:text-xs
+
               "
+
             >
-              For Individuals • Your next step
+
+              From campus to career
+
             </p>
 
             <h2
               className="
-                mx-auto
-                mt-4
+                mt-3
                 max-w-3xl
-
-                text-center
-                text-2xl
+                font-display
+                text-[1.55rem]
                 font-extrabold
-                leading-tight
+                leading-[1.08]
                 tracking-[-0.035em]
-
-                text-foreground
-
-                sm:text-3xl
-
-                md:text-4xl
+                text-white
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
             >
-              Tell us what you want to get better at.
+
+              Prepare students for the companies they want to
+
+              join.
+
             </h2>
+
           </div>
 
           <Link
-            to="/contact"
-            className="
+
+to="/contact"
+
+className="
+
               inline-flex
+
               w-full
+
               shrink-0
 
               items-center
+
               justify-center
+
               gap-2
 
               rounded-full
@@ -1714,21 +1745,29 @@ function IndividualsPage() {
               bg-white
 
               px-6
+
               py-3.5
 
               text-sm
+
               font-extrabold
 
               text-foreground
 
               sm:w-auto
+
             "
+
           >
-            Start a conversation
+
+            Partner with Elev8
 
             <ArrowRight className="size-4" />
+
           </Link>
+
         </div>
+
       </section>
 
       <style>{`

@@ -21,6 +21,7 @@ import landingHero from "@/assets/landingHero.png";
 import itImage from "@/assets/it.png";
 import bfsiImage from "@/assets/bfsi.png";
 import graduateImage from "@/assets/graduate.png";
+import manSuccessImage from "@/assets/manSuccess.png";
 
 import amazonLogo from "@/assets/brand/amazon.png";
 import pwcLogo from "@/assets/brand/pwc.png";
@@ -678,6 +679,502 @@ return (
           </div>
         </div>
       </section>
+
+      {/* =====================================================
+
+          PROGRAM OPTIONS
+
+      ====================================================== */}
+
+      <section
+        className="
+          relative
+          overflow-hidden
+          border-b
+          border-border
+          bg-[#fffdfa]
+        "
+      >
+        {/* soft decorative glow */}
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -left-24
+            top-[42%]
+            size-72
+            rounded-full
+            bg-primary/[0.035]
+            blur-3xl
+          "
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            -right-24
+            -top-24
+            size-72
+            rounded-full
+            bg-rose-100/45
+            blur-3xl
+          "
+        />
+
+        <div
+          className="
+            container-page
+            relative
+            z-10
+            py-10
+            sm:py-12
+            md:py-14
+            lg:py-12
+          "
+        >
+          {/* ================= TOP HEADING ================= */}
+          <div className="mx-auto max-w-[860px] text-center">
+            <p
+              className="
+                mx-auto
+                inline-flex
+                w-fit
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-primary/20
+                bg-primary/[0.075]
+                px-4
+                py-2
+                font-display
+                text-xs
+                font-black
+                tracking-[-0.01em]
+                text-primary
+                shadow-[0_8px_24px_rgba(196,0,79,0.07)]
+                sm:px-5
+                sm:py-2.5
+                sm:text-sm
+              "
+            >
+              <span
+                aria-hidden="true"
+                className="grid grid-cols-2 gap-[3px]"
+              >
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <span
+                    key={index}
+                    className="size-[5px] rounded-[2px] bg-primary"
+                  />
+                ))}
+              </span>
+              Modular • Flexible • Built Around Your College
+            </p>
+
+            <h2
+              className="
+                mt-4
+                mx-auto
+                max-w-[760px]
+                font-display
+                text-[1.65rem]
+                font-extrabold
+                leading-[1.04]
+                tracking-[-0.04em]
+                text-foreground
+                sm:text-[2rem]
+                md:text-[2.25rem]
+                lg:text-[2.55rem]
+              "
+            >
+              Choose the intervention{" "}
+              <span className="text-primary">your students need.</span>
+            </h2>
+
+            <p
+              className="
+                mt-3
+                mx-auto
+                max-w-[760px]
+                text-[13px]
+                leading-6
+                text-muted-foreground
+                sm:text-sm
+                md:text-[15px]
+              "
+            >
+              A structured set of programs designed to build the skills,
+              confidence and readiness needed for campus placements.
+            </p>
+          </div>
+
+          {/* ================= PROGRAM CARDS ================= */}
+          <div
+            ref={packageRef}
+            className="
+              mt-6
+              grid
+              grid-cols-1
+              gap-3.5
+              sm:grid-cols-2
+              lg:grid-cols-3
+              xl:grid-cols-5
+            "
+          >
+            {packages.map(([number, title, body]) => {
+              const theme =
+                number === "01"
+                  ? {
+                      accent: "text-primary",
+                      iconBg: "bg-primary/[0.08]",
+                      border: "border-primary/20",
+                      check: "bg-primary",
+                      wave: "bg-primary/[0.055]",
+                    }
+                  : number === "02"
+                    ? {
+                        accent: "text-blue-600",
+                        iconBg: "bg-blue-500/[0.08]",
+                        border: "border-blue-200/70",
+                        check: "bg-blue-600",
+                        wave: "bg-blue-500/[0.06]",
+                      }
+                    : number === "03"
+                      ? {
+                          accent: "text-emerald-600",
+                          iconBg: "bg-emerald-500/[0.08]",
+                          border: "border-emerald-200/70",
+                          check: "bg-emerald-600",
+                          wave: "bg-emerald-500/[0.06]",
+                        }
+                      : number === "04"
+                        ? {
+                            accent: "text-amber-600",
+                            iconBg: "bg-amber-500/[0.10]",
+                            border: "border-amber-200/75",
+                            check: "bg-amber-500",
+                            wave: "bg-amber-500/[0.07]",
+                          }
+                        : {
+                            accent: "text-violet-600",
+                            iconBg: "bg-violet-500/[0.09]",
+                            border: "border-violet-200/75",
+                            check: "bg-violet-600",
+                            wave: "bg-violet-500/[0.065]",
+                          };
+
+              const items =
+                number === "05"
+                  ? [
+                      "Assessment",
+                      "Core Training",
+                      "Company Preparation",
+                      "Mock Tests + Mock Drives",
+                      "Post-Assessment",
+                    ]
+                  : body.split(" + ");
+
+              return (
+                <article
+                  key={number}
+                  className={`
+                    reveal-child
+                    group
+                    relative
+                    flex
+                    min-h-[264px]
+                    flex-col
+                    overflow-hidden
+                    rounded-[1.25rem]
+                    border
+                    bg-white
+                    p-4
+                    shadow-[0_12px_36px_rgba(15,23,42,0.06)]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1.5
+                    hover:shadow-[0_20px_48px_rgba(15,23,42,0.10)]
+                    ${theme.border}
+                  `}
+                >
+                  <div
+                    aria-hidden="true"
+                    className={`
+                      pointer-events-none
+                      absolute
+                      -bottom-14
+                      -right-10
+                      size-40
+                      rounded-full
+                      ${theme.wave}
+                    `}
+                  />
+
+                  <div className="relative z-10 flex items-start justify-between gap-3">
+                    <span
+                      className={`
+                        flex
+                        size-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        font-display
+                        text-[15px]
+                        font-black
+                        ${theme.iconBg}
+                        ${theme.accent}
+                      `}
+                    >
+                      {number}
+                    </span>
+
+                    <div
+                      className={`
+                        flex
+                        size-12
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        ${theme.iconBg}
+                        ${theme.accent}
+                      `}
+                    >
+                      {number === "01" && <GraduationCap className="size-6" />}
+                      {number === "02" && <MonitorCheck className="size-6" />}
+                      {number === "03" && <UserRound className="size-6" />}
+                      {number === "04" && <Building2 className="size-6" />}
+                      {number === "05" && <Target className="size-6" />}
+                    </div>
+                  </div>
+
+                  <h3
+                    className="
+                      relative
+                      z-10
+                      mt-4
+                      min-h-[38px]
+                      font-display
+                      text-[15px]
+                      font-extrabold
+                      leading-[1.12]
+                      tracking-[-0.025em]
+                      text-foreground
+                    "
+                  >
+                    {title}
+                  </h3>
+
+                  <div className="relative z-10 mt-3 space-y-2">
+                    {items.map((item) => (
+                      <div key={item} className="flex items-start gap-2">
+                        <span
+                          className={`
+                            mt-[2px]
+                            flex
+                            size-4
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-full
+                            text-white
+                            ${theme.check}
+                          `}
+                        >
+                          <Check className="size-[10px]" strokeWidth={3} />
+                        </span>
+
+                        <span className="text-[11px] leading-5 text-muted-foreground sm:text-[12px]">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="relative z-10 mt-auto pt-3.5">
+                    <span
+                      className={`
+                        inline-flex
+                        items-center
+                        gap-1.5
+                        text-[11px]
+                        font-extrabold
+                        ${theme.accent}
+                      `}
+                    >
+                      Learn More
+                      <ArrowRight className="size-3.5" />
+                    </span>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* ================= YEAR-WISE JOURNEY ================= */}
+          <div
+            className="
+              mt-8
+              grid
+              items-center
+              gap-6
+              sm:mt-9
+              md:gap-8
+              lg:mt-10
+              lg:grid-cols-[0.32fr_0.68fr]
+              lg:gap-8
+              xl:grid-cols-[0.30fr_0.70fr]
+              xl:gap-10
+            "
+          >
+            {/* LEFT COPY */}
+            <div
+              className="
+                mx-auto
+                max-w-[460px]
+                text-center
+                lg:mx-0
+                lg:max-w-[390px]
+                lg:text-left
+              "
+            >
+              <p
+                className="
+                  mx-auto
+                  inline-flex
+                  w-fit
+                  items-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-primary/20
+                  bg-primary/[0.07]
+                  px-4
+                  py-2
+                  font-display
+                  text-xs
+                  font-black
+                  text-primary
+                  sm:text-sm
+                  lg:mx-0
+                "
+              >
+                <BarChart3 className="size-4" />
+                Year-Wise Readiness Journey
+              </p>
+
+              <h3
+                className="
+                  mx-auto
+                  mt-4
+                  max-w-[420px]
+                  font-display
+                  text-[1.65rem]
+                  font-extrabold
+                  leading-[1.05]
+                  tracking-[-0.04em]
+                  text-foreground
+                  sm:text-[1.9rem]
+                  md:text-[2rem]
+                  lg:mx-0
+                  lg:text-[2.05rem]
+                  xl:text-[2.15rem]
+                "
+              >
+                Build skills{" "}
+                <span className="text-primary">
+                  step by step every year.
+                </span>
+              </h3>
+
+              <p
+                className="
+                  mx-auto
+                  mt-3
+                  max-w-[400px]
+                  text-[13px]
+                  leading-6
+                  text-muted-foreground
+                  sm:text-sm
+                  lg:mx-0
+                "
+              >
+                A structured progression to ensure continuous learning and
+                placement readiness from day one.
+              </p>
+
+              {/* Accessible text equivalent for the infographic */}
+              <ul className="sr-only">
+                {years.map(([year, body]) => (
+                  <li key={year}>
+                    {year}: {body}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* RIGHT VISUAL — COMPLETE RESPONSIVE STAIRCASE IMAGE */}
+            <div
+              className="
+                relative
+                mx-auto
+                flex
+                w-full
+                max-w-[980px]
+                items-center
+                justify-center
+                overflow-visible
+              "
+            >
+              <div
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  left-1/2
+                  top-1/2
+                  h-[68%]
+                  w-[82%]
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  rounded-full
+                  bg-gradient-to-r
+                  from-blue-100/25
+                  via-emerald-100/20
+                  to-violet-100/25
+                  blur-3xl
+                "
+              />
+
+              <img
+                src={manSuccessImage}
+                alt="Year-wise readiness journey from first year to final year"
+                loading="lazy"
+                className="
+                  relative
+                  z-10
+                  block
+                  h-auto
+                  w-full
+                  max-w-[760px]
+                  object-contain
+                  drop-shadow-[0_20px_28px_rgba(15,23,42,0.10)]
+                  sm:max-w-[820px]
+                  md:max-w-[900px]
+                  lg:max-w-[920px]
+                  xl:max-w-[980px]
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* =====================================================
 
@@ -2389,7 +2886,7 @@ inline-flex
                               className={`
                                 mt-[2px]
                                 flex
-                                size-[18px]
+                                size-4
                                 shrink-0
                                 items-center
                                 justify-center
@@ -2562,283 +3059,6 @@ inline-flex
       </section>
 
 
-
-      {/* =====================================================
-
-          PROGRAM OPTIONS
-
-      ====================================================== */}
-
-      <section
-
-className="
-
-          border-b
-
-          border-border
-
-          bg-background
-          lg:min-h-[calc(100svh-74px)]
-          lg:flex
-          lg:items-center
-        "
-
-      >
-
-        <div
-
-className="
-
-            container-page
-
-            py-12
-
-            sm:py-16
-
-            md:py-16
-            lg:py-8
-
-          "
-
-        >
-
-          <p className="inline-flex
-              w-fit
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-primary/25
-              bg-primary/[0.10]
-              px-5
-              py-2.5
-              font-display
-              text-sm
-              font-black
-              tracking-[-0.01em]
-              text-primary
-              shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-              sm:text-base
-              md:text-[17px]">
-
-            Modular • Flexible • Built Around Your College
-
-          </p>
-
-          <h2 className="mt-3
-              font-display
-              text-[1.55rem]
-              font-extrabold
-              leading-[1.08]
-              tracking-[-0.035em]
-              text-foreground
-              sm:text-[1.8rem]
-              md:text-[2rem]
-              lg:text-[2.2rem]">
-
-            Choose the intervention{" "}
-
-            <span className="text-primary">
-
-              your students need.
-
-            </span>
-
-          </h2>
-
-          <div
-
-ref={packageRef}
-
-className="
-
-              mt-7
-
-              grid
-
-              gap-4
-
-              sm:grid-cols-2
-
-              lg:grid-cols-3
-
-              xl:grid-cols-5
-
-            "
-
-          >
-
-            {packages.map(([number, title, body]) => (
-
-              <div
-
-key={number}
-
-className="
-
-                  reveal-child
-
-                  rounded-2xl
-
-                  border
-
-                  border-border
-
-                  bg-card
-
-                  p-5
-
-                  shadow-sm
-
-                "
-
-              >
-
-                <span className="number-chip">
-
-                  {number}
-
-                </span>
-
-                <h3
-
-className="
-
-                    mt-3
-
-                    font-extrabold
-
-                  "
-
-                >
-
-                  {title}
-
-                </h3>
-
-                <p
-
-className="
-
-                    mt-3
-
-                    text-sm
-
-                    leading-6
-
-                    text-muted-foreground
-
-                  "
-
-                >
-
-                  {body}
-
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
-          <div
-
-className="
-
-              mt-8
-
-              grid
-
-              gap-4
-
-              sm:grid-cols-2
-
-              lg:grid-cols-4
-
-            "
-
-          >
-
-            {years.map(([year, body]) => (
-
-              <div
-
-key={year}
-
-className="
-
-                  rounded-2xl
-
-                  border
-
-                  border-border
-
-                  border-t-4
-
-                  border-t-primary
-
-                  bg-secondary/50
-
-                  p-4
-
-                  sm:p-5
-
-                "
-
-              >
-
-                <GraduationCap className="size-6 text-primary" />
-
-                <h3
-
-className="
-
-                    mt-3
-
-                    text-base
-
-                    font-extrabold
-
-                    sm:text-xl
-
-                  "
-
-                >
-
-                  {year}
-
-                </h3>
-
-                <p
-
-className="
-
-                    mt-3
-
-                    text-sm
-
-                    leading-6
-
-                    text-muted-foreground
-
-                  "
-
-                >
-
-                  {body}
-
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
 
       {/* =====================================================
 

@@ -2638,164 +2638,142 @@ function CorporatesPage() {
           FINAL CTA
       ====================================================== */}
 
-      <section
-        className="
-          relative
-          overflow-hidden
+        <section
+
+className="
+
           bg-primary
+
           text-white
+
         "
+
       >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            -left-20
-            top-1/2
-            size-56
-            -translate-y-1/2
-            rounded-full
-            bg-white/10
-            blur-3xl
-          "
-        />
 
         <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            -right-16
-            -top-24
-            size-64
-            rounded-full
-            bg-white/10
-            blur-3xl
-          "
-        />
 
-        <div
-          className="
+className="
+
             container-page
-            relative
-            z-10
 
             flex
+
             flex-col
-            items-center
-            justify-between
 
-            gap-5
+            gap-6
 
-            py-8
+            py-10
 
-            sm:py-9
+            sm:py-12
 
             md:flex-row
-            md:gap-8
-            md:py-10
+
+            md:items-center
+
+            md:justify-between
+
+            md:py-14
+
           "
+
         >
-          <div
-            className="
-              max-w-3xl
-              text-center
 
-              md:text-left
-            "
-          >
+          <div>
+
             <p
-              className="
-                font-display
-                text-sm
+
+className="
+
+                text-[10px]
+
                 font-extrabold
-                tracking-[-0.02em]
 
-                text-white/70
+                uppercase
 
-                sm:text-base
+                tracking-[.16em]
+
+                text-white/65
+
+                sm:text-xs
+
               "
+
             >
-              Let's build what your workforce needs next.
+
+              From campus to career
+
             </p>
 
             <h2
               className="
-                mt-2
-
+                mt-3
+                max-w-3xl
                 font-display
-                text-2xl
+                text-[1.55rem]
                 font-extrabold
                 leading-[1.08]
-                tracking-[-0.04em]
-
-                sm:text-3xl
-
-                lg:text-[2.25rem]
+                tracking-[-0.035em]
+                text-white
+                sm:text-[1.8rem]
+                md:text-[2rem]
+                lg:text-[2.2rem]
               "
             >
-              Talk to Elev8 about your{" "}
-              <span className="text-white/70">
-                learning requirement.
-              </span>
+
+              Prepare students for the companies they want to
+
+              join.
+
             </h2>
+
           </div>
 
           <Link
-            to="/contact"
-            className="
-              group
+
+to="/contact"
+
+className="
 
               inline-flex
+
               w-full
+
               shrink-0
+
               items-center
+
               justify-center
-              gap-2.5
+
+              gap-2
 
               rounded-full
 
               bg-white
 
               px-6
+
               py-3.5
 
               text-sm
+
               font-extrabold
+
               text-foreground
 
-              shadow-[0_10px_28px_rgba(0,0,0,0.12)]
-
-              transition-all
-              duration-300
-
-              hover:-translate-y-0.5
-              hover:shadow-[0_14px_34px_rgba(0,0,0,0.18)]
-
-              motion-reduce:transform-none
-              motion-reduce:transition-none
-
               sm:w-auto
-              sm:min-w-[210px]
+
             "
+
           >
-            Start a conversation
 
-            <ArrowRight
-              className="
-                size-4
+            Partner with Elev8
 
-                transition-transform
-                duration-300
+            <ArrowRight className="size-4" />
 
-                group-hover:translate-x-1
-
-                motion-reduce:transform-none
-              "
-            />
           </Link>
+
         </div>
+
       </section>
 
 
