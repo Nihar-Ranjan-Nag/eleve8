@@ -22,6 +22,9 @@ import itImage from "@/assets/it.png";
 import bfsiImage from "@/assets/bfsi.png";
 import graduateImage from "@/assets/graduate.png";
 import manSuccessImage from "@/assets/manSuccess.png";
+import rajakumarImage from "@/assets/rajakumar.png";
+import sanmayImage from "@/assets/sanmay.png";
+import srikantaImage from "@/assets/srikanta.png";
 
 import amazonLogo from "@/assets/brand/amazon.png";
 import pwcLogo from "@/assets/brand/pwc.png";
@@ -304,25 +307,25 @@ const testimonials = [
     "Dr. S. Rajkumar",
     "Dean of Management Studies, Mount Carmel College",
     "Elev8 Learning's 80-hour training streamlined MBA placements and tailored internships. Exceptional skills training notably enhanced student capabilities. Insightful mock interviews effectively revealed individual strengths with scorecards.",
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=85",
+    rajakumarImage,
   ],
   [
     "Prof. Smita Lal",
     "Dean, Institute of Marketing & Management",
     "Your workshops on ATS Resumes at IMM C2C Summit was invaluable. Students gained rich insights on personal branding, confidence building. Your guidance will undoubtedly steer their career paths.",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=85",
+    null,
   ],
   [
     "Sanmay Rath",
     "Placement Officer, AMITY University",
     "Coach Ashfak has been a very popular brand name at AGBS, BHUBANESWAR campus. He has taken many enthralling sessions on job hunting skills and life skills at our campus and students love to hear his words of wisdom. He was one of our guests at the orientation programme 2021 who took a wonderful motivational session.",
-    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85",
+    sanmayImage,
   ],
   [
     "Dr. B.S. Srikanta",
     "Director, Sindhi College",
     "The Job Hunting skills workshop is a unique concept for fresh graduates and working professionals who are serious about getting good jobs in today’s very competitive job market.",
-    "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=85",
+    srikantaImage,
   ],
 ] as const;
 
@@ -3530,17 +3533,37 @@ className="
                         sm:w-[72px]
                       "
                     >
-                      <img
-                        src={image}
-                        alt={name}
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                        "
-                      />
+                      {image ? (
+                        <img
+                          src={image}
+                          alt={name}
+                          loading="lazy"
+                          className="
+                            h-full
+                            w-full
+                            object-cover
+                            object-center
+                          "
+                        />
+                      ) : (
+                        <div
+                          className="
+                            flex
+                            h-full
+                            w-full
+                            items-center
+                            justify-center
+                            bg-primary/[0.08]
+                            text-primary
+                          "
+                          aria-label={`${name} avatar`}
+                        >
+                          <UserRound
+                            className="size-7 sm:size-8"
+                            strokeWidth={2}
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <div className="min-w-0 flex-1">

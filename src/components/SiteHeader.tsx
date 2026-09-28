@@ -6,7 +6,6 @@ import {
   ChevronRight,
   GraduationCap,
   Home,
-  Info,
   Mail,
   Menu,
   UserRound,
@@ -20,7 +19,6 @@ const navItems = [
   { to: "/corporates", label: "For Organizations", icon: Building2 },
   { to: "/colleges", label: "For Institutions", icon: GraduationCap },
   { to: "/individuals", label: "For Individuals", icon: UserRound },
-   
   { to: "/contact", label: "Contact", icon: Mail },
 ] as const;
 
@@ -30,21 +28,31 @@ export function SiteHeader() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 18);
+
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1280) setOpen(false);
+      if (window.innerWidth >= 1280) {
+        setOpen(false);
+      }
     };
+
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -55,22 +63,34 @@ export function SiteHeader() {
       {/* =====================================================
           HEADER
 
-          Important: the header stays in normal document flow.
-          That means the hero starts immediately after it with no
-          artificial spacer. On scroll, the inner nav becomes a
-          floating rounded bar while the header remains sticky.
+          IMPORTANT:
+          The complete sticky header has a solid background.
+          This prevents page sections/cards from showing through
+          above or around the floating rounded navigation bar.
       ====================================================== */}
-
       <header
         className={`
           sticky
           inset-x-0
           top-0
-          z-50
+          z-[100]
           w-full
+
+          bg-[#fbf8f3]
+
           transition-all
           duration-300
-          ${scrolled ? "bg-transparent py-2" : "bg-[#fbf8f3] py-0"}
+
+          ${
+            scrolled
+              ? `
+                  py-2
+                  shadow-[0_3px_14px_rgba(15,23,42,0.035)]
+                `
+              : `
+                  py-0
+                `
+          }
         `}
       >
         <div
@@ -80,6 +100,7 @@ export function SiteHeader() {
             w-full
             items-center
             justify-between
+
             transition-all
             duration-300
 
@@ -90,10 +111,11 @@ export function SiteHeader() {
                     rounded-[1.4rem]
                     border
                     border-border/70
-                    bg-[#fbf8f3]/95
+                    bg-[#fbf8f3]
                     px-4
+
                     shadow-[0_12px_34px_rgba(15,23,42,0.10)]
-                    backdrop-blur-xl
+
                     sm:px-5
                     lg:px-6
                   `
@@ -101,8 +123,9 @@ export function SiteHeader() {
                     max-w-[1440px]
                     border-b
                     border-transparent
-                    bg-transparent
+                    bg-[#fbf8f3]
                     px-5
+
                     sm:px-7
                     lg:px-10
                     xl:px-12
@@ -116,6 +139,7 @@ export function SiteHeader() {
               w-full
               items-center
               justify-between
+
               transition-[height]
               duration-300
 
@@ -139,6 +163,7 @@ export function SiteHeader() {
                   w-auto
                   transition-[height]
                   duration-300
+
                   ${
                     scrolled
                       ? "h-9 sm:h-10 lg:h-11"
@@ -154,24 +179,31 @@ export function SiteHeader() {
                 <Link
                   key={item.to}
                   to={item.to}
-                  activeOptions={{ exact: item.to === "/" }}
+                  activeOptions={{
+                    exact: item.to === "/",
+                  }}
                   activeProps={{
                     className: scrolled
                       ? "bg-accent text-primary font-bold"
-                      : "text-primary font-bold",
+                      : "bg-accent/70 text-primary font-bold",
                   }}
                   className={`
                     rounded-full
                     px-3
                     py-2
+
                     text-[13px]
                     font-semibold
                     text-foreground/75
+
                     transition-all
+                    duration-200
+
+                    hover:bg-accent/70
                     hover:text-primary
+
                     2xl:px-4
                     2xl:text-sm
-                    ${scrolled ? "hover:bg-accent" : "hover:bg-transparent"}
                   `}
                 >
                   {item.label}
@@ -185,17 +217,26 @@ export function SiteHeader() {
                   inline-flex
                   items-center
                   justify-center
+
                   whitespace-nowrap
                   rounded-full
                   bg-primary
+
                   px-5
                   py-2.5
+
                   text-[13px]
                   font-extrabold
                   text-white
+
                   shadow-[0_8px_22px_rgba(190,0,60,0.20)]
+
                   transition-all
+                  duration-200
+
                   hover:-translate-y-0.5
+                  hover:shadow-[0_11px_28px_rgba(190,0,60,0.26)]
+
                   2xl:px-6
                   2xl:text-sm
                 "
@@ -215,15 +256,22 @@ export function SiteHeader() {
                 size-10
                 items-center
                 justify-center
+
                 rounded-full
+
                 border
                 border-border
+
                 bg-white
                 text-foreground
+
                 shadow-sm
+
                 transition-all
+
                 hover:border-primary
                 hover:text-primary
+
                 xl:hidden
               "
             >
@@ -236,16 +284,15 @@ export function SiteHeader() {
       {/* =====================================================
           OVERLAY
       ====================================================== */}
-
       <div
         onClick={() => setOpen(false)}
+        aria-hidden={!open}
         className={`
           fixed
           inset-0
-          z-[60]
+          z-[110]
 
           bg-black/45
-
           backdrop-blur-[2px]
 
           transition-opacity
@@ -264,13 +311,12 @@ export function SiteHeader() {
       {/* =====================================================
           MOBILE SIDEBAR
       ====================================================== */}
-
       <aside
         className={`
           fixed
           left-0
           top-0
-          z-[70]
+          z-[120]
 
           flex
           h-[100dvh]
@@ -295,20 +341,14 @@ export function SiteHeader() {
 
           xl:hidden
 
-          ${
-            open
-              ? "translate-x-0"
-              : "-translate-x-full"
-          }
+          ${open ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         {/* SIDEBAR HEADER */}
-
         <div
           className="
             flex
             shrink-0
-
             items-center
             justify-between
 
@@ -327,10 +367,7 @@ export function SiteHeader() {
             <img
               src={logoUrl}
               alt="Elev8 Learning"
-              className="
-                h-11
-                w-auto
-              "
+              className="h-11 w-auto"
             />
           </Link>
 
@@ -341,7 +378,6 @@ export function SiteHeader() {
             className="
               flex
               size-11
-
               items-center
               justify-center
 
@@ -351,7 +387,6 @@ export function SiteHeader() {
               border-border
 
               bg-white
-
               text-foreground
 
               shadow-sm
@@ -367,7 +402,6 @@ export function SiteHeader() {
         </div>
 
         {/* SIDEBAR INTRO */}
-
         <div
           className="
             shrink-0
@@ -385,7 +419,6 @@ export function SiteHeader() {
               font-extrabold
               uppercase
               tracking-[0.18em]
-
               text-primary
             "
           >
@@ -395,30 +428,22 @@ export function SiteHeader() {
           <p
             className="
               mt-2
-
               max-w-[290px]
 
               text-sm
               leading-6
-
               text-muted-foreground
             "
           >
-            Helping people build skills, confidence and
-            capability.
+            Helping people build skills, confidence and capability.
           </p>
         </div>
 
-        {/* =================================================
-            NAVIGATION
-            No vertical centering = removes large empty gap
-        ================================================== */}
-
+        {/* NAVIGATION */}
         <nav
           className="
             flex-1
-
-            overflow-hidden
+            overflow-y-auto
 
             px-4
             py-4
@@ -445,7 +470,6 @@ export function SiteHeader() {
 
                     flex
                     min-h-[58px]
-
                     items-center
 
                     rounded-[1.1rem]
@@ -455,7 +479,6 @@ export function SiteHeader() {
 
                     text-[15px]
                     font-semibold
-
                     text-foreground/80
 
                     transition-all
@@ -465,8 +488,6 @@ export function SiteHeader() {
                     hover:text-primary
                   "
                 >
-                  {/* ICON */}
-
                   <span
                     className="
                       mr-3
@@ -474,7 +495,6 @@ export function SiteHeader() {
                       flex
                       size-10
                       shrink-0
-
                       items-center
                       justify-center
 
@@ -484,7 +504,6 @@ export function SiteHeader() {
                       border-border
 
                       bg-white
-
                       text-primary
 
                       shadow-sm
@@ -499,18 +518,11 @@ export function SiteHeader() {
                     <Icon className="size-[18px]" />
                   </span>
 
-                  {/* LABEL */}
-
-                  <span className="flex-1">
-                    {item.label}
-                  </span>
-
-                  {/* ARROW */}
+                  <span className="flex-1">{item.label}</span>
 
                   <ChevronRight
                     className="
                       size-[18px]
-
                       text-foreground/30
 
                       transition-all
@@ -525,10 +537,7 @@ export function SiteHeader() {
           </div>
         </nav>
 
-        {/* =================================================
-            BOTTOM CTA
-        ================================================== */}
-
+        {/* BOTTOM CTA */}
         <div
           className="
             shrink-0
@@ -547,7 +556,6 @@ export function SiteHeader() {
             className="
               flex
               w-full
-
               items-center
               justify-center
               gap-2
@@ -561,7 +569,6 @@ export function SiteHeader() {
 
               text-[15px]
               font-extrabold
-
               text-white
 
               shadow-[0_10px_25px_rgba(190,0,60,0.20)]
