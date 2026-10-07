@@ -922,7 +922,9 @@ export function SiteFooter() {
 
 
 
-              <li><FooterLink to="/about">About Us</FooterLink></li>
+              <li>
+  <FooterLink to="/contact">About Us</FooterLink>
+</li>
 
 
 
@@ -3827,7 +3829,7 @@ export function SiteFooter() {
 
 
 
-                  <FooterLink to="/about">About Us</FooterLink>
+                 <FooterLink to="/contact">About Us</FooterLink>
 
 
 
