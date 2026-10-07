@@ -6,7 +6,19 @@ import { Link } from "@tanstack/react-router";
 
 
 
+
+
+
+
+
+
+
+
 import {
+
+
+
+
 
 
 
@@ -14,11 +26,23 @@ import {
 
 
 
+
+
+
+
   MapPin,
 
 
 
+
+
+
+
   Phone,
+
+
+
+
 
 
 
@@ -30,7 +54,19 @@ import {
 
 
 
+
+
+
+
+
+
+
+
 import {
+
+
+
+
 
 
 
@@ -38,7 +74,15 @@ import {
 
 
 
+
+
+
+
   FaLinkedinIn,
+
+
+
+
 
 
 
@@ -50,7 +94,19 @@ import {
 
 
 
+
+
+
+
+
+
+
+
 import {
+
+
+
+
 
 
 
@@ -58,7 +114,15 @@ import {
 
 
 
+
+
+
+
   logoUrl,
+
+
+
+
 
 
 
@@ -70,7 +134,19 @@ import {
 
 
 
+
+
+
+
+
+
+
+
 export function SiteFooter() {
+
+
+
+
 
 
 
@@ -78,7 +154,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
     <footer
+
+
+
+
 
 
 
@@ -86,7 +170,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         relative
+
+
+
+
 
 
 
@@ -94,7 +186,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         border-t
+
+
+
+
 
 
 
@@ -102,7 +202,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         bg-ink
+
+
+
+
 
 
 
@@ -110,7 +218,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       "
+
+
+
+
 
 
 
@@ -118,7 +234,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       {/* =====================================================
+
+
+
+
 
 
 
@@ -126,7 +250,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       ====================================================== */}
+
+
+
+
 
 
 
@@ -134,7 +266,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         aria-hidden="true"
+
+
+
+
 
 
 
@@ -142,11 +282,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           pointer-events-none
 
 
 
+
+
+
+
           absolute
+
+
+
+
 
 
 
@@ -154,7 +306,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           top-10
+
+
+
+
 
 
 
@@ -162,7 +322,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           rounded-full
+
+
+
+
 
 
 
@@ -170,11 +338,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           blur-3xl
 
 
 
+
+
+
+
         "
+
+
+
+
 
 
 
@@ -186,7 +366,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
       <div
+
+
+
+
 
 
 
@@ -194,7 +386,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         className="
+
+
+
+
 
 
 
@@ -202,7 +402,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           absolute
+
+
+
+
 
 
 
@@ -210,7 +418,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           bottom-0
+
+
+
+
 
 
 
@@ -218,7 +434,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           rounded-full
+
+
+
+
 
 
 
@@ -226,11 +450,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           blur-3xl
 
 
 
+
+
+
+
         "
+
+
+
+
 
 
 
@@ -244,797 +480,1448 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
+
+
       {/* =====================================================
 
+
+
           MOBILE FOOTER ONLY
+
+
 
       ====================================================== */}
 
 
 
+
+
+
+
       <div
+
+
 
         className="
 
+
+
           relative
+
+
 
           z-10
 
+
+
           px-4
 
+
+
           pb-5
+
+
 
           pt-6
 
 
 
+
+
+
+
           md:hidden
+
+
 
         "
 
+
+
       >
+
+
 
         {/* Brand */}
 
+
+
         <div
+
+
 
           className="
 
+
+
             rounded-[24px]
+
+
 
             border
 
+
+
             border-white/10
+
+
 
             bg-white/[0.035]
 
+
+
             p-5
+
+
 
             shadow-[0_14px_34px_rgba(0,0,0,0.18)]
 
+
+
             backdrop-blur-sm
+
+
 
           "
 
+
+
         >
+
+
 
           <Link to="/" className="inline-flex items-center">
 
+
+
             <img
+
+
 
               src={logoUrl}
 
+
+
               alt="Elev8 Learning"
+
+
 
               className="
 
+
+
                 h-10
+
+
 
                 w-auto
 
+
+
                 object-contain
+
+
 
                 brightness-0
 
+
+
                 invert
+
+
 
               "
 
+
+
             />
+
+
 
           </Link>
 
 
 
+
+
+
+
           <p
+
+
 
             className="
 
+
+
               mt-4
+
+
 
               text-[13px]
 
+
+
               leading-6
+
+
 
               text-white/68
 
+
+
             "
+
+
 
           >
 
+
+
             Helping people build the skills, confidence and mindset to do work
+
+
 
             they are proud of, grow in their careers and take on what comes next.
 
+
+
           </p>
 
+
+
         </div>
+
+
+
+
 
 
 
         {/* Explore + Company/Social */}
 
+
+
         <div
+
+
 
           className="
 
+
+
             mt-3
+
+
 
             grid
 
+
+
             grid-cols-2
+
+
 
             gap-3
 
+
+
           "
+
+
 
         >
 
+
+
           <div
+
+
 
             className="
 
+
+
               rounded-[20px]
+
+
 
               border
 
+
+
               border-white/10
+
+
 
               bg-white/[0.035]
 
+
+
               p-4
+
+
 
             "
 
+
+
           >
+
+
 
             <FooterHeading>Explore</FooterHeading>
 
 
 
+
+
+
+
             <ul
+
+
 
               className="
 
+
+
                 mt-4
+
+
 
                 space-y-3
 
+
+
                 text-[12px]
+
+
 
                 font-semibold
 
+
+
               "
+
+
 
             >
 
+
+
               <li><FooterLink to="/">Home</FooterLink></li>
+
+
 
               <li><FooterLink to="/corporates">Organizations</FooterLink></li>
 
+
+
               <li><FooterLink to="/colleges">Institutions</FooterLink></li>
+
+
 
               <li><FooterLink to="/individuals">Individuals</FooterLink></li>
 
+
+
             </ul>
 
+
+
           </div>
+
+
+
+
 
 
 
           <div
 
+
+
             className="
+
+
 
               rounded-[20px]
 
+
+
               border
+
+
 
               border-white/10
 
+
+
               bg-white/[0.035]
+
+
 
               p-4
 
+
+
             "
 
+
+
           >
+
+
 
             <FooterHeading>Company</FooterHeading>
 
 
 
+
+
+
+
             <ul
+
+
 
               className="
 
+
+
                 mt-4
+
+
 
                 space-y-3
 
+
+
                 text-[12px]
+
+
 
                 font-semibold
 
+
+
               "
+
+
 
             >
 
+
+
               <li><FooterLink to="/about">About Us</FooterLink></li>
 
+
+
               <li><FooterLink to="/contact">Contact</FooterLink></li>
+
+
 
             </ul>
 
 
 
+
+
+
+
             <div className="mt-5">
+
+
 
               <FooterHeading>Social</FooterHeading>
 
 
 
-              <div className="mt-3 flex items-center gap-2.5">
 
+
+
+
+              <div className="mt-3 flex items-center gap-3">
                 <a
-
-                  href={contact.linkedin}
-
-                  target="_blank"
-
-                  rel="noreferrer"
-
-                  aria-label="Elev8 Learning LinkedIn"
-
-                  className="
-
-                    flex
-
-                    size-9
-
-                    items-center
-
-                    justify-center
-
-                    rounded-full
-
-                    border
-
-                    border-white/10
-
-                    bg-white/5
-
-                    text-white/80
-
-                    transition-all
-
-                    duration-200
-
-                    hover:border-primary
-
-                    hover:bg-primary
-
-                    hover:text-white
-
-                  "
-
-                >
-
-                  <FaLinkedinIn className="text-[15px]" />
-
-                </a>
-
-
-
-                <a
-
                   href={contact.instagram}
-
                   target="_blank"
-
                   rel="noreferrer"
-
                   aria-label="Elev8 Learning Instagram"
-
                   className="
-
+                    group
                     flex
-
-                    size-9
-
+                    size-11
                     items-center
-
                     justify-center
-
-                    rounded-full
-
-                    border
-
-                    border-white/10
-
-                    bg-white/5
-
-                    text-white/80
-
+                    overflow-hidden
+                    rounded-[12px]
+                    bg-[radial-gradient(circle_at_30%_107%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285AEB_90%)]
+                    shadow-[0_8px_20px_rgba(214,36,159,0.22)]
                     transition-all
-
                     duration-200
-
-                    hover:border-primary
-
-                    hover:bg-primary
-
-                    hover:text-white
-
+                    hover:-translate-y-0.5
+                    hover:scale-105
                   "
-
                 >
-
-                  <FaInstagram className="text-[16px]" />
-
+                  <FaInstagram className="text-[25px] text-white" />
                 </a>
 
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Elev8 Learning LinkedIn"
+                  className="
+                    group
+                    flex
+                    size-11
+                    items-center
+                    justify-center
+                    rounded-[12px]
+                    bg-[#0A66C2]
+                    shadow-[0_8px_20px_rgba(10,102,194,0.22)]
+                    transition-all
+                    duration-200
+                    hover:-translate-y-0.5
+                    hover:scale-105
+                  "
+                >
+                  <FaLinkedinIn className="text-[24px] text-white" />
+                </a>
               </div>
+
+
 
             </div>
 
+
+
           </div>
 
+
+
         </div>
+
+
+
+
 
 
 
         {/* Full-width contact card */}
 
+
+
         <div
+
+
 
           className="
 
+
+
             mt-3
+
+
 
             rounded-[22px]
 
+
+
             border
+
+
 
             border-white/10
 
+
+
             bg-white/[0.04]
+
+
 
             p-4
 
+
+
           "
+
+
 
         >
 
+
+
           <div className="flex items-center justify-between gap-3">
+
+
 
             <FooterHeading>Get in touch</FooterHeading>
 
 
 
+
+
+
+
             <span
+
+
 
               className="
 
+
+
                 rounded-full
+
+
 
                 bg-primary/12
 
+
+
                 px-3
+
+
 
                 py-1
 
+
+
                 text-[9px]
+
+
 
                 font-extrabold
 
+
+
                 uppercase
+
+
 
                 tracking-[0.14em]
 
+
+
                 text-primary
+
+
 
               "
 
+
+
             >
+
+
 
               Let's connect
 
+
+
             </span>
 
+
+
           </div>
+
+
+
+
 
 
 
           <div className="mt-4 space-y-2.5">
 
+
+
             <a
+
+
 
               href={contact.phoneHref}
 
+
+
               className="
+
+
 
                 flex
 
+
+
                 items-center
+
+
 
                 gap-3
 
+
+
                 rounded-2xl
+
+
 
                 border
 
+
+
                 border-white/8
+
+
 
                 bg-black/10
 
+
+
                 px-3.5
+
+
 
                 py-3
 
+
+
               "
+
+
 
             >
 
+
+
               <span
+
+
 
                 className="
 
+
+
                   flex
+
+
 
                   size-9
 
+
+
                   shrink-0
+
+
 
                   items-center
 
+
+
                   justify-center
+
+
 
                   rounded-xl
 
+
+
                   bg-primary/12
+
+
 
                   text-primary
 
+
+
                 "
+
+
 
               >
 
+
+
                 <Phone className="size-4" />
 
+
+
               </span>
+
+
+
+
 
 
 
               <span className="min-w-0">
 
+
+
                 <span
+
+
 
                   className="
 
+
+
                     block
+
+
 
                     text-[9px]
 
+
+
                     font-extrabold
+
+
 
                     uppercase
 
+
+
                     tracking-[0.14em]
 
-                    text-white/40
+
+
+                    text-[#C30046]
+
+
 
                   "
 
+
+
                 >
+
+
 
                   Call us
 
+
+
                 </span>
+
+
+
+
 
 
 
                 <span
 
+
+
                   className="
+
+
 
                     mt-0.5
 
+
+
                     block
+
+
 
                     text-[12px]
 
+
+
                     font-semibold
+
+
 
                     text-white/78
 
+
+
                   "
+
+
 
                 >
 
+
+
                   {contact.phoneDisplay}
+
+
 
                 </span>
 
+
+
               </span>
+
+
 
             </a>
 
 
 
+
+
+
+
             <a
+
+
 
               href={contact.emailHref}
 
+
+
               className="
+
+
 
                 flex
 
+
+
                 items-center
+
+
 
                 gap-3
 
+
+
                 rounded-2xl
+
+
 
                 border
 
+
+
                 border-white/8
+
+
 
                 bg-black/10
 
+
+
                 px-3.5
+
+
 
                 py-3
 
+
+
               "
+
+
 
             >
 
+
+
               <span
+
+
 
                 className="
 
+
+
                   flex
+
+
 
                   size-9
 
+
+
                   shrink-0
+
+
 
                   items-center
 
+
+
                   justify-center
+
+
 
                   rounded-xl
 
+
+
                   bg-primary/12
+
+
 
                   text-primary
 
+
+
                 "
+
+
 
               >
 
+
+
                 <Mail className="size-4" />
+
+
 
               </span>
 
 
 
+
+
+
+
               <span className="min-w-0">
+
+
 
                 <span
 
+
+
                   className="
+
+
 
                     block
 
+
+
                     text-[9px]
+
+
 
                     font-extrabold
 
+
+
                     uppercase
+
+
 
                     tracking-[0.14em]
 
-                    text-white/40
+
+
+                    text-[#C30046]
+
+
 
                   "
 
+
+
                 >
 
+
+
                   Email
+
+
 
                 </span>
 
 
 
+
+
+
+
                 <span
+
+
 
                   className="
 
+
+
                     mt-0.5
+
+
 
                     block
 
+
+
                     whitespace-nowrap
+
+
 
                     text-[10.5px]
 
+
+
                     font-semibold
 
+
+
                     text-white/78
+
+
+
+
 
 
 
                     min-[390px]:text-[12px]
 
+
+
                   "
+
+
 
                 >
 
+
+
                   {contact.email}
+
+
 
                 </span>
 
+
+
               </span>
+
+
 
             </a>
 
 
 
+
+
+
+
             <div
+
+
 
               className="
 
+
+
                 flex
+
+
 
                 items-center
 
+
+
                 gap-3
+
+
 
                 rounded-2xl
 
+
+
                 border
+
+
 
                 border-white/8
 
+
+
                 bg-black/10
+
+
 
                 px-3.5
 
+
+
                 py-3
+
+
 
               "
 
+
+
             >
+
+
 
               <span
 
+
+
                 className="
+
+
 
                   flex
 
+
+
                   size-9
+
+
 
                   shrink-0
 
+
+
                   items-center
+
+
 
                   justify-center
 
+
+
                   rounded-xl
+
+
 
                   bg-primary/12
 
+
+
                   text-primary
+
+
 
                 "
 
+
+
               >
+
+
 
                 <MapPin className="size-4" />
 
+
+
               </span>
+
+
+
+
 
 
 
               <span className="min-w-0">
 
+
+
                 <span
+
+
 
                   className="
 
+
+
                     block
+
+
 
                     text-[9px]
 
+
+
                     font-extrabold
+
+
 
                     uppercase
 
+
+
                     tracking-[0.14em]
 
-                    text-white/40
+
+
+                    text-[#C30046]
+
+
 
                   "
 
+
+
                 >
+
+
 
                   Location
 
+
+
                 </span>
+
+
+
+
 
 
 
                 <span
 
+
+
                   className="
+
+
 
                     mt-0.5
 
+
+
                     block
+
+
 
                     text-[12px]
 
+
+
                     font-semibold
+
+
 
                     text-white/78
 
+
+
                   "
+
+
 
                 >
 
+
+
                   Bengaluru, Karnataka
+
+
 
                 </span>
 
+
+
               </span>
+
+
 
             </div>
 
+
+
           </div>
 
+
+
         </div>
+
+
+
+
 
 
 
         {/* Mobile bottom */}
 
+
+
         <div
+
+
 
           className="
 
+
+
             mt-4
+
+
 
             border-t
 
+
+
             border-white/10
+
+
 
             pt-4
 
+
+
             text-center
+
+
 
             text-[10px]
 
+
+
             leading-5
+
+
 
             text-white/40
 
+
+
           "
+
+
 
         >
 
+
+
           <p>© {new Date().getFullYear()} Elev8 Learning. All rights reserved.</p>
+
+
 
           <p className="mt-1">Practical learning. Real performance.</p>
 
+
+
         </div>
+
+
 
       </div>
 
 
 
+
+
+
+
       {/* =====================================================
+
+
+
+
 
 
 
@@ -1042,7 +1929,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       ====================================================== */}
+
+
+
+
 
 
 
@@ -1050,11 +1945,25 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         className="
+
+
 
           hidden
 
+
+
           md:block
+
+
+
+
+
+
 
 
 
@@ -1064,11 +1973,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           relative
 
 
 
+
+
+
+
           z-10
+
+
+
+
+
+
+
+
 
 
 
@@ -1080,7 +2005,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           sm:py-12
+
+
+
+
 
 
 
@@ -1088,7 +2021,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         "
+
+
+
+
 
 
 
@@ -1096,7 +2037,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         <div
+
+
+
+
 
 
 
@@ -1104,7 +2053,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             grid
+
+
+
+
 
 
 
@@ -1116,7 +2073,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             lg:grid-cols-[1.05fr_1.95fr]
+
+
+
+
 
 
 
@@ -1124,7 +2093,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             lg:gap-12
+
+
+
+
 
 
 
@@ -1132,7 +2109,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         >
+
+
+
+
 
 
 
@@ -1140,7 +2125,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               BRAND
+
+
+
+
 
 
 
@@ -1148,7 +2141,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           <div className="max-w-md">
+
+
+
+
 
 
 
@@ -1156,7 +2157,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               to="/"
+
+
+
+
 
 
 
@@ -1164,7 +2173,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 inline-flex
+
+
+
+
 
 
 
@@ -1172,7 +2189,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               "
+
+
+
+
 
 
 
@@ -1180,7 +2205,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               <img
+
+
+
+
 
 
 
@@ -1188,7 +2221,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 alt="Elev8 Learning"
+
+
+
+
 
 
 
@@ -1196,11 +2237,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   h-11
 
 
 
+
+
+
+
                   w-auto
+
+
+
+
 
 
 
@@ -1212,7 +2265,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   brightness-0
+
+
+
+
 
 
 
@@ -1224,7 +2289,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   sm:h-12
+
+
+
+
 
 
 
@@ -1232,11 +2309,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 "
 
 
 
+
+
+
+
               />
+
+
+
+
 
 
 
@@ -1248,7 +2337,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             <p
+
+
+
+
 
 
 
@@ -1256,7 +2357,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 mt-4
+
+
+
+
 
 
 
@@ -1268,11 +2377,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                 text-[13px]
 
 
 
+
+
+
+
                 leading-6
+
+
+
+
 
 
 
@@ -1284,7 +2409,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                 sm:text-sm
+
+
+
+
 
 
 
@@ -1292,7 +2429,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               "
+
+
+
+
 
 
 
@@ -1300,7 +2445,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               Helping people build the skills, confidence and mindset
+
+
+
+
 
 
 
@@ -1308,7 +2461,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               take on what comes next.
+
+
+
+
 
 
 
@@ -1316,7 +2477,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -1328,7 +2501,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               LINKS / CONTACT GRID
+
+
+
+
+
+
+
+
 
 
 
@@ -1340,7 +2525,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               Row 1: EXPLORE | GET IN TOUCH
+
+
+
+
 
 
 
@@ -1348,7 +2541,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           ================================================== */}
+
+
+
+
 
 
 
@@ -1356,7 +2557,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             className="
+
+
+
+
 
 
 
@@ -1364,11 +2573,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               grid-cols-2
 
 
 
+
+
+
+
               gap-x-6
+
+
+
+
 
 
 
@@ -1380,7 +2601,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               sm:gap-x-10
+
+
+
+
 
 
 
@@ -1392,7 +2625,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               md:grid-cols-[0.9fr_1.35fr_0.8fr_0.65fr]
+
+
+
+
 
 
 
@@ -1404,7 +2649,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               lg:gap-9
+
+
+
+
 
 
 
@@ -1412,7 +2669,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -1420,7 +2685,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 1. EXPLORE
+
+
+
+
 
 
 
@@ -1428,7 +2701,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             <div>
+
+
+
+
 
 
 
@@ -1440,7 +2721,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               <ul
+
+
+
+
 
 
 
@@ -1448,7 +2741,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   mt-4
+
+
+
+
 
 
 
@@ -1460,7 +2761,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   text-[13px]
+
+
+
+
 
 
 
@@ -1472,7 +2785,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   sm:mt-5
+
+
+
+
 
 
 
@@ -1480,7 +2805,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   sm:text-sm
+
+
+
+
 
 
 
@@ -1488,11 +2821,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               >
 
 
 
+
+
+
+
                 <li>
+
+
+
+
 
 
 
@@ -1500,6 +2845,10 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 </li>
 
 
@@ -1508,7 +2857,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                 <li>
+
+
+
+
 
 
 
@@ -1516,11 +2877,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     For Organizations
 
 
 
+
+
+
+
                   </FooterLink>
+
+
+
+
 
 
 
@@ -1532,7 +2905,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                 <li>
+
+
+
+
 
 
 
@@ -1540,7 +2925,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     For Institutions
+
+
+
+
 
 
 
@@ -1548,7 +2941,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 </li>
+
+
+
+
+
+
+
+
 
 
 
@@ -1560,7 +2965,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   <FooterLink to="/individuals">
+
+
+
+
 
 
 
@@ -1568,7 +2981,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   </FooterLink>
+
+
+
+
 
 
 
@@ -1576,7 +2997,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               </ul>
+
+
+
+
 
 
 
@@ -1588,7 +3017,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             {/* =============================================
+
+
+
+
 
 
 
@@ -1596,11 +3037,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             ============================================== */}
 
 
 
+
+
+
+
             <div>
+
+
+
+
 
 
 
@@ -1612,7 +3065,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               <div
+
+
+
+
 
 
 
@@ -1620,7 +3085,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   mt-4
+
+
+
+
 
 
 
@@ -1632,7 +3105,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   sm:mt-5
+
+
+
+
 
 
 
@@ -1640,7 +3125,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 "
+
+
+
+
 
 
 
@@ -1648,7 +3141,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 <FooterContact
+
+
+
+
 
 
 
@@ -1656,7 +3157,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   label="Call us"
+
+
+
+
 
 
 
@@ -1664,11 +3173,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   href={contact.phoneHref}
 
 
 
+
+
+
+
                 />
+
+
+
+
+
+
+
+
 
 
 
@@ -1680,7 +3205,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   icon={<Mail className="size-4" />}
+
+
+
+
 
 
 
@@ -1688,7 +3221,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   value={contact.email}
+
+
+
+
 
 
 
@@ -1696,7 +3237,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 />
+
+
+
+
+
+
+
+
 
 
 
@@ -1708,7 +3261,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   className="
+
+
+
+
 
 
 
@@ -1716,7 +3277,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     items-start
+
+
+
+
 
 
 
@@ -1728,7 +3297,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                     sm:gap-3
+
+
+
+
 
 
 
@@ -1736,7 +3317,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -1744,7 +3333,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     className="
+
+
+
+
 
 
 
@@ -1752,7 +3349,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                       flex
+
+
+
+
 
 
 
@@ -1760,7 +3365,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                       shrink-0
+
+
+
+
 
 
 
@@ -1768,7 +3381,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                       justify-center
+
+
+
+
 
 
 
@@ -1776,7 +3397,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                       bg-white/5
+
+
+
+
 
 
 
@@ -1784,7 +3413,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     "
+
+
+
+
 
 
 
@@ -1792,11 +3429,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     <MapPin className="size-4" />
 
 
 
+
+
+
+
                   </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -1808,11 +3461,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     <p
 
 
 
+
+
+
+
                       className="
+
+
+
+
 
 
 
@@ -1820,7 +3485,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                         font-extrabold
+
+
+
+
 
 
 
@@ -1828,11 +3501,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                         tracking-[0.12em]
 
 
 
-                        text-white/40
+
+
+
+
+                        text-primary
+
+
+
+
 
 
 
@@ -1840,7 +3525,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     >
+
+
+
+
 
 
 
@@ -1848,7 +3541,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     </p>
+
+
+
+
+
+
+
+
 
 
 
@@ -1860,16 +3565,33 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                       className="
 
 
 
+
+
+
+
                         mt-1
+
                       whitespace-nowrap
+
                       text-sm
+
                       font-semibold
+
                       leading-5
+
                       text-white/70
+
+
+
+
 
 
 
@@ -1877,7 +3599,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     >
+
+
+
+
 
 
 
@@ -1885,7 +3615,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                     </p>
+
+
+
+
 
 
 
@@ -1893,11 +3631,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 </div>
 
 
 
+
+
+
+
               </div>
+
+
+
+
 
 
 
@@ -1909,7 +3659,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             {/* =============================================
+
+
+
+
 
 
 
@@ -1917,11 +3679,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             ============================================== */}
 
 
 
+
+
+
+
             <div>
+
+
+
+
 
 
 
@@ -1933,7 +3707,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               <ul
+
+
+
+
 
 
 
@@ -1941,7 +3727,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   mt-4
+
+
+
+
 
 
 
@@ -1953,7 +3747,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   text-[13px]
+
+
+
+
 
 
 
@@ -1965,7 +3771,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
                   sm:mt-5
+
+
+
+
 
 
 
@@ -1973,7 +3791,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   sm:text-sm
+
+
+
+
 
 
 
@@ -1981,11 +3807,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               >
 
 
 
+
+
+
+
                 <li>
+
+
+
+
 
 
 
@@ -1993,7 +3831,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 </li>
+
+
+
+
+
+
+
+
 
 
 
@@ -2005,7 +3855,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                   <FooterLink to="/contact">Contact</FooterLink>
+
+
+
+
 
 
 
@@ -2013,11 +3871,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
               </ul>
 
 
 
+
+
+
+
             </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -2029,7 +3903,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
                 4. SOCIAL
+
+
+
+
 
 
 
@@ -2037,7 +3919,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             <div>
+
+
+
+
 
 
 
@@ -2049,283 +3939,75 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
               <div
-
-
-
                 className="
-
-
-
                   mt-4
-
-
-
                   flex
-
-
-
                   items-center
-
-
-
                   gap-3
 
-
-
-
-
-
-
                   sm:mt-5
-
-
-
                 "
-
-
-
               >
-
-
-
                 <a
-
-
-
-                  href={contact.linkedin}
-
-
-
-                  target="_blank"
-
-
-
-                  rel="noreferrer"
-
-
-
-                  aria-label="Elev8 Learning LinkedIn"
-
-
-
-                  className="
-
-
-
-                    flex
-
-
-
-                    size-10
-
-
-
-                    items-center
-
-
-
-                    justify-center
-
-
-
-                    rounded-full
-
-
-
-
-
-
-
-                    border
-
-
-
-                    border-white/10
-
-
-
-
-
-
-
-                    bg-white/5
-
-
-
-                    text-white/80
-
-
-
-
-
-
-
-                    transition-all
-
-
-
-                    duration-200
-
-
-
-
-
-
-
-                    hover:-translate-y-0.5
-
-
-
-                    hover:border-primary
-
-
-
-                    hover:bg-primary
-
-
-
-                    hover:text-white
-
-
-
-                  "
-
-
-
-                >
-
-
-
-                  <FaLinkedinIn className="text-[16px]" />
-
-
-
-                </a>
-
-
-
-
-
-
-
-                <a
-
-
-
                   href={contact.instagram}
-
-
-
                   target="_blank"
-
-
-
                   rel="noreferrer"
-
-
-
                   aria-label="Elev8 Learning Instagram"
-
-
-
                   className="
-
-
-
+                    group
                     flex
-
-
-
-                    size-10
-
-
-
+                    size-11
                     items-center
-
-
-
                     justify-center
-
-
-
-                    rounded-full
-
-
-
-
-
-
-
-                    border
-
-
-
-                    border-white/10
-
-
-
-
-
-
-
-                    bg-white/5
-
-
-
-                    text-white/80
-
-
-
-
-
-
-
+                    overflow-hidden
+                    rounded-[12px]
+                    bg-[radial-gradient(circle_at_30%_107%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285AEB_90%)]
+                    shadow-[0_8px_20px_rgba(214,36,159,0.22)]
                     transition-all
-
-
-
                     duration-200
-
-
-
-
-
-
-
                     hover:-translate-y-0.5
-
-
-
-                    hover:border-primary
-
-
-
-                    hover:bg-primary
-
-
-
-                    hover:text-white
-
-
-
+                    hover:scale-105
                   "
-
-
-
                 >
-
-
-
-                  <FaInstagram className="text-[17px]" />
-
-
-
+                  <FaInstagram className="text-[25px] text-white" />
                 </a>
 
-
-
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Elev8 Learning LinkedIn"
+                  className="
+                    group
+                    flex
+                    size-11
+                    items-center
+                    justify-center
+                    rounded-[12px]
+                    bg-[#0A66C2]
+                    shadow-[0_8px_20px_rgba(10,102,194,0.22)]
+                    transition-all
+                    duration-200
+                    hover:-translate-y-0.5
+                    hover:scale-105
+                  "
+                >
+                  <FaLinkedinIn className="text-[24px] text-white" />
+                </a>
               </div>
+
+
+
+
 
 
 
@@ -2333,11 +4015,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           </div>
 
 
 
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -2349,7 +4043,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
       {/* =====================================================
+
+
+
+
 
 
 
@@ -2357,7 +4063,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       ====================================================== */}
+
+
+
+
 
 
 
@@ -2365,11 +4079,25 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         className="
+
+
 
           hidden
 
+
+
           md:block
+
+
+
+
+
+
 
 
 
@@ -2379,7 +4107,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           z-10
+
+
+
+
 
 
 
@@ -2387,7 +4123,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           border-white/10
+
+
+
+
 
 
 
@@ -2395,7 +4139,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
       >
+
+
+
+
 
 
 
@@ -2403,7 +4155,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           className="
+
+
+
+
 
 
 
@@ -2415,7 +4175,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             flex
+
+
+
+
 
 
 
@@ -2423,7 +4195,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             gap-2
+
+
+
+
+
+
+
+
 
 
 
@@ -2439,7 +4223,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             text-[11px]
+
+
+
+
 
 
 
@@ -2451,7 +4247,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
             sm:flex-row
+
+
+
+
 
 
 
@@ -2459,7 +4267,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             sm:justify-between
+
+
+
+
 
 
 
@@ -2467,7 +4283,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             sm:py-5
+
+
+
+
 
 
 
@@ -2475,7 +4299,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           "
+
+
+
+
 
 
 
@@ -2483,7 +4315,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
           <p>
+
+
+
+
 
 
 
@@ -2491,11 +4331,27 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             All rights reserved.
 
 
 
+
+
+
+
           </p>
+
+
+
+
+
+
+
+
 
 
 
@@ -2507,7 +4363,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
             Practical learning. Real performance.
+
+
+
+
 
 
 
@@ -2515,7 +4379,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -2523,11 +4395,23 @@ export function SiteFooter() {
 
 
 
+
+
+
+
     </footer>
 
 
 
+
+
+
+
   );
+
+
+
+
 
 
 
@@ -2539,7 +4423,19 @@ export function SiteFooter() {
 
 
 
+
+
+
+
+
+
+
+
 /* =========================================================
+
+
+
+
 
 
 
@@ -2547,7 +4443,15 @@ export function SiteFooter() {
 
 
 
+
+
+
+
 ========================================================= */
+
+
+
+
 
 
 
@@ -2555,7 +4459,15 @@ function FooterHeading({
 
 
 
+
+
+
+
   children,
+
+
+
+
 
 
 
@@ -2563,7 +4475,15 @@ function FooterHeading({
 
 
 
+
+
+
+
   children: React.ReactNode;
+
+
+
+
 
 
 
@@ -2571,7 +4491,15 @@ function FooterHeading({
 
 
 
+
+
+
+
   return (
+
+
+
+
 
 
 
@@ -2579,7 +4507,15 @@ function FooterHeading({
 
 
 
+
+
+
+
       className="
+
+
+
+
 
 
 
@@ -2587,7 +4523,15 @@ function FooterHeading({
 
 
 
+
+
+
+
         font-extrabold
+
+
+
+
 
 
 
@@ -2595,11 +4539,27 @@ function FooterHeading({
 
 
 
+
+
+
+
         tracking-[0.18em]
 
 
 
-        text-white/40
+
+
+
+
+        text-[#C30046]
+
+
+
+
+
+
+
+
 
 
 
@@ -2611,7 +4571,15 @@ function FooterHeading({
 
 
 
+
+
+
+
       "
+
+
+
+
 
 
 
@@ -2619,7 +4587,15 @@ function FooterHeading({
 
 
 
+
+
+
+
       {children}
+
+
+
+
 
 
 
@@ -2627,7 +4603,15 @@ function FooterHeading({
 
 
 
+
+
+
+
   );
+
+
+
+
 
 
 
@@ -2639,7 +4623,19 @@ function FooterHeading({
 
 
 
+
+
+
+
+
+
+
+
 /* =========================================================
+
+
+
+
 
 
 
@@ -2647,7 +4643,15 @@ function FooterHeading({
 
 
 
+
+
+
+
 ========================================================= */
+
+
+
+
 
 
 
@@ -2655,7 +4659,15 @@ function FooterLink({
 
 
 
+
+
+
+
   to,
+
+
+
+
 
 
 
@@ -2663,7 +4675,15 @@ function FooterLink({
 
 
 
+
+
+
+
 }: {
+
+
+
+
 
 
 
@@ -2671,7 +4691,15 @@ function FooterLink({
 
 
 
+
+
+
+
     | "/"
+
+
+
+
 
 
 
@@ -2679,7 +4707,15 @@ function FooterLink({
 
 
 
+
+
+
+
     | "/colleges"
+
+
+
+
 
 
 
@@ -2687,7 +4723,15 @@ function FooterLink({
 
 
 
+
+
+
+
     | "/about"
+
+
+
+
 
 
 
@@ -2695,7 +4739,15 @@ function FooterLink({
 
 
 
+
+
+
+
   children: React.ReactNode;
+
+
+
+
 
 
 
@@ -2703,7 +4755,15 @@ function FooterLink({
 
 
 
+
+
+
+
   return (
+
+
+
+
 
 
 
@@ -2711,7 +4771,15 @@ function FooterLink({
 
 
 
+
+
+
+
       to={to}
+
+
+
+
 
 
 
@@ -2719,7 +4787,15 @@ function FooterLink({
 
 
 
+
+
+
+
         group
+
+
+
+
 
 
 
@@ -2727,11 +4803,27 @@ function FooterLink({
 
 
 
+
+
+
+
         items-center
 
 
 
+
+
+
+
         gap-2
+
+
+
+
+
+
+
+
 
 
 
@@ -2747,7 +4839,23 @@ function FooterLink({
 
 
 
+
+
+
+
+
+
+
+
         transition-colors
+
+
+
+
+
+
+
+
 
 
 
@@ -2759,7 +4867,15 @@ function FooterLink({
 
 
 
+
+
+
+
       "
+
+
+
+
 
 
 
@@ -2767,7 +4883,15 @@ function FooterLink({
 
 
 
+
+
+
+
       <span
+
+
+
+
 
 
 
@@ -2775,7 +4899,15 @@ function FooterLink({
 
 
 
+
+
+
+
           h-px
+
+
+
+
 
 
 
@@ -2783,7 +4915,15 @@ function FooterLink({
 
 
 
+
+
+
+
           bg-primary
+
+
+
+
 
 
 
@@ -2791,11 +4931,23 @@ function FooterLink({
 
 
 
+
+
+
+
           group-hover:w-3
 
 
 
+
+
+
+
         "
+
+
+
+
 
 
 
@@ -2807,7 +4959,19 @@ function FooterLink({
 
 
 
+
+
+
+
+
+
+
+
       {children}
+
+
+
+
 
 
 
@@ -2815,7 +4979,15 @@ function FooterLink({
 
 
 
+
+
+
+
   );
+
+
+
+
 
 
 
@@ -2827,7 +4999,19 @@ function FooterLink({
 
 
 
+
+
+
+
+
+
+
+
 /* =========================================================
+
+
+
+
 
 
 
@@ -2835,79 +5019,158 @@ function FooterLink({
 
 
 
+
+
+
+
 ========================================================= */
 
 
 
+
+
+
+
 function FooterContact({
+
   icon,
+
   label,
+
   value,
+
   href,
+
 }: {
+
   icon: React.ReactNode;
+
   label: string;
+
   value: string;
+
   href: string;
+
 }) {
+
   return (
+
     <a
+
       href={href}
+
       className="
+
         group
+
         flex
+
         min-w-0
+
         items-start
+
         gap-3
+
       "
+
     >
+
       <div
+
         className="
+
           mt-0.5
+
           flex
+
           size-8
+
           shrink-0
+
           items-center
+
           justify-center
+
           rounded-lg
+
           bg-white/5
+
           text-primary
+
           transition
+
           group-hover:bg-primary
+
           group-hover:text-white
+
         "
+
       >
+
         {icon}
+
       </div>
+
+
 
       <div className="min-w-0">
-        <p
-          className="
-            text-[9px]
-            font-extrabold
-            uppercase
-            tracking-[0.12em]
-            text-white/40
-          "
-        >
-          {label}
-        </p>
 
         <p
+
           className="
-            mt-1
-            whitespace-nowrap
-            text-sm
-            font-semibold
-            leading-5
-            text-white/70
-            transition
-            group-hover:text-white
+
+            text-[9px]
+
+            font-extrabold
+
+            uppercase
+
+            tracking-[0.12em]
+
+            text-[#C30046]
+
           "
+
         >
-          {value}
+
+          {label}
+
         </p>
+
+
+
+        <p
+
+          className="
+
+            mt-1
+
+            whitespace-nowrap
+
+            text-sm
+
+            font-semibold
+
+            leading-5
+
+            text-white/70
+
+            transition
+
+            group-hover:text-white
+
+          "
+
+        >
+
+          {value}
+
+        </p>
+
       </div>
+
     </a>
+
   );
+
 }
