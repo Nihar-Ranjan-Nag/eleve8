@@ -54,28 +54,28 @@ export const Route = createFileRoute("/")({
 ========================================================= */
 
 const audienceCards = [
-  {
-    to: "/individuals" as const,
+   
+{
+    to: "/corporates" as const,
     eyebrow: "For",
-    label: "Individuals",
-    subtitle: "Career skills that help people move forward.",
+    label: "Organizations",
+    subtitle: "Capability programs built around real business needs.",
     benefits: [
-      "Public Speaking & Interviews",
-      "Professional Communication",
-      "Career Confidence & Growth",
+      "Communication & Leadership",
+      "AI, Digital & Technical Skills",
+      "Role-Based Capability Programs",
     ],
     buttonLabel: "View programs",
-    image: individualImage,
-    bg: "bg-[#fff3f7]",
-    border: "border-[#f6c9d9]",
-    accent: "text-primary",
-    iconColor: "text-primary",
-    buttonBorder: "border-[#f4bfd2]",
-    buttonText: "text-primary",
-    imagePosition: "object-[center_54%]",
-    icon: UserRound,
+    image: organizationImage,
+    bg: "bg-[#f2f5f9]",
+    border: "border-[#d9e0ea]",
+    accent: "text-[#0f254f]",
+    iconColor: "text-[#0f254f]",
+    buttonBorder: "border-[#d4dbe5]",
+    buttonText: "text-[#0f254f]",
+    imagePosition: "object-[center_center]",
+    icon: Building2,
   },
-
   {
     to: "/colleges" as const,
     eyebrow: "For",
@@ -97,28 +97,29 @@ const audienceCards = [
     imagePosition: "object-[center_center]",
     icon: GraduationCap,
   },
-
   {
-    to: "/corporates" as const,
+    to: "/individuals" as const,
     eyebrow: "For",
-    label: "Organizations",
-    subtitle: "Capability programs built around real business needs.",
+    label: "Individuals",
+    subtitle: "Career skills that help people move forward.",
     benefits: [
-      "Communication & Leadership",
-      "AI, Digital & Technical Skills",
-      "Role-Based Capability Programs",
+      "Public Speaking & Interviews",
+      "Professional Communication",
+      "Career Confidence & Growth",
     ],
     buttonLabel: "View programs",
-    image: organizationImage,
-    bg: "bg-[#f2f5f9]",
-    border: "border-[#d9e0ea]",
-    accent: "text-[#0f254f]",
-    iconColor: "text-[#0f254f]",
-    buttonBorder: "border-[#d4dbe5]",
-    buttonText: "text-[#0f254f]",
-    imagePosition: "object-[center_center]",
-    icon: Building2,
-  },
+    image: individualImage,
+    bg: "bg-[#fff3f7]",
+    border: "border-[#f6c9d9]",
+    accent: "text-primary",
+    iconColor: "text-primary",
+    buttonBorder: "border-[#f4bfd2]",
+    buttonText: "text-primary",
+    imagePosition: "object-[center_54%]",
+    icon: UserRound,
+  }
+
+   
 ];
 
 /* =========================================================
@@ -1975,18 +1976,7 @@ function HomePage() {
               </h2>
             </div>
 
-            <p
-              className="
-                max-w-lg
-                text-sm
-                text-muted-foreground
-              "
-            >
-              Actual Elev8 training photographs
-              are used throughout the site so
-              the brand feels credible, human
-              and grounded.
-            </p>
+             
           </div>
 
           <div
