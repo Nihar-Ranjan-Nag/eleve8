@@ -1679,34 +1679,7 @@ function IndividualsPage() {
       `}</style>
 
     
-          <style>{`
-            html,
-            body,
-            #root {
-              max-width: 100%;
-              overflow-x: hidden !important;
-              scrollbar-width: none;
-              -ms-overflow-style: none;
-            }
-
-            html::-webkit-scrollbar,
-            body::-webkit-scrollbar,
-            #root::-webkit-scrollbar {
-              width: 0;
-              height: 0;
-              display: none;
-            }
-
-            * {
-              scrollbar-width: none;
-            }
-
-            *::-webkit-scrollbar {
-              width: 0;
-              height: 0;
-              display: none;
-            }
-          `}</style>
+          
 
         </>
   );
