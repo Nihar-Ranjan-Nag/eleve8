@@ -458,7 +458,7 @@ return (
                 text-primary
                 sm:text-[1.2rem]
                 md:text-[1.3rem]
-                lg:text-[1.35rem]
+                lg:text-[2.35rem]
               "
             >
               Placement Accelerator
@@ -506,7 +506,7 @@ return (
             <div
               className="
                 mt-5
-                max-w-[600px]
+                max-w-[450px]
                 rounded-[18px]
                 border
                 border-border

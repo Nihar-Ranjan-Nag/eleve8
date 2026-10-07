@@ -350,68 +350,22 @@ function IndividualsPage() {
               2xl:translate-x-16
             "
           >
-            <div
-              className="
-                mx-auto
-                inline-flex
-                items-center
-                gap-2.5
+             <p
+  className="
+    font-display
+    text-[1.05rem]
+    font-black
+    leading-none
+    tracking-[-0.025em]
+    text-primary
 
-                rounded-full
-
-                border
-                border-primary/20
-
-                bg-white/90
-
-                py-1.5
-                pl-1.5
-                pr-4
-
-                shadow-[0_8px_24px_rgba(196,0,79,0.10)]
-                backdrop-blur-sm
-              "
-            >
-              <span
-                className="
-                  flex
-                  size-8
-                  shrink-0
-                  items-center
-                  justify-center
-
-                  rounded-full
-                  bg-primary
-
-                  shadow-[0_5px_14px_rgba(196,0,79,0.22)]
-                "
-              >
-                <UserRound
-                  className="size-4 text-white"
-                  strokeWidth={2.5}
-                />
-              </span>
-
-              <span
-                className="
-                  text-[11px]
-                  font-extrabold
-                  uppercase
-                  tracking-[0.15em]
-
-                  text-primary
-
-                  sm:text-xs
-                "
-              >
-                For Individuals
-              </span>
-
-               
-
-               
-            </div>
-
+    sm:text-[1.15rem]
+    md:text-[1.25rem]
+    lg:text-[1.35rem]
+  "
+>
+  For Individuals
+</p>
             <h1
               className="
                 mt-3
@@ -1246,18 +1200,7 @@ function IndividualsPage() {
                   How individual learning works
                 </span>
 
-                <span
-                  className="
-                    hidden
-                    text-[10px]
-                    font-bold
-                    text-foreground/40
-
-                    sm:inline
-                  "
-                >
-                  Practice • Feedback • Growth
-                </span>
+                 
               </div>
             </div>
 

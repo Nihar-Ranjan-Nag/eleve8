@@ -648,7 +648,7 @@ function CorporatesPage() {
               className="
                 mx-auto
                 mt-5
-                max-w-[600px]
+                max-w-[500px]
                 rounded-[18px]
                 border
                 border-border
