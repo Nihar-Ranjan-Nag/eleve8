@@ -40,21 +40,20 @@ import barclaysLogo from "@/assets/brand/barclays.png";
 import capgeminiLogo from "@/assets/brand/capgemini.png";
 import hdfcLogo from "@/assets/brand/hdfc.png";
 
-import mountCarmelLogo from "@/assets/institution/mount-carmel-college.png";
-import sibmPuneLogo from "@/assets/institution/sibm-pune.png";
-import amityUniversityLogo from "@/assets/institution/amity-university.png";
-import immLogo from "@/assets/institution/institute-of-marketing-management.png";
-import alkeshDineshLogo from "@/assets/institution/alkesh-dinesh-study-institute.png";
-import sindhiCollegeLogo from "@/assets/institution/sindhi-college.png";
-import gardenCityLogo from "@/assets/institution/garden-city-university.png";
-import dayanandaSagarLogo from "@/assets/institution/dayananda-sagar-business-school.png";
-import oxfordLogo from "@/assets/institution/oxford-educational-institutions.png";
-import rayatBahraLogo from "@/assets/institution/rayat-bahra-university.png";
-import pcteLogo from "@/assets/institution/pcte-group-of-institutes.png";
+import alkeshDineshLogo from "@/assets/institution/alkesh.jpeg";
+import amityUniversityLogo from "@/assets/institution/amity.png";
 import asciLogo from "@/assets/institution/asci.png";
-import paduaLogo from "@/assets/institution/padua-institutions.png";
-import shasunJainLogo from "@/assets/institution/shasun-jain-college-for-women.png";
-import hlCommerceLogo from "@/assets/institution/hl-commerce-college.png";
+import dayanandaSagarLogo from "@/assets/institution/dayananda.png";
+import gardenCityLogo from "@/assets/institution/garden.png";
+import hlCommerceLogo from "@/assets/institution/hl.png";
+import immLogo from "@/assets/institution/imm.jpg";
+import mountCarmelLogo from "@/assets/institution/mount.png";
+import oxfordLogo from "@/assets/institution/oxford.jpeg";
+import paduaLogo from "@/assets/institution/padua.png";
+import rayatBahraLogo from "@/assets/institution/rayat.png";
+import shasunJainLogo from "@/assets/institution/shasun.jpeg";
+import sibmPuneLogo from "@/assets/institution/sibm.png";
+import sindhiCollegeLogo from "@/assets/institution/sindh.jpeg";
 
 import {
 
@@ -268,21 +267,76 @@ const years = [
 ] as const;
 
 const institutionBrands = [
-  ["Mount Carmel College", mountCarmelLogo],
-  ["SIBM Pune", sibmPuneLogo],
-  ["Amity University", amityUniversityLogo],
-  ["Institute of Marketing Management", immLogo],
-  ["Alkesh Dinesh Study Institute", alkeshDineshLogo],
-  ["Sindhi College", sindhiCollegeLogo],
-  ["Garden City University", gardenCityLogo],
-  ["Dayananda Sagar Business School", dayanandaSagarLogo],
-  ["Oxford Educational Institutions", oxfordLogo],
-  ["Rayat Bahra University", rayatBahraLogo],
-  ["PCTE Group of Institutes", pcteLogo],
-  ["ASCI", asciLogo],
-  ["Padua Institutions", paduaLogo],
-  ["Shasun Jain College for Women", shasunJainLogo],
-  ["HL Commerce College", hlCommerceLogo],
+  {
+    name: "Mount Carmel College",
+    city: "Bangalore",
+    logo: mountCarmelLogo,
+  },
+  {
+    name: "Symbiosis Institute of Business Management",
+    city: "Pune",
+    logo: sibmPuneLogo,
+  },
+  {
+    name: "Amity University",
+    city: "Bhubaneswar",
+    logo: amityUniversityLogo,
+  },
+  {
+    name: "Institute of Marketing & Management",
+    city: "Delhi",
+    logo: immLogo,
+  },
+  {
+    name: "Alkesh Dinesh College",
+    city: "Mumbai",
+    logo: alkeshDineshLogo,
+  },
+  {
+    name: "Sindhi College",
+    city: "Bangalore",
+    logo: sindhiCollegeLogo,
+  },
+  {
+    name: "Garden City University",
+    city: "Bangalore",
+    logo: gardenCityLogo,
+  },
+  {
+    name: "Dayanand Sagar",
+    city: "Bangalore",
+    logo: dayanandaSagarLogo,
+  },
+  {
+    name: "Oxford College",
+    city: "Bangalore",
+    logo: oxfordLogo,
+  },
+  {
+    name: "Rayat Bahra University",
+    city: "Mohali",
+    logo: rayatBahraLogo,
+  },
+  {
+    name: "Administrative Staff College of India",
+    city: "Bangalore",
+    logo: asciLogo,
+  },
+  {
+    name: "Padua College",
+    city: "Mangalore",
+    logo: paduaLogo,
+  },
+  {
+    name: "Shasun Jain College for Women",
+    city: "Chennai",
+    logo: shasunJainLogo,
+  },
+  {
+    name: "HL Commerce College",
+    city: "Ahmedabad",
+    logo: hlCommerceLogo,
+  },
 ] as const;
 
 const placementBrandsTop = [
@@ -1337,42 +1391,134 @@ inline-flex
               "
             >
               {[...institutionBrands, ...institutionBrands].map(
-                ([name, logo], index) => (
-                  <div
+                ({ name, city, logo }, index) => (
+                  <article
                     key={`${name}-${index}`}
                     className="
+                      group
+                      relative
                       flex
-                      h-[86px]
-                      w-[170px]
+                      h-[154px]
+                      w-[150px]
                       shrink-0
-                      items-center
-                      justify-center
-                      rounded-2xl
+                      flex-col
+                      overflow-hidden
+                      rounded-[18px]
                       border
-                      border-border
+                      border-primary/15
                       bg-white
-                      px-4
-                      py-3
-                      shadow-sm
-                      sm:h-[92px]
-                      sm:w-[185px]
-                      sm:px-5
-                      md:w-[195px]
+                      shadow-[0_8px_24px_rgba(15,23,42,0.08)]
+                      transition-all
+                      duration-300
+
+                      hover:-translate-y-1
+                      hover:border-primary/25
+                      hover:shadow-[0_14px_34px_rgba(196,0,79,0.12)]
+
+                      sm:h-[166px]
+                      sm:w-[162px]
+
+                      md:h-[176px]
+                      md:w-[172px]
                     "
                   >
-                    <img
-                      src={logo}
-                      alt={`${name} logo`}
-                      loading="lazy"
+                    {/* LOGO */}
+                    <div
                       className="
-                        block
-                        max-h-[62px]
-                        max-w-full
-                        object-contain
-                        sm:max-h-[66px]
+                        flex
+                        h-[62px]
+                        shrink-0
+                        items-center
+                        justify-center
+                        border-b
+                        border-primary/10
+                        bg-white
+                        px-3
+                        py-2.5
+
+                        sm:h-[68px]
+                        md:h-[72px]
                       "
-                    />
-                  </div>
+                    >
+                      <img
+                        src={logo}
+                        alt={`${name} logo`}
+                        loading="lazy"
+                        className="
+                          block
+                          max-h-[44px]
+                          max-w-full
+                          object-contain
+                          transition-transform
+                          duration-300
+
+                          group-hover:scale-[1.04]
+
+                          sm:max-h-[49px]
+                          md:max-h-[52px]
+                        "
+                      />
+                    </div>
+
+                    {/* INSTITUTION NAME */}
+                    <div
+                      className="
+                        flex
+                        flex-1
+                        items-center
+                        justify-center
+                        bg-[#fff8fa]
+                        px-3
+                        py-2
+                        text-center
+                      "
+                    >
+                      <h3
+                        className="
+                          line-clamp-3
+                          font-display
+                          text-[11px]
+                          font-extrabold
+                          leading-[1.22]
+                          text-foreground
+
+                          sm:text-[12px]
+                          md:text-[12.5px]
+                        "
+                      >
+                        {name}
+                      </h3>
+                    </div>
+
+                    {/* LOCATION */}
+                    <div
+                      className="
+                        flex
+                        min-h-[30px]
+                        shrink-0
+                        items-center
+                        justify-center
+                        bg-primary
+                        px-2
+                        py-1.5
+                        text-center
+                      "
+                    >
+                      <span
+                        className="
+                          text-[10px]
+                          font-extrabold
+                          leading-none
+                          text-white
+
+                          sm:text-[10.5px]
+                          md:text-[11px]
+                        "
+                      >
+                        {city}
+                      </span>
+                    </div>
+                  </article>
                 ),
               )}
             </div>

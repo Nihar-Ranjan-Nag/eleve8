@@ -1415,7 +1415,7 @@ function HomePage() {
                 mt-4
                 flex
                 w-full
-                max-w-[585px]
+                max-w-[500px]
                 items-center
                 justify-between
                 gap-1.5
@@ -7139,357 +7139,99 @@ function HomePage() {
 
 
       </section>
+ 
+<section
+  className="
+    bg-primary
+    text-white
+  "
+>
+  <div
+    className="
+      container-page
+      flex
+      flex-col
+      gap-4
 
+      py-6
 
+      sm:py-7
 
-
-
-
-
-      {/* =====================================================
-
-
-
-          FINAL CTA
-
-
-
-      ====================================================== */}
-
-
-
-
-
-
-
-      <section
-
-
-
+      md:flex-row
+      md:items-center
+      md:justify-between
+      md:py-8
+    "
+  >
+    <div>
+      <p
         className="
+          text-[9px]
+          font-extrabold
+          uppercase
+          tracking-[0.18em]
+          text-white/65
 
+          sm:text-[10px]
+        "
+      >
+        From campus to career
+      </p>
 
-
-          bg-primary
-
-
-
+      <h2
+        className="
+          mt-2
+          max-w-[720px]
+          font-display
+          text-[1.35rem]
+          font-extrabold
+          leading-[1.08]
+          tracking-[-0.035em]
           text-white
 
-
-
+          sm:text-[1.55rem]
+          md:text-[1.7rem]
+          lg:text-[1.85rem]
         "
-
-
-
       >
-
-
-
-        <div
-
-
-
-          className="
-
-
-
-            container-page
-
-
-
-
-
-
-
-            grid
-
-
-
-
-
-
-
-            gap-8
-
-
-
-
-
-
-
-            py-14
-
-
-
-
-
-
-
-            lg:grid-cols-[1fr_auto]
-
-
-
-            lg:items-center
-
-
-
-          "
-
-
-
-        >
-
-
-
-          <div>
-
-
-
-            <p
-
-
-
-              className="
-
-
-
-                text-xs
-
-
-
-                font-extrabold
-
-
-
-                uppercase
-
-
-
-
-
-
-
-                tracking-[0.18em]
-
-
-
-
-
-
-
-                text-white/70
-
-
-
-              "
-
-
-
-            >
-
-
-
-              Start with the outcome
-
-
-
-            </p>
-
-
-
-
-
-
-
-            <h2
-
-
-
-              className="
-
-
-
-                mt-3
-
-
-
-
-
-
-
-                max-w-3xl
-
-
-
-
-
-
-
-                text-2xl
-
-
-
-                font-extrabold
-
-
-
-                leading-tight
-
-
-
-
-
-
-
-                sm:text-3xl
-
-
-
-              "
-
-
-
-            >
-
-
-
-              Tell us who you want to develop
-
-
-
-              and what better performance
-
-
-
-              should look like.
-
-
-
-            </h2>
-
-
-
-          </div>
-
-
-
-
-
-
-
-          <Link
-
-
-
-            to="/contact"
-
-
-
-            className="
-
-
-
-              inline-flex
-
-
-
-              items-center
-
-
-
-              justify-center
-
-
-
-              gap-2
-
-
-
-
-
-
-
-              rounded-full
-
-
-
-
-
-
-
-              bg-white
-
-
-
-
-
-
-
-              px-6
-
-
-
-              py-3.5
-
-
-
-
-
-
-
-              text-sm
-
-
-
-              font-extrabold
-
-
-
-
-
-
-
-              text-foreground
-
-
-
-            "
-
-
-
-          >
-
-
-
-            Start a conversation
-
-
-
-
-
-
-
-            <ArrowRight className="size-4" />
-
-
-
-          </Link>
-
-
-
-        </div>
-
-
-
-      </section>
-
-
-
+        Prepare students for the companies they want to join.
+      </h2>
+    </div>
+
+    <Link
+      to="/contact"
+      className="
+        inline-flex
+        w-full
+        shrink-0
+        items-center
+        justify-center
+        gap-2
+        rounded-full
+        bg-white
+        px-5
+        py-3
+        text-[13px]
+        font-extrabold
+        text-foreground
+        shadow-sm
+        transition
+        duration-300
+
+        hover:-translate-y-0.5
+        hover:shadow-md
+
+        sm:w-auto
+        sm:px-6
+      "
+    >
+      Partner with Elev8
+      <ArrowRight className="size-4" />
+    </Link>
+  </div>
+</section>
     </>
-
-
-
+ 
   );
 
 
