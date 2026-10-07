@@ -478,16 +478,19 @@ function CorporatesPage() {
   return (
     <>
       {/* =====================================================
-          HERO — PREMIUM ORGANIZATIONS
+          HERO — ORGANIZATIONS
       ====================================================== */}
 
       <section
         className="
+          soft-grid
           relative
           overflow-hidden
           border-b
           border-border
           bg-[#fffaf8]
+
+          lg:h-[570px]
         "
       >
         {/* restrained premium background */}
@@ -523,129 +526,92 @@ function CorporatesPage() {
           className="
             relative
             z-10
-
             mx-auto
-
             grid
             w-full
-            max-w-[1440px]
-
+            max-w-[1248px]
             gap-8
-
-            px-4
-            py-7
+            px-5
+            pb-8
+            pt-8
 
             sm:px-6
-            sm:py-9
+            sm:pb-10
+            sm:pt-9
 
             md:px-8
-            md:py-10
 
-            lg:min-h-[620px]
-            lg:grid-cols-[0.98fr_1.02fr]
-            lg:items-center
-            lg:gap-12
-            lg:px-10
-            lg:py-10
+            lg:h-full
+            lg:grid-cols-[1fr_1fr]
+            lg:items-start
+            lg:gap-[46px]
+            lg:px-0
+            lg:pb-5
+            lg:pt-[34px]
 
-            xl:gap-12
-            xl:px-10
-
-            2xl:max-w-[1500px]
+            xl:gap-[56px]
+            xl:pt-[32px]
           "
         >
-          {/* LEFT */}
+          {/* ================= LEFT CONTENT ================= */}
           <div
             ref={heroText}
             className="
               reveal-left
+              relative
+              z-20
+              w-full
+              max-w-[640px]
               text-center
 
+              lg:translate-y-5
               lg:text-left
+
+              xl:translate-y-6
             "
           >
-            {/* Primary page identity */}
-            <div
+            {/* Simple page identity */}
+            <p
               className="
                 mx-auto
-                inline-flex
-                items-center
-                gap-3
+                w-fit
+                font-display
+                text-[1.05rem]
+                font-black
+                leading-none
+                tracking-[-0.025em]
+                text-primary
 
-                rounded-full
-
-                border
-                border-primary/20
-
-                bg-white
-
-                py-1.5
-                pl-1.5
-                pr-4
-
-                shadow-[0_10px_30px_rgba(196,0,79,0.10)]
+                sm:text-[1.15rem]
+                md:text-[1.25rem]
 
                 lg:mx-0
+                lg:text-[1.35rem]
               "
             >
-              <span
-                className="
-                  flex
-                  size-9
-                  shrink-0
-                  items-center
-                  justify-center
+              For Organizations
+            </p>
 
-                  rounded-full
-
-                  bg-primary
-
-                  shadow-[0_7px_18px_rgba(196,0,79,0.24)]
-                "
-              >
-                <UsersRound
-                  className="size-[18px] text-white"
-                  strokeWidth={2.5}
-                />
-              </span>
-
-              <span
-                className="
-                  text-xs
-                  font-extrabold
-                  uppercase
-                  tracking-[0.16em]
-                  text-primary
-
-                  sm:text-[13px]
-                "
-              >
-                For Organizations
-              </span>
-            </div>
-
+            {/* Heading */}
             <h1
               className="
                 mx-auto
-                mt-5
-                max-w-[720px]
-
+                mt-3
+                max-w-[640px]
                 font-display
-                text-[2.15rem]
-                font-extrabold
-                leading-[1.07]
-                tracking-[-0.05em]
-
+                text-[2.05rem]
+                font-black
+                leading-[1.02]
+                tracking-[-0.045em]
                 text-foreground
 
-                sm:text-[2.8rem]
-
-                md:text-[3.3rem]
+                sm:text-[2.4rem]
+                md:text-[2.65rem]
 
                 lg:mx-0
-                lg:text-[3.55rem]
+                lg:text-[2.85rem]
 
-                xl:text-[3.9rem]
+                xl:text-[3rem]
               "
             >
               Build a workforce{" "}
@@ -654,36 +620,86 @@ function CorporatesPage() {
               </span>
             </h1>
 
+            {/* Description */}
             <p
               className="
                 mx-auto
-                mt-4
-                max-w-[640px]
-
-                text-sm
-                leading-[1.85]
+                mt-5
+                max-w-[610px]
+                text-[14px]
+                leading-6
                 text-muted-foreground
 
-                sm:text-base
-                sm:leading-[1.9]
+                sm:text-[15px]
+                sm:leading-7
+
+                lg:mx-0
+
+                xl:text-[16px]
+              "
+            >
+              Practical learning for communication, leadership, AI, digital
+              capability and workplace effectiveness — designed around your
+              people, roles and business priorities.
+            </p>
+
+            {/* Highlight card */}
+            <div
+              className="
+                mx-auto
+                mt-5
+                max-w-[600px]
+                rounded-[18px]
+                border
+                border-border
+                border-l-[5px]
+                border-l-primary
+                bg-white
+                px-5
+                py-4
+                text-left
+                shadow-[0_10px_28px_rgba(15,23,42,0.06)]
 
                 lg:mx-0
               "
             >
-              Practical learning for communication, leadership, AI,
-              digital capability and workplace effectiveness — designed
-              around your people, roles and business priorities.
-            </p>
+              <p
+                className="
+                  font-display
+                  text-[14px]
+                  font-extrabold
+                  leading-5
+                  text-foreground
 
+                  sm:text-[15px]
+                "
+              >
+                Build practical capability around real business needs.
+              </p>
+
+              <p
+                className="
+                  mt-1
+                  text-[12px]
+                  leading-5
+                  text-muted-foreground
+                "
+              >
+                Customized. Practical. Built for application.
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
             <div
               className="
-                mt-6
+                mt-5
                 flex
                 flex-col
                 gap-3
 
-                sm:flex-row
-                sm:justify-center
+                min-[440px]:flex-row
+                min-[440px]:flex-wrap
+                min-[440px]:justify-center
 
                 lg:justify-start
               "
@@ -691,179 +707,81 @@ function CorporatesPage() {
               <Link
                 to="/contact"
                 className="
-                  group
+                  cta-glow
                   inline-flex
-                  min-h-12
-                  w-full
-
                   items-center
                   justify-center
-                  gap-2.5
-
+                  gap-2
                   rounded-full
                   bg-primary
-
                   px-6
-                  py-3
-
-                  text-sm
+                  py-3.5
+                  text-[13px]
                   font-extrabold
                   text-white
-
-                  shadow-[0_12px_30px_rgba(196,0,79,0.22)]
-
-                  transition-all
+                  shadow-[0_12px_28px_rgba(196,0,79,0.18)]
+                  transition
                   duration-300
 
                   hover:-translate-y-0.5
-                  hover:shadow-[0_16px_36px_rgba(196,0,79,0.30)]
-
-                  motion-reduce:transform-none
-
-                  sm:w-auto
+                  hover:opacity-90
                 "
               >
                 Talk to Elev8
-                <ArrowRight
-                  className="
-                    size-4
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                  "
-                />
+                <ArrowRight className="size-4" />
               </Link>
 
               <a
                 href="#capability-areas"
                 className="
-                  group
                   inline-flex
-                  min-h-12
-                  w-full
-
                   items-center
                   justify-center
-                  gap-2.5
-
+                  gap-2
                   rounded-full
-
                   border
-                  border-black/10
-
+                  border-foreground/20
                   bg-white
-
                   px-6
-                  py-3
-
-                  text-sm
+                  py-3.5
+                  text-[13px]
                   font-extrabold
                   text-foreground
-
-                  shadow-[0_8px_22px_rgba(15,23,42,0.05)]
-
-                  transition-all
+                  shadow-sm
+                  transition
                   duration-300
 
                   hover:-translate-y-0.5
-                  hover:border-primary/25
+                  hover:border-primary
                   hover:text-primary
-
-                  motion-reduce:transform-none
-
-                  sm:w-auto
                 "
               >
                 Explore capabilities
-                <ArrowRight
-                  className="
-                    size-4
-                    rotate-90
-                    transition-transform
-                    duration-300
-                    group-hover:translate-y-1
-                  "
-                />
+                <ArrowRight className="size-4 rotate-90" />
               </a>
-            </div>
-
-            {/* Useful organization context */}
-            <div
-              className="
-                mx-auto
-                mt-5
-                flex
-                max-w-xl
-                flex-wrap
-                items-center
-                justify-center
-                gap-x-5
-                gap-y-2
-
-                text-[11px]
-                font-bold
-                text-foreground/50
-
-                sm:text-xs
-
-                lg:mx-0
-                lg:justify-start
-              "
-            >
-              {[
-                "Customized to your teams",
-                "Built around real work",
-                "Designed for application",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="
-                    inline-flex
-                    items-center
-                    gap-2
-                  "
-                >
-                  <span
-                    className="
-                      flex
-                      size-5
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-primary/10
-                    "
-                  >
-                    <Check
-                      className="size-3 text-primary"
-                      strokeWidth={3}
-                    />
-                  </span>
-
-                  {item}
-                </span>
-              ))}
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div
-            ref={heroVisual}
-            className="
-              reveal-right
-              relative
-              mx-auto
-              w-full
-              min-w-0
-              max-w-[640px]
+          {/* ================= RIGHT VISUAL ================= */}
+           <div
+  ref={heroVisual}
+  className="
+    reveal-right
+    relative
+    mx-auto
+    w-full
+    min-w-0
+    max-w-[540px]
+    overflow-visible
 
-              lg:mx-0
-              lg:justify-self-end
-              lg:max-w-[620px]
+    lg:translate-y-10
+    lg:justify-self-end
+    lg:max-w-[525px]
 
-              xl:max-w-[650px]
-            "
-          >
+    xl:translate-y-12
+    xl:max-w-[540px]
+  "
+>
             {/* offset brand frame */}
             <div
               aria-hidden="true"
@@ -873,12 +791,9 @@ function CorporatesPage() {
                 -right-3
                 h-[86%]
                 w-[88%]
-
                 rounded-[2rem]
-
                 border
                 border-primary/20
-
                 bg-primary/[0.035]
 
                 sm:-bottom-4
@@ -892,16 +807,11 @@ function CorporatesPage() {
                 group
                 relative
                 overflow-hidden
-
                 rounded-[1.75rem]
-
                 border
                 border-black/[0.06]
-
                 bg-white
-
                 p-1.5
-
                 shadow-[0_26px_65px_rgba(38,22,30,0.14)]
 
                 sm:rounded-[2.25rem]
@@ -912,7 +822,6 @@ function CorporatesPage() {
                 className="
                   relative
                   overflow-hidden
-
                   rounded-[1.4rem]
 
                   sm:rounded-[1.85rem]
@@ -925,7 +834,6 @@ function CorporatesPage() {
                     aspect-[4/3]
                     w-full
                     object-cover
-
                     transition-transform
                     duration-700
                     ease-out
@@ -933,8 +841,6 @@ function CorporatesPage() {
                     group-hover:scale-[1.025]
 
                     motion-reduce:transform-none
-
-                    lg:aspect-[5/4]
                   "
                 />
 
@@ -957,21 +863,15 @@ function CorporatesPage() {
                     bottom-4
                     left-4
                     right-4
-
                     flex
                     items-center
                     justify-between
                     gap-3
-
                     rounded-2xl
-
                     border
                     border-white/40
-
                     bg-white/90
-
                     p-3
-
                     shadow-lg
                     backdrop-blur-xl
 
@@ -996,11 +896,8 @@ function CorporatesPage() {
                         shrink-0
                         items-center
                         justify-center
-
                         rounded-full
-
                         bg-primary
-
                         shadow-[0_7px_18px_rgba(196,0,79,0.22)]
                       "
                     >
@@ -1045,22 +942,16 @@ function CorporatesPage() {
                     className="
                       hidden
                       shrink-0
-
                       rounded-full
-
                       border
                       border-primary/15
-
                       bg-primary/5
-
                       px-3
                       py-1.5
-
                       text-[10px]
                       font-extrabold
                       uppercase
                       tracking-[0.1em]
-
                       text-primary
 
                       md:inline-flex
@@ -1069,60 +960,6 @@ function CorporatesPage() {
                     Organizations
                   </span>
                 </div>
-              </div>
-            </div>
-
-            {/* floating badge */}
-            <div
-              className="
-                absolute
-                -left-4
-                top-7
-
-                hidden
-                items-center
-                gap-2.5
-
-                rounded-2xl
-
-                border
-                border-primary/15
-
-                bg-white/95
-
-                px-3.5
-                py-3
-
-                shadow-[0_14px_34px_rgba(38,22,30,0.12)]
-                backdrop-blur-md
-
-                sm:flex
-
-                lg:-left-6
-              "
-            >
-              <span
-                className="
-                  flex
-                  size-9
-                  items-center
-                  justify-center
-
-                  rounded-full
-                  bg-primary/10
-                "
-              >
-                <Target className="size-4 text-primary" />
-              </span>
-
-              <div>
-                <p className="text-xs font-extrabold text-foreground">
-                  Business-led learning
-                </p>
-
-                <p className="mt-0.5 text-[10px] font-semibold text-foreground/45">
-                  From capability gap to application
-                </p>
               </div>
             </div>
           </div>
