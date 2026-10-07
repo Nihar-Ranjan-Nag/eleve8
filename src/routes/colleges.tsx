@@ -376,11 +376,9 @@ return (
           border-border
           bg-background
 
-          lg:h-[600px]
+          lg:h-[570px]
         "
       >
-        {/* Decorative background */}
-
         <div
           aria-hidden="true"
           className="
@@ -411,8 +409,6 @@ return (
           "
         />
 
-        {/* MAIN HERO WRAPPER */}
-
         <div
           className="
             relative
@@ -420,98 +416,68 @@ return (
             mx-auto
             grid
             w-full
-            max-w-[1440px]
-            items-center
-            gap-7
-            px-4
-            py-5
+            max-w-[1248px]
+            items-start
+            gap-8
+            px-5
+            pb-8
+            pt-7
             sm:px-6
-            sm:py-6
+            sm:pt-8
             md:px-8
-            md:py-7
             lg:h-full
-            lg:grid-cols-[0.95fr_1.05fr]
-            lg:items-center
-            lg:gap-8
-            lg:px-10
-            lg:py-5
-            xl:grid-cols-[0.92fr_1.08fr]
-            xl:gap-10
-            2xl:max-w-[1500px]
+            lg:grid-cols-[1fr_1fr]
+            lg:gap-[46px]
+            lg:px-0
+            lg:pb-6
+            lg:pt-[34px]
           "
         >
           {/* ================= LEFT CONTENT ================= */}
 
           <div
-            ref={heroText}
-            className="
-              reveal-left
-              relative
-              z-20
-              max-w-[700px]
-              lg:-translate-y-3
-              xl:-translate-y-4
-            "
-          >
-            {/* Kicker */}
+  ref={heroText}
+  className="
+    reveal-left
+    relative
+    z-20
+    w-full
+    max-w-[640px]
 
-            <div
+    lg:translate-y-5
+    xl:translate-y-6
+  "
+>
+            <p
               className="
-                inline-flex
-                items-center
-                rounded-full
-                border
-                border-primary/25
-                bg-primary/[0.08]
-                px-4
-                py-2.5
+                font-display
+                text-[1.1rem]
+                font-black
+                leading-none
+                tracking-[-0.03em]
+                text-primary
+                sm:text-[1.2rem]
+                md:text-[1.3rem]
+                lg:text-[1.35rem]
               "
             >
-               
-
-              <span
-                aria-hidden="true"
-                className="
-                  mx-2
-                  h-1
-                  w-1
-                  rounded-full
-                  bg-primary
-                "
-              />
-
-              <span
-                className="
-                  font-display
-                  text-[14px]
-                  font-black
-                  leading-none
-                  tracking-[-0.02em]
-                  text-primary
-                  sm:text-[15px]
-                  md:text-[16px]
-                  xl:text-[17px]
-                "
-              >
-                Elev8 Placement Accelerator
-              </span>
-            </div>
-
-            {/* Heading */}
+              Placement Accelerator
+            </p>
 
             <h1
               className="
-                mt-4
-                max-w-[700px]
+                mt-3
+                max-w-[640px]
                 font-display
-                text-[1.55rem]
-                font-extrabold
-                leading-[1.08]
-                tracking-[-0.035em]
+                text-[2.05rem]
+                font-black
+                leading-[1.02]
+                tracking-[-0.045em]
                 text-foreground
-                sm:text-[1.8rem]
-                md:text-[2rem]
-                lg:text-[2.2rem]
+                sm:text-[2.4rem]
+                md:text-[2.65rem]
+                lg:text-[2.85rem]
+                xl:text-[3rem]
               "
             >
               Your students are ready to graduate.{" "}
@@ -520,76 +486,62 @@ return (
               </span>
             </h1>
 
-            {/* Description */}
-
             <p
               className="
-                mt-4
-                max-w-[680px]
-                text-sm
+                mt-5
+                max-w-[610px]
+                text-[14px]
                 leading-6
                 text-muted-foreground
                 sm:text-[15px]
                 sm:leading-7
-                xl:text-base
               "
             >
-              Elev8 is a placement-readiness and employability training
-              partner for colleges. We prepare students for the actual
-              stages of recruitment — assessments, aptitude, technical
-              rounds, communication, interviews and mock drives.
+              Elev8 is a placement-readiness and employability training partner
+              for colleges. We prepare students for the actual stages of
+              recruitment — assessments, aptitude, technical rounds,
+              communication, interviews and mock drives.
             </p>
-
-            {/* Highlight Card */}
 
             <div
               className="
-                mt-4
-                max-w-[650px]
-                rounded-xl
+                mt-5
+                max-w-[600px]
+                rounded-[18px]
                 border
                 border-border
-                border-l-4
+                border-l-[5px]
                 border-l-primary
-                bg-card
-                px-4
-                py-3
-                shadow-sm
+                bg-white
+                px-5
+                py-4
+                shadow-[0_10px_28px_rgba(15,23,42,0.06)]
               "
             >
               <p
                 className="
                   font-display
-                  text-[13px]
+                  text-[14px]
                   font-extrabold
                   leading-5
                   text-foreground
-                  sm:text-sm
+                  sm:text-[15px]
                 "
               >
                 Turn campus talent into placement-ready talent.
               </p>
 
-              <p
-                className="
-                  mt-0.5
-                  text-[11px]
-                  text-muted-foreground
-                  sm:text-xs
-                "
-              >
+              <p className="mt-1 text-[12px] leading-5 text-muted-foreground">
                 Structured. Measurable. Recruitment-focused.
               </p>
             </div>
 
-            {/* CTA Buttons */}
-
             <div
               className="
-                mt-4
+                mt-5
                 flex
                 flex-col
-                gap-2.5
+                gap-3
                 min-[440px]:flex-row
                 min-[440px]:flex-wrap
               "
@@ -604,15 +556,16 @@ return (
                   gap-2
                   rounded-full
                   bg-primary
-                  px-5
-                  py-3
+                  px-6
+                  py-3.5
                   text-[13px]
                   font-extrabold
                   text-white
+                  shadow-[0_12px_28px_rgba(196,0,79,0.18)]
                   transition
+                  duration-300
+                  hover:-translate-y-0.5
                   hover:opacity-90
-                  xl:px-6
-                  xl:text-sm
                 "
               >
                 Partner with Elev8
@@ -629,16 +582,18 @@ return (
                   rounded-full
                   border
                   border-foreground/20
-                  bg-card
-                  px-5
-                  py-3
+                  bg-white
+                  px-6
+                  py-3.5
                   text-[13px]
                   font-extrabold
+                  text-foreground
+                  shadow-sm
                   transition
+                  duration-300
+                  hover:-translate-y-0.5
                   hover:border-primary
                   hover:text-primary
-                  xl:px-6
-                  xl:text-sm
                 "
               >
                 See campus network
@@ -649,35 +604,57 @@ return (
 
           {/* ================= RIGHT VISUAL ================= */}
 
-          <div
-            ref={heroVisual}
-            className="
-              reveal-right
-              relative
-              mx-auto
-              flex
-              w-full
-              items-center
-              justify-center
-              lg:h-full
-              lg:-translate-y-1
-            "
-          >
+           <div
+  ref={heroVisual}
+  className="
+    reveal-right
+    relative
+    mx-auto
+    flex
+    w-full
+    items-start
+    justify-center
+    overflow-visible
+
+    lg:-translate-y-8
+    xl:-translate-y-20
+  "
+>
+            <div
+              aria-hidden="true"
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                h-[76%]
+                w-[84%]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                bg-gradient-to-br
+                from-primary/[0.05]
+                via-transparent
+                to-sky-100/30
+                blur-3xl
+              "
+            />
+
             <img
               src={landingHero}
               alt="Elev8 Placement Accelerator"
               className="
+                relative
+                z-10
                 block
                 h-auto
                 w-full
-                max-w-[810px]
-                max-h-[600px]
+                max-w-[520px]
                 object-contain
-                sm:max-h-[620px]
-                lg:max-w-[825px]
-                lg:max-h-[615px]
-                xl:max-w-[865px]
-                xl:max-h-[625px]
+                sm:max-w-[540px]
+                md:max-w-[555px]
+                lg:max-w-[535px]
+                xl:max-w-[550px]
               "
             />
           </div>
