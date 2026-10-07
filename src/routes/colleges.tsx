@@ -3668,144 +3668,100 @@ className="
           CTA
 
       ====================================================== */}
+ {/* =====================================================
+    FINAL CTA
+====================================================== */}
 
-      <section
+<section
+  className="
+    bg-primary
+    text-white
+  "
+>
+  <div
+    className="
+      container-page
+      flex
+      flex-col
+      gap-4
 
-className="
+      py-6
 
-          bg-primary
+      sm:py-7
 
+      md:flex-row
+      md:items-center
+      md:justify-between
+      md:py-8
+    "
+  >
+    <div>
+      <p
+        className="
+          text-[9px]
+          font-extrabold
+          uppercase
+          tracking-[0.18em]
+          text-white/65
+
+          sm:text-[10px]
+        "
+      >
+        From campus to career
+      </p>
+
+      <h2
+        className="
+          mt-2
+          max-w-[720px]
+          font-display
+          text-[1.35rem]
+          font-extrabold
+          leading-[1.08]
+          tracking-[-0.035em]
           text-white
 
+          sm:text-[1.55rem]
+          md:text-[1.7rem]
+          lg:text-[1.85rem]
         "
-
       >
+        Prepare students for the companies they want to join.
+      </h2>
+    </div>
 
-        <div
+    <Link
+      to="/contact"
+      className="
+        inline-flex
+        w-full
+        shrink-0
+        items-center
+        justify-center
+        gap-2
+        rounded-full
+        bg-white
+        px-5
+        py-3
+        text-[13px]
+        font-extrabold
+        text-foreground
+        shadow-sm
+        transition
+        duration-300
 
-className="
+        hover:-translate-y-0.5
+        hover:shadow-md
 
-            container-page
-
-            flex
-
-            flex-col
-
-            gap-6
-
-            py-10
-
-            sm:py-12
-
-            md:flex-row
-
-            md:items-center
-
-            md:justify-between
-
-            md:py-14
-
-          "
-
-        >
-
-          <div>
-
-            <p
-
-className="
-
-                text-[10px]
-
-                font-extrabold
-
-                uppercase
-
-                tracking-[.16em]
-
-                text-white/65
-
-                sm:text-xs
-
-              "
-
-            >
-
-              From campus to career
-
-            </p>
-
-            <h2
-              className="
-                mt-3
-                max-w-3xl
-                font-display
-                text-[1.55rem]
-                font-extrabold
-                leading-[1.08]
-                tracking-[-0.035em]
-                text-white
-                sm:text-[1.8rem]
-                md:text-[2rem]
-                lg:text-[2.2rem]
-              "
-            >
-
-              Prepare students for the companies they want to
-
-              join.
-
-            </h2>
-
-          </div>
-
-          <Link
-
-to="/contact"
-
-className="
-
-              inline-flex
-
-              w-full
-
-              shrink-0
-
-              items-center
-
-              justify-center
-
-              gap-2
-
-              rounded-full
-
-              bg-white
-
-              px-6
-
-              py-3.5
-
-              text-sm
-
-              font-extrabold
-
-              text-foreground
-
-              sm:w-auto
-
-            "
-
-          >
-
-            Partner with Elev8
-
-            <ArrowRight className="size-4" />
-
-          </Link>
-
-        </div>
-
-      </section>
+        sm:w-auto
+        sm:px-6
+      "
+    >
+      Partner with Elev8
+      <ArrowRight className="size-4" />
+    </Link>
+  </div>
+</section>
 
     </>
 
